@@ -1,15 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { ROOT_REDUCERS } from './state/app.sate';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
+      imports: [RouterTestingModule],
+      declarations: [AppComponent],
+      providers: [
+        provideMockStore({ initialState: { sneakers: ROOT_REDUCERS } }),
       ],
     }).compileComponents();
   });
@@ -30,6 +31,8 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('Luis-Herrera_Front-Final-Project-202210-MAD app is running!');
+    expect(compiled.querySelector('p')?.textContent).toContain(
+      'Work in Luis-Herrera_Front-Final-Project-202210-MAD is in progress'
+    );
   });
 });
