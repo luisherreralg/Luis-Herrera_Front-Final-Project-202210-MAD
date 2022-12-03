@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { ROOT_REDUCERS } from './state/app.sate';
 import { provideMockStore } from '@ngrx/store/testing';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -11,6 +12,8 @@ describe('AppComponent', () => {
       declarations: [AppComponent],
       providers: [
         provideMockStore({ initialState: { sneakers: ROOT_REDUCERS } }),
+        HttpClient,
+        HttpHandler,
       ],
     }).compileComponents();
   });
