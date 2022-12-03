@@ -46,4 +46,10 @@ export class SneakersService {
       headers: { Authorization: 'Bearer ' + authToken },
     }) as Observable<Sneaker>;
   }
+
+  deleteSneaker(sneakerId: string, authToken: string): Observable<Sneaker> {
+    return this.http.delete(this.apiUrl + '/' + sneakerId, {
+      headers: { Authorization: 'Bearer ' + authToken },
+    }) as Observable<Sneaker>;
+  }
 }
