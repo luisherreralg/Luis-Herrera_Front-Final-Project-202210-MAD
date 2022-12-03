@@ -25,10 +25,7 @@ module.exports = function (config) {
       suppressAll: true, // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require("path").join(
-        __dirname,
-        "coverage/luis-herrera-front-final-project-202210-mad"
-      ),
+      dir: require("path").join(__dirname, "coverage/"),
       subdir: ".",
       reporters: [{ type: "html" }, { type: "text-summary" }, { type: "lcov" }],
     },
