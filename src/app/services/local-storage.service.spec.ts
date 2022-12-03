@@ -35,7 +35,7 @@ describe('LocalStorageService', () => {
       spyOn(localStorage, 'setItem');
 
       service.saveToken('token');
-      expect(localStorage.setItem).toHaveBeenCalled;
+      expect(localStorage.setItem).toHaveBeenCalled();
     });
   });
 
