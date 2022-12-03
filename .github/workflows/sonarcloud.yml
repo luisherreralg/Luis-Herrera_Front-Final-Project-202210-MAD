@@ -49,7 +49,7 @@ jobs:
       - name: Install modules
         run: npm ci
       - name: Testing coverage
-        run: ng test --code-coverage --watch=false #--browsers=ChromeHeadless #Change for a valid npm script
+        run: npm run test:sonar #Change for a valid npm script
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
