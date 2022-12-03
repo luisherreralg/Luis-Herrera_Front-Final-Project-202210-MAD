@@ -1,6 +1,3 @@
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from 'src/app/app.component';
-import { Sneaker } from 'src/app/types/sneaker';
 import {
   addSneaker,
   deleteSneaker,
@@ -8,9 +5,7 @@ import {
   searchSneaker,
 } from './sneaker.action.creator';
 import { SneakerReducer } from './sneaker.reducer';
-import { TestBed } from '@angular/core/testing';
-import { provideMockStore } from '@ngrx/store/testing';
-import { ROOT_REDUCERS } from '../app.sate';
+import { Sneaker } from '../../types/sneaker';
 
 describe('Given the sneaker reducer', () => {
   const sneakerMock: Sneaker = {
