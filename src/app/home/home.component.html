@@ -1,0 +1,11 @@
+<p>home works!</p>
+<a routerLink="details/1">DETAILS</a>
+
+<div>
+  <ul>
+    <!-- Esto es para recorrer un array -->
+    <li *ngFor="let sneaker of sneakers">
+      <p>{{ sneaker.model }}</p>
+    </li>
+  </ul>
+</div>

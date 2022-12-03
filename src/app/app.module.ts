@@ -7,9 +7,17 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ROOT_REDUCERS } from './state/app.sate';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { DetailsComponent } from './details/details.component';
+import { GenderPageComponent } from './gender-page/gender-page.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    DetailsComponent,
+    GenderPageComponent,
+  ],
   imports: [
     HttpClientModule,
     BrowserModule,
