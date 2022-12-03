@@ -1,25 +1,10 @@
-import { Sizes } from './sneaker';
+import { Sizes, Sneaker } from './sneaker';
+import { User } from './user';
 
 export type Order = {
   size: Sizes[];
-  cartedItem: {
-    brand: string;
-    model: string;
-    size: Sizes[];
-    price: number;
-    onSalePrice: number;
-    onSale: boolean;
-    stock: number;
-    gender: string;
-    id: string;
-  };
-  cartedBy: {
-    name: string;
-    surname: string;
-    email: string;
-    role: string;
-    id: string;
-  };
+  cartedItem: Sneaker;
+  cartedBy: User;
   amount: number;
   orderId: string;
 };
