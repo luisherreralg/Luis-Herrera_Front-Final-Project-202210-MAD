@@ -2,7 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { Sneaker } from 'src/app/types/sneaker';
 import * as actions from './sneaker.action.creator';
 
-export const initialState = {
+const initialState = {
   sneakers: [] as Sneaker[],
 };
 
