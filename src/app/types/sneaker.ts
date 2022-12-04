@@ -29,6 +29,7 @@ export type Sneaker = {
   onSale: boolean;
   stock: number;
   gender: string;
+  images: string[];
 };
 
 export type ProtoSneaker = {
@@ -40,4 +41,5 @@ export type ProtoSneaker = {
   onSale: boolean;
   stock: number;
   gender: string;
+  images: string[];
 };
