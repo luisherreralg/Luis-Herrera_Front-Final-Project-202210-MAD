@@ -11,21 +11,7 @@ import { ProtoSneaker, Sneaker } from './types/sneaker';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  title = 'Luis-Herrera_Front-Final-Project-202210-MAD';
   sneakers: Sneaker[] = [];
-  searchSneakers: Sneaker[] = [];
-  sneakerToDelete = '638b1d9a7aa299cea82b5a3b';
-
-  sneakerToPost: ProtoSneaker = {
-    brand: 'POST',
-    model: 'POST',
-    size: [],
-    price: 0,
-    onSalePrice: 0,
-    onSale: false,
-    stock: 0,
-    gender: 'male',
-  };
 
   constructor(
     public store: Store<AppState>,

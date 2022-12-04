@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { DetailsComponent } from './details/details.component';
 import { LayoutModule } from './layout/layout.module';
 import { MultipageComponent } from './multipage/multipage.component';
+import { SneakerListModule } from './sneaker-list/sneaker-list.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { MultipageComponent } from './multipage/multipage.component';
     StoreModule.forRoot(ROOT_REDUCERS),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     LayoutModule,
+    SneakerListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
