@@ -5,6 +5,7 @@ import { ROOT_REDUCERS } from './state/app.sate';
 import { provideMockStore } from '@ngrx/store/testing';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { of } from 'rxjs';
+import { SneakerListComponent } from './sneaker-list/sneaker-list.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -23,21 +24,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'Luis-Herrera_Front-Final-Project-202210-MAD'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('Luis-Herrera_Front-Final-Project-202210-MAD');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('p')?.textContent).toContain(
-      'Work in Luis-Herrera_Front-Final-Project-202210-MAD is in progress'
-    );
   });
 
   describe('When loading the app component', () => {
