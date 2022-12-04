@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { SneakersService } from './services/sneakers.service';
 import { AppState } from './state/app.sate';
 import * as actions from './state/sneaker.reducer/sneaker.action.creator';
-import { ProtoSneaker, Sneaker } from './types/sneaker';
+import { Sneaker } from './types/sneaker';
 
 @Component({
   selector: 'app-root',

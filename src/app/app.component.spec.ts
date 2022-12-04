@@ -5,7 +5,6 @@ import { ROOT_REDUCERS } from './state/app.sate';
 import { provideMockStore } from '@ngrx/store/testing';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { of } from 'rxjs';
-import { SneakerListComponent } from './sneaker-list/sneaker-list.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
