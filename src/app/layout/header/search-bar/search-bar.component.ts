@@ -8,7 +8,6 @@ import * as actions from 'src/app/state/sneaker.reducer/sneaker.action.creator';
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
-  styleUrls: ['./search-bar.component.css'],
 })
 export class SearchBarComponent {
   searchForm = new FormGroup({
