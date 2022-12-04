@@ -1,2 +1,26 @@
-<p>details works!</p>
-<p>Estamos en la página {{ id }}</p>
+<div class="flex gap-20 m-5">
+  <div>
+    <ul class="flex flex-col w-44 gap-6">
+      <li *ngFor="let image of sneaker.images">
+        <img [src]="image" alt="sneaker image" />
+      </li>
+    </ul>
+  </div>
+  <div>
+    <img [src]="sneaker.images[0]" alt="" />
+  </div>
+  <div>
+    <p>{{ sneaker.brand }}</p>
+    <p>{{ sneaker.model }}</p>
+    <ul>
+      <li *ngFor="let size of sneaker.size">
+        <button class="bg-gray-200 border-2 border-neutral-500 px-3">
+          {{ size }}
+        </button>
+      </li>
+    </ul>
+    <button class="w-96 bg-orange-400 text-slate-100 text-2xl p-2">
+      Añadir a la cesta
+    </button>
+  </div>
+</div>
