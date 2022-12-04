@@ -1,0 +1,9 @@
+<div class="p-10">
+  <p class="text-4xl">{{ title }}</p>
+  <ul class="flex flex-wrap">
+    <!-- This line is just to do a forEach in angular  -->
+    <li *ngFor="let sneaker of sneakers" class="w-56 p-2">
+      <app-list-item [sneaker]="sneaker"></app-list-item>
+    </li>
+  </ul>
+</div>
