@@ -9,14 +9,15 @@ import { ROOT_REDUCERS } from './state/app.sate';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { DetailsComponent } from './details/details.component';
-import { GenderPageComponent } from './gender-page/gender-page.component';
+import { LayoutModule } from './layout/layout.module';
+import { MultipageComponent } from './multipage/multipage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     DetailsComponent,
-    GenderPageComponent,
+    MultipageComponent,
   ],
   imports: [
     HttpClientModule,
@@ -24,6 +25,7 @@ import { GenderPageComponent } from './gender-page/gender-page.component';
     AppRoutingModule,
     StoreModule.forRoot(ROOT_REDUCERS),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    LayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

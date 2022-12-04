@@ -1,0 +1,16 @@
+<div class="flex">
+  <form [formGroup]="searchForm">
+    <input
+      type="text"
+      name="search"
+      id="search"
+      formControlName="search"
+      (input)="onInput()"
+      class="border-2 border-black placeholder: pl-2"
+      placeholder="Search..."
+    />
+  </form>
+  <div class="bg-black w-7">
+    <img src="../../../../assets/search-icon.svg" alt="" class="p-1" />
+  </div>
+</div>
