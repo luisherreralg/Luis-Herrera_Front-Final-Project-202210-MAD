@@ -8,27 +8,23 @@ import { Sneaker } from '../types/sneaker';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css'],
 })
-export class DetailsComponent implements OnInit, OnDestroy {
+export class DetailsComponent implements OnInit {
   id: string = '';
   sneaker = {} as Sneaker;
 
-  private sub: any;
+  param: any;
 
-  constructor(private route: ActivatedRoute, public service: SneakersService) {}
+  constructor(public route: ActivatedRoute, public service: SneakersService) {}
 
   // Para sacar el queryparam
   ngOnInit() {
-    this.sub = this.route.params.subscribe((params) => {
+    this.param = this.route.params.subscribe((params) => {
       this.id = params['id'];
       console.log(this.id);
     });
 
-    this.service.getSneaker(this.id).subscribe((sneaker) => {
-      this.sneaker = sneaker.sneaker;
+    this.service.getSneaker(this.id).subscribe((data) => {
+      this.sneaker = data.sneaker;
     });
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
   }
 }
