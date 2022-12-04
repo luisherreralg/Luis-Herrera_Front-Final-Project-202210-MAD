@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./details.component.css'],
 })
 export class DetailsComponent implements OnInit, OnDestroy {
-  id: number | undefined;
+  id: string = '';
   private sub: any;
 
   constructor(private route: ActivatedRoute) {}
@@ -15,7 +15,8 @@ export class DetailsComponent implements OnInit, OnDestroy {
   // Para sacar el queryparam
   ngOnInit() {
     this.sub = this.route.params.subscribe((params) => {
-      this.id = +params['id'];
+      this.id = params['id'];
+      console.log(this.id);
     });
   }
 
