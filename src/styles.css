@@ -5,6 +5,6 @@
 /* Just to try tailwind "variables"? */
 @layer components {
   .footer-paragraph {
-    @apply text-4xl;
+    @apply text-4xl mb-4;
   }
 }

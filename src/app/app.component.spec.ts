@@ -25,21 +25,6 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Luis-Herrera_Front-Final-Project-202210-MAD'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('Luis-Herrera_Front-Final-Project-202210-MAD');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('p')?.textContent).toContain(
-      'Work in Luis-Herrera_Front-Final-Project-202210-MAD is in progress'
-    );
-  });
-
   describe('When loading the app component', () => {
     it('should bring sneaker data from the server with the sneakers services', () => {
       const fixture = TestBed.createComponent(AppComponent);

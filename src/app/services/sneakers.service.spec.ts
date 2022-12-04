@@ -18,6 +18,7 @@ describe('SneakersService', () => {
     onSale: false,
     stock: 0,
     gender: 'male',
+    images: ['url'],
   };
 
   let service: SneakersService;

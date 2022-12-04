@@ -15,6 +15,7 @@ describe('Given the OrderReducer', () => {
       onSale: false,
       stock: 1,
       gender: 'male',
+      images: ['url'],
     },
     cartedBy: {
       id: '1',

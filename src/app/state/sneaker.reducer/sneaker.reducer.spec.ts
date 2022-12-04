@@ -18,6 +18,7 @@ describe('Given the sneaker reducer', () => {
     onSale: false,
     stock: 1,
     gender: 'male',
+    images: ['url'],
   };
 
   const initialState = {
