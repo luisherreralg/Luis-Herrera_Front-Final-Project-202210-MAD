@@ -46,6 +46,16 @@ describe('SneakersService', () => {
     });
   });
 
+  describe('When the getSneaker method is invoked', () => {
+    it('should call to the HttpClient', () => {
+      service.getSneaker('TestId').subscribe((resp) => {
+        expect(resp).not.toBeNull();
+        expect(JSON.stringify(resp)).toBe(JSON.stringify(mockSneaker));
+      });
+      expect(httpTestingController).toBeTruthy();
+    });
+  });
+
   describe('When the searchSneakers method is invoked', () => {
     it('should call to the HttpClient', () => {
       service.searchSneakers('TestBrand').subscribe((resp) => {
