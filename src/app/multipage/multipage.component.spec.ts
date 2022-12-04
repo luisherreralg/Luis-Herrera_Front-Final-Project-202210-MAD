@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GenderPageComponent } from './gender-page.component';
+import { MultipageComponent } from './multipage.component';
 
-describe('GenderPageComponent', () => {
-  let component: GenderPageComponent;
-  let fixture: ComponentFixture<GenderPageComponent>;
+describe('MultipageComponent', () => {
+  let component: MultipageComponent;
+  let fixture: ComponentFixture<MultipageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GenderPageComponent ]
+      declarations: [ MultipageComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(GenderPageComponent);
+    fixture = TestBed.createComponent(MultipageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
