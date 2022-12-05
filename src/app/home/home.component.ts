@@ -9,12 +9,17 @@ import { Sneaker } from '../types/sneaker';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  onSaleSneakers: Sneaker[] = [];
   sneakers: Sneaker[] = [];
   constructor(public store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.store.subscribe((state) => {
       this.sneakers = state.sneakers.sneakers;
+
+      this.onSaleSneakers = this.sneakers.filter((sneaker) => {
+        return sneaker.onSale;
+      });
     });
   }
 }

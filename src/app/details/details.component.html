@@ -1,4 +1,14 @@
-<div class="flex gap-20 m-5">
+<!-- <style>
+  div p {
+    font-family: Koulen, sans-serif;
+  }
+
+  button {
+    font-family: Roboto, sans-serif;
+  }
+</style> -->
+
+<div class="flex gap-20 m-20 justify-center">
   <div>
     <ul class="flex flex-col w-44 gap-6">
       <li *ngFor="let image of sneaker.images">
@@ -10,17 +20,28 @@
     <img [src]="sneaker.images[0]" alt="" />
   </div>
   <div>
-    <p>{{ sneaker.brand }}</p>
-    <p>{{ sneaker.model }}</p>
-    <ul>
-      <li *ngFor="let size of sneaker.size">
-        <button class="bg-gray-200 border-2 border-neutral-500 px-3">
-          {{ size }}
+    <div>
+      <div class="mb-36">
+        <p class="font-Koulen text-gray-500 text-5xl">{{ sneaker.brand }}</p>
+        <p class="font-Koulen text-7xl">{{ sneaker.model }}</p>
+      </div>
+
+      <div class="mb-36">
+        <p class="font-Roboto">Tallas disponibles:</p>
+        <ul class="flex flex-wrap gap-2">
+          <li *ngFor="let size of sneaker.size">
+            <button class="bg-gray-100 border-2 border-neutral-500 px-3">
+              {{ size }}
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <button class="w-96 bg-orange-400 text-slate-100 text-2xl p-2">
+          Añadir a la cesta
         </button>
-      </li>
-    </ul>
-    <button class="w-96 bg-orange-400 text-slate-100 text-2xl p-2">
-      Añadir a la cesta
-    </button>
+      </div>
+    </div>
   </div>
 </div>

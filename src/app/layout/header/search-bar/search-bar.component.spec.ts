@@ -1,4 +1,4 @@
-import { HttpClient, HttpHandler } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
@@ -13,9 +13,8 @@ describe('SearchBarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SearchBarComponent],
+      imports: [HttpClientTestingModule],
       providers: [
-        HttpClient,
-        HttpHandler,
         provideMockStore({ initialState: { sneakers: ROOT_REDUCERS } }),
       ],
     }).compileComponents();
@@ -34,6 +33,22 @@ describe('SearchBarComponent', () => {
       const spyService = spyOn(
         component.searchService,
         'searchSneakers'
+      ).and.returnValues(of({ sneakers: [] }));
+
+      const spyStore = spyOn(component.store, 'dispatch');
+
+      component.onInput();
+
+      expect(spyService).toHaveBeenCalled();
+      expect(spyStore).toHaveBeenCalled();
+    });
+  });
+
+  describe('When calling to the onInput method with an empty search', () => {
+    it('should call to the services and store', () => {
+      const spyService = spyOn(
+        component.searchService,
+        'getSneakers'
       ).and.returnValues(of({ sneakers: [] }));
 
       const spyStore = spyOn(component.store, 'dispatch');

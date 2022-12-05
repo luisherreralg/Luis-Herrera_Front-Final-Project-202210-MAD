@@ -25,5 +25,11 @@ export class SearchBarComponent {
       .subscribe((data) => {
         this.store.dispatch(actions.loadSneakers({ sneakers: data.sneakers }));
       });
+
+    if (this.searchForm.value.search === '') {
+      this.searchService.getSneakers().subscribe((data) => {
+        this.store.dispatch(actions.loadSneakers({ sneakers: data.sneakers }));
+      });
+    }
   }
 }

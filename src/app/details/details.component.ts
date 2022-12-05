@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SneakersService } from '../services/sneakers.service';
-import { Sneaker } from '../types/sneaker';
+import { Sizes, Sneaker } from '../types/sneaker';
 
 @Component({
   selector: 'app-details',
