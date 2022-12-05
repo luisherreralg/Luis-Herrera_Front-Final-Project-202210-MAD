@@ -22,20 +22,13 @@ export class MultipageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.paramMap
-      .pipe(
-        map((params) => params.get('title')),
-        tap(
-          (title) =>
-            (this.title = ((title?.charAt(0).toUpperCase() as string) +
-              title?.slice(1)) as string)
-        )
-      )
-      .subscribe((title) => {
-        this.service.searchSneakers(title as string).subscribe((data) => {
-          this.sneakers = data.sneakers;
-        });
-      });
+    this.title = this.route.snapshot.paramMap.get('title') as string;
+    this.title = ((this.title.charAt(0).toUpperCase() as string) +
+      this.title?.slice(1)) as string;
+
+    this.service.searchSneakers(this.title as string).subscribe((data) => {
+      this.sneakers = data.sneakers;
+    });
 
     this.store.subscribe((state) => {
       const filteredState = state.sneakers.sneakers.filter((sneaker) => {
