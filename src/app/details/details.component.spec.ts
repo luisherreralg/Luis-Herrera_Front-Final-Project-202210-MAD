@@ -55,7 +55,7 @@ describe('DetailsComponent', () => {
         },
       })
     );
-    component.ngOnInit();
+    component.OnInit();
     expect(spyService).toHaveBeenCalled();
   });
 });
