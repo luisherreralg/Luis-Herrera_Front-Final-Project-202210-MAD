@@ -16,10 +16,12 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.store.subscribe((state) => {
       this.sneakers = state.sneakers.sneakers;
-
-      this.onSaleSneakers = this.sneakers.filter((sneaker) => {
-        return sneaker.onSale;
-      });
     });
+
+    if (this.sneakers.length > 0) {
+      this.onSaleSneakers = this.sneakers.filter(
+        (sneaker) => sneaker.onSale === 'onSale'
+      );
+    }
   }
 }

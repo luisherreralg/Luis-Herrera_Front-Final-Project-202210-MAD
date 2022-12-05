@@ -7,9 +7,7 @@ import { MultipageComponent } from './multipage/multipage.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'details/:id', component: DetailsComponent },
-
-  // Pendiente de comprobar si esto es necesario o no
-  { path: 'multipage/:filter', component: MultipageComponent },
+  { path: 'multipage/:title', component: MultipageComponent },
 ];
 
 @NgModule({

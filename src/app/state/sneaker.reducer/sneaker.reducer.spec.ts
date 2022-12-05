@@ -15,7 +15,7 @@ describe('Given the sneaker reducer', () => {
     size: ['40'],
     price: 100,
     onSalePrice: 90,
-    onSale: false,
+    onSale: 'notOnsale',
     stock: 1,
     gender: 'male',
     images: ['url'],

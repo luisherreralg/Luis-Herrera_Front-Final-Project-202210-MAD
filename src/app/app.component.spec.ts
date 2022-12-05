@@ -1,21 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { ROOT_REDUCERS } from './state/app.sate';
 import { provideMockStore } from '@ngrx/store/testing';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { of } from 'rxjs';
+import { mockInitialState } from './utils/mocks/mocks';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [AppComponent],
-      providers: [
-        provideMockStore({ initialState: { sneakers: ROOT_REDUCERS } }),
-        HttpClient,
-        HttpHandler,
-      ],
+      providers: [provideMockStore(mockInitialState), HttpClient, HttpHandler],
     }).compileComponents();
   });
 
