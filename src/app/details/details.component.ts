@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SneakersService } from '../services/sneakers.service';
 import { Sneaker } from '../types/sneaker';
@@ -6,22 +6,27 @@ import { Sneaker } from '../types/sneaker';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
-  styleUrls: ['./details.component.css'],
 })
-export class DetailsComponent implements OnInit {
-  id: string = '';
-  sneaker = {} as Sneaker;
-
-  param: any;
+export class DetailsComponent {
+  id!: string;
+  sneaker: Sneaker = {
+    id: '',
+    brand: '',
+    model: '',
+    size: [],
+    price: 0,
+    onSalePrice: 0,
+    onSale: false,
+    stock: 0,
+    gender: '',
+    images: ['', ''],
+  };
 
   constructor(public route: ActivatedRoute, public service: SneakersService) {}
 
-  // Para sacar el queryparam
   ngOnInit() {
-    this.param = this.route.params.subscribe((params) => {
-      this.id = params['id'];
-      console.log(this.id);
-    });
+    // Para sacar el queryparam
+    this.id = this.route.snapshot.paramMap.get('id') as string;
 
     this.service.getSneaker(this.id).subscribe((data) => {
       this.sneaker = data.sneaker;
