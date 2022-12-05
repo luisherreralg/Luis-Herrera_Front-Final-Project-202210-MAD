@@ -1,9 +1,9 @@
-import { HttpClient, HttpHandler } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
-import { Sneaker } from '../types/sneaker';
+
 import { DetailsComponent } from './details.component';
 
 describe('DetailsComponent', () => {
@@ -12,12 +12,20 @@ describe('DetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
       declarations: [DetailsComponent],
+      imports: [RouterTestingModule, HttpClientTestingModule],
       providers: [
-        HttpClient,
-        HttpHandler,
-        { provide: ActivatedRoute, useValue: { params: of({ id: '1' }) } },
+        DetailsComponent,
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              paramMap: convertToParamMap({
+                id: '1',
+              }),
+            },
+          },
+        },
       ],
     }).compileComponents();
 
@@ -26,14 +34,29 @@ describe('DetailsComponent', () => {
     fixture.detectChanges();
   });
 
-  xit('should create', () => {
-    const spy = spyOn(component.service, 'getSneaker').and.returnValue(
-      of({ sneaker: {} as Sneaker })
-    );
-    const spyRoute = spyOn(component.route.params, 'subscribe');
-
+  it('should create', () => {
     expect(component).toBeTruthy();
-    expect(spy).toHaveBeenCalled();
-    expect(spyRoute).toHaveBeenCalled();
+    // expect(spyService).toHaveBeenCalled();
+  });
+
+  it('should call to the getSneaker service', () => {
+    const spyService = spyOn(component.service, 'getSneaker').and.returnValue(
+      of({
+        sneaker: {
+          id: '1',
+          brand: 'testBrand',
+          model: 'testModel',
+          size: ['40'],
+          price: 1,
+          onSalePrice: 0,
+          onSale: true,
+          stock: 0,
+          gender: 'hombre',
+          images: ['url1', 'url2'],
+        },
+      })
+    );
+    component.ngOnInit();
+    expect(spyService).toHaveBeenCalled();
   });
 });
