@@ -1,6 +1,11 @@
 <main>
   <app-sneaker-list
     [title]="'Ofertas'"
+    [sneakers]="onSaleSneakers"
+    *ngIf="onSaleSneakers.length > 0"
+  ></app-sneaker-list>
+  <app-sneaker-list
+    [title]="'Productos:'"
     [sneakers]="sneakers"
   ></app-sneaker-list>
 </main>

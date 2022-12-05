@@ -25,6 +25,12 @@ export class SneakersService {
     }>;
   }
 
+  getSneaker(id: string): Observable<{ sneaker: Sneaker }> {
+    return this.http.get(this.apiUrl + '/' + id) as Observable<{
+      sneaker: Sneaker;
+    }>;
+  }
+
   searchSneakers(search: string): Observable<{ sneakers: Sneaker[] }> {
     const httpOptions = {
       method: 'GET',

@@ -9,7 +9,40 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [provideMockStore({})],
+      providers: [
+        provideMockStore({
+          initialState: {
+            sneakers: {
+              sneakers: [
+                {
+                  id: '1',
+                  brand: 'brandTest',
+                  model: 'modelTest',
+                  size: ['40'],
+                  price: 100,
+                  onSalePrice: 90,
+                  onSale: false,
+                  stock: 1,
+                  gender: 'male',
+                  images: ['url'],
+                },
+                {
+                  id: '2',
+                  brand: 'brandTest',
+                  model: 'modelTest',
+                  size: ['40'],
+                  price: 100,
+                  onSalePrice: 90,
+                  onSale: true,
+                  stock: 1,
+                  gender: 'male',
+                  images: ['url'],
+                },
+              ],
+            },
+          },
+        }),
+      ],
       declarations: [HomeComponent],
     }).compileComponents();
 
@@ -20,5 +53,12 @@ describe('HomeComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('When the Home component is initialized', () => {
+    it('Then it should filter the sneakers on sale from the store', () => {
+      component.ngOnInit();
+      expect(component.onSaleSneakers.length).toBe(1);
+    });
   });
 });
