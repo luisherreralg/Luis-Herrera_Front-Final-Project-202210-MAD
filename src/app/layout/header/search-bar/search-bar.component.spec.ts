@@ -2,7 +2,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
-import { ROOT_REDUCERS } from 'src/app/state/app.sate';
+import { mockInitialState } from 'src/app/utils/mocks/mocks';
 
 import { SearchBarComponent } from './search-bar.component';
 
@@ -14,9 +14,7 @@ describe('SearchBarComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [SearchBarComponent],
       imports: [HttpClientTestingModule],
-      providers: [
-        provideMockStore({ initialState: { sneakers: ROOT_REDUCERS } }),
-      ],
+      providers: [provideMockStore(mockInitialState)],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SearchBarComponent);

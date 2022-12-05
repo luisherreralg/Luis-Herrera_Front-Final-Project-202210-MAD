@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
+import { mockInitialState } from '../utils/mocks/mocks';
 
 import { MultipageComponent } from './multipage.component';
 
@@ -25,38 +26,7 @@ describe('MultipageComponent', () => {
             }),
           },
         },
-        provideMockStore({
-          initialState: {
-            sneakers: {
-              sneakers: [
-                {
-                  id: '1',
-                  brand: 'brandTest',
-                  model: 'modelTest',
-                  size: ['40'],
-                  price: 100,
-                  onSalePrice: 90,
-                  onSale: 'notOnSale',
-                  stock: 1,
-                  gender: 'male',
-                  images: ['url'],
-                },
-                {
-                  id: '2',
-                  brand: 'brandTest',
-                  model: 'modelTest',
-                  size: ['40'],
-                  price: 100,
-                  onSalePrice: 90,
-                  onSale: 'onSale',
-                  stock: 1,
-                  gender: 'male',
-                  images: ['url'],
-                },
-              ],
-            },
-          },
-        }),
+        provideMockStore(mockInitialState),
       ],
     }).compileComponents();
 
@@ -74,24 +44,7 @@ describe('MultipageComponent', () => {
       const serviceSpy = spyOn(
         component.service,
         'searchSneakers'
-      ).and.returnValue(
-        of({
-          sneakers: [
-            {
-              id: '2',
-              brand: 'brandTest',
-              model: 'modelTest',
-              size: ['40'],
-              price: 100,
-              onSalePrice: 90,
-              onSale: 'onSale',
-              stock: 1,
-              gender: 'male',
-              images: ['url'],
-            },
-          ],
-        })
-      );
+      ).and.returnValue(of({ sneakers: [] }));
       component.ngOnInit();
       expect(serviceSpy).toHaveBeenCalled();
     });
