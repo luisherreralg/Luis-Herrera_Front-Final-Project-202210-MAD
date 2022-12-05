@@ -19,7 +19,9 @@ export class HomeComponent implements OnInit {
     });
 
     if (this.sneakers.length > 0) {
-      this.onSaleSneakers = this.sneakers.filter((sneaker) => sneaker.onSale);
+      this.onSaleSneakers = this.sneakers.filter(
+        (sneaker) => sneaker.onSale === 'onSale'
+      );
     }
   }
 }
