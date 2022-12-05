@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SneakersService } from '../services/sneakers.service';
 import { Sneaker } from '../types/sneaker';
@@ -7,7 +7,7 @@ import { Sneaker } from '../types/sneaker';
   selector: 'app-details',
   templateUrl: './details.component.html',
 })
-export class DetailsComponent {
+export class DetailsComponent implements OnInit {
   id!: string;
   sneaker: Sneaker = {
     id: '',
@@ -16,7 +16,7 @@ export class DetailsComponent {
     size: [],
     price: 0,
     onSalePrice: 0,
-    onSale: false,
+    onSale: 'notOnSale',
     stock: 0,
     gender: '',
     images: ['', ''],
@@ -24,7 +24,7 @@ export class DetailsComponent {
 
   constructor(public route: ActivatedRoute, public service: SneakersService) {}
 
-  OnInit() {
+  ngOnInit() {
     // Para sacar el queryparam
     this.id = this.route.snapshot.paramMap.get('id') as string;
 

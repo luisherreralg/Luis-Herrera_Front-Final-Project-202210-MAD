@@ -13,7 +13,7 @@ export class ListItemComponent {
     size: [],
     price: 0,
     onSalePrice: 0,
-    onSale: false,
+    onSale: 'notOnSale',
     stock: 0,
     gender: 'Initial',
     images: [],

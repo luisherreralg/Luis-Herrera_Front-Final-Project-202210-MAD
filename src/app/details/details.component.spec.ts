@@ -48,14 +48,14 @@ describe('DetailsComponent', () => {
           size: ['40'],
           price: 1,
           onSalePrice: 0,
-          onSale: true,
+          onSale: 'onSale',
           stock: 0,
           gender: 'hombre',
           images: ['url1', 'url2'],
         },
       })
     );
-    component.OnInit();
+    component.ngOnInit();
     expect(spyService).toHaveBeenCalled();
   });
 });

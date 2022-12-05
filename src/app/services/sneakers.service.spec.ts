@@ -15,7 +15,7 @@ describe('SneakersService', () => {
     size: ['40'],
     price: 0,
     onSalePrice: 0,
-    onSale: false,
+    onSale: 'notOnSale',
     stock: 0,
     gender: 'male',
     images: ['url'],

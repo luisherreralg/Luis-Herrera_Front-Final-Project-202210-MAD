@@ -12,7 +12,7 @@ describe('Given the OrderReducer', () => {
       size: ['40'],
       price: 100,
       onSalePrice: 90,
-      onSale: false,
+      onSale: 'notOnSale',
       stock: 1,
       gender: 'male',
       images: ['url'],

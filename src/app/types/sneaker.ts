@@ -26,7 +26,7 @@ export type Sneaker = {
   size: Sizes[];
   price: number;
   onSalePrice: number;
-  onSale: boolean;
+  onSale: string;
   stock: number;
   gender: string;
   images: string[];
@@ -38,7 +38,7 @@ export type ProtoSneaker = {
   size: Sizes[];
   price: number;
   onSalePrice: number;
-  onSale: boolean;
+  onSale: string;
   stock: number;
   gender: string;
   images: string[];
