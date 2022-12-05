@@ -36,7 +36,6 @@ describe('DetailsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    // expect(spyService).toHaveBeenCalled();
   });
 
   it('should call to the getSneaker service', () => {
