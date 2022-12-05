@@ -20,11 +20,9 @@ describe('MultipageComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: {
-            snapshot: {
-              paramMap: convertToParamMap({
-                title: 'mujer',
-              }),
-            },
+            params: of({
+              title: 'title',
+            }),
           },
         },
         provideMockStore({

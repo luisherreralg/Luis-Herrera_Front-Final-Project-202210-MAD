@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { map, tap } from 'rxjs';
 import { SneakersService } from '../services/sneakers.service';
 import { AppState } from '../state/app.sate';
 import { Sneaker } from '../types/sneaker';
@@ -22,19 +21,22 @@ export class MultipageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.title = this.route.snapshot.paramMap.get('title') as string;
-    this.title = ((this.title.charAt(0).toUpperCase() as string) +
-      this.title?.slice(1)) as string;
+    // this.title = this.route.snapshot.paramMap.get('title') as string;
+    this.route.params.subscribe((params) => {
+      this.title = params['title'];
+      this.title = ((this.title.charAt(0).toUpperCase() as string) +
+        this.title?.slice(1)) as string;
 
-    this.service.searchSneakers(this.title as string).subscribe((data) => {
-      this.sneakers = data.sneakers;
-    });
-
-    this.store.subscribe((state) => {
-      const filteredState = state.sneakers.sneakers.filter((sneaker) => {
-        return sneaker.gender.includes(this.title);
+      this.service.searchSneakers(this.title as string).subscribe((data) => {
+        this.sneakers = data.sneakers;
       });
-      return (this.sneakers = filteredState);
+
+      this.store.subscribe((state) => {
+        const filteredState = state.sneakers.sneakers.filter((sneaker) => {
+          return sneaker.gender.includes(this.title);
+        });
+        return (this.sneakers = filteredState);
+      });
     });
   }
 }
