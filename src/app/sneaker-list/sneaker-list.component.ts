@@ -7,5 +7,5 @@ import { Sneaker } from '../types/sneaker';
 })
 export class SneakerListComponent {
   @Input() sneakers: Sneaker[] = [];
-  @Input() title: string = '';
+  @Input() title = '';
 }

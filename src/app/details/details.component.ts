@@ -24,7 +24,7 @@ export class DetailsComponent {
 
   constructor(public route: ActivatedRoute, public service: SneakersService) {}
 
-  ngOnInit() {
+  OnInit() {
     // Para sacar el queryparam
     this.id = this.route.snapshot.paramMap.get('id') as string;
 
