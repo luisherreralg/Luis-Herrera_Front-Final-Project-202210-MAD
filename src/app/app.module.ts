@@ -14,6 +14,7 @@ import { SneakerListModule } from './sneaker-list/sneaker-list.module';
 import { DetailsComponent } from './details/details.component';
 import { LoginModalComponent } from './utils/modals/login-modal/login-modal.component';
 import { RegisterModalComponent } from './utils/modals/register-modal/register-modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { RegisterModalComponent } from './utils/modals/register-modal/register-m
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     LayoutModule,
     SneakerListModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

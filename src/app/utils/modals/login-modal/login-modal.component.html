@@ -12,12 +12,33 @@
       ❎
     </button>
     <p class="text-center text-4xl font-Koulen m-20">LOGIN</p>
-    <form action="" class="flex flex-col gap-2 text-lg">
+    <form [formGroup]="formLogin" class="flex flex-col gap-2 text-lg">
       <label for="email">Email</label>
-      <input type="email" name="email" id="email" class="text-black" />
+      <input
+        type="email"
+        name="email"
+        id="email"
+        class="text-black"
+        formControlName="email"
+      />
       <label for="password">Password</label>
-      <input type="password" name="password" id="password" class="text-black" />
+      <input
+        type="password"
+        name="password"
+        id="password"
+        class="text-black"
+        formControlName="password"
+      />
     </form>
-    <button class="bg-green-600 my-9 text-xl">LOGIN</button>
+
+    <p
+      *ngIf="errorStatus"
+      class="text-xl bg-red-500 animate-pulse transition-all my-2"
+    >
+      ERROR: Datos de acceso incorrectos
+    </p>
+    <button (click)="loginHandler()" class="bg-green-600 my-9 text-xl">
+      LOGIN
+    </button>
   </div>
 </div>
