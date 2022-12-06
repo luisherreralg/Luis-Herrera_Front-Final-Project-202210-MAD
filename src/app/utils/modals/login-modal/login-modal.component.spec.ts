@@ -8,9 +8,8 @@ describe('LoginModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginModalComponent ]
-    })
-    .compileComponents();
+      declarations: [LoginModalComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LoginModalComponent);
     component = fixture.componentInstance;
@@ -19,5 +18,21 @@ describe('LoginModalComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('Given the hanlderLoginModalEvent, when its invoked', () => {
+    it('it should call to the emit function when the button is clicked', () => {
+      // spy on the output emitter
+      spyOn(component.handlerLoginModal, 'emit');
+
+      //trigger the click
+      const element = fixture.nativeElement;
+      const button = element.querySelector('button');
+      button.dispatchEvent(new Event('click'));
+
+      // detect changes
+      fixture.detectChanges();
+      expect(component.handlerLoginModal.emit).toHaveBeenCalled();
+    });
   });
 });
