@@ -34,4 +34,21 @@ describe('AppComponent', () => {
       expect(app.store.dispatch).toHaveBeenCalled();
     });
   });
+
+  describe('Given the handlerLoginModal function, when its invoked', () => {
+    it('should change the value of the loginModal property', () => {
+      const fixture = TestBed.createComponent(AppComponent);
+      const app = fixture.componentInstance;
+      app.handlerLoginModal();
+      expect(app.loginModal).toBeTrue();
+    });
+  });
+  describe('Given the handlerRegisterModal function, when its invoked', () => {
+    it('it should change the value of the registerModal property', () => {
+      const fixture = TestBed.createComponent(AppComponent);
+      const app = fixture.componentInstance;
+      app.handlerRegisterModal();
+      expect(app.registerModal).toBeTrue();
+    });
+  });
 });
