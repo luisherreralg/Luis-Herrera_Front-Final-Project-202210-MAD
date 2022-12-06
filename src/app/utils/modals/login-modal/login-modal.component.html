@@ -32,10 +32,16 @@
     </form>
 
     <p
-      *ngIf="errorStatus"
+      *ngIf="invalidCredentials"
       class="text-xl bg-red-500 animate-pulse transition-all my-2"
     >
       ERROR: Datos de acceso incorrectos
+    </p>
+    <p
+      *ngIf="invalidType"
+      class="text-xl bg-red-500 animate-pulse transition-all my-2"
+    >
+      ERROR: Por favor, introduzca un email válido
     </p>
     <button (click)="loginHandler()" class="bg-green-600 my-9 text-xl">
       LOGIN

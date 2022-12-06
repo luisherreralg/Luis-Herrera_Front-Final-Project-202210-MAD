@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { timeout } from 'rxjs';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UsersService } from 'src/app/services/users.service';
 import { User } from 'src/app/types/user';
@@ -11,8 +10,10 @@ import { User } from 'src/app/types/user';
 })
 export class LoginModalComponent {
   @Output() handlerLoginModal: EventEmitter<void> = new EventEmitter();
+  invalidCredentials = false;
 
-  errorStatus = false;
+  // TODO: Queda pendiente gestionar el error para cuando el usuario no introduce correctamente el email.
+  invalidType = false;
 
   constructor(
     public userService: UsersService,
@@ -25,22 +26,24 @@ export class LoginModalComponent {
   });
 
   loginHandler() {
-    if (this.formLogin.valid) {
-      this.userService
-        .login(this.formLogin.value as Partial<User>)
-        .subscribe((res) => {
-          // if (!res.token) {
-          //   this.errorStatus = true;
-          //   return;
-          // }
-          this.storageService.saveToken(res.token);
-          return this.handlerLoginModalEvent();
-        });
+    if (!this.formLogin.valid) {
+      this.invalidType = true;
+      setTimeout(() => {
+        this.invalidType = false;
+      }, 3000);
+      return;
     }
 
-    this.errorStatus = true;
+    this.userService
+      .login(this.formLogin.value as Partial<User>)
+      .subscribe((res) => {
+        this.storageService.saveToken(res.token);
+        return this.handlerLoginModalEvent();
+      });
+
+    this.invalidCredentials = true;
     setTimeout(() => {
-      this.errorStatus = false;
+      this.invalidCredentials = false;
     }, 3000);
   }
 
