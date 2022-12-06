@@ -8,7 +8,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ROOT_REDUCERS } from './state/app.sate';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
-import { LayoutModule } from './layout/layout.module';
+import { LayoutModule } from './core/layout.module';
 import { MultipageComponent } from './multipage/multipage.component';
 import { SneakerListModule } from './sneaker-list/sneaker-list.module';
 import { DetailsComponent } from './details/details.component';
@@ -16,7 +16,14 @@ import { LoginModalComponent } from './utils/modals/login-modal/login-modal.comp
 import { RegisterModalComponent } from './utils/modals/register-modal/register-modal.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, MultipageComponent, DetailsComponent, LoginModalComponent, RegisterModalComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    MultipageComponent,
+    DetailsComponent,
+    LoginModalComponent,
+    RegisterModalComponent,
+  ],
   imports: [
     HttpClientModule,
     BrowserModule,
