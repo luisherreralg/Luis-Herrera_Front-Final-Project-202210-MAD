@@ -11,4 +11,8 @@ export class AuthComponent {
   handlerLoginModal() {
     this.modalService.loginModal(true);
   }
+
+  handlerRegisterModal() {
+    this.modalService.registerModal(true);
+  }
 }

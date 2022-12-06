@@ -26,13 +26,23 @@ export class AppComponent implements OnInit {
   ) {
     this.subscription = this.modalService.getLoginModal().subscribe((value) => {
       this.loginModal = value;
-      console.log('loginModal', this.loginModal);
     });
+
+    this.subscription = this.modalService
+      .getRegisterModal()
+      .subscribe((value) => {
+        this.registerModal = value;
+      });
   }
 
   handlerLoginModal() {
     this.loginModal = !this.loginModal;
     this.modalService.loginModal(this.loginModal);
+  }
+
+  handlerRegisterModal() {
+    this.registerModal = !this.registerModal;
+    this.modalService.registerModal(this.registerModal);
   }
 
   ngOnInit(): void {
@@ -41,8 +51,4 @@ export class AppComponent implements OnInit {
       this.store.dispatch(actions.loadSneakers({ sneakers: this.sneakers }));
     });
   }
-
-  // ngOnDestroy(): void {
-  //   this.subscription.unsubscribe();
-  // }
 }

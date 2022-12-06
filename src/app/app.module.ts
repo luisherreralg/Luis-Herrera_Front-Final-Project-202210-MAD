@@ -12,9 +12,11 @@ import { LayoutModule } from './layout/layout.module';
 import { MultipageComponent } from './multipage/multipage.component';
 import { SneakerListModule } from './sneaker-list/sneaker-list.module';
 import { DetailsComponent } from './details/details.component';
+import { LoginModalComponent } from './utils/modals/login-modal/login-modal.component';
+import { RegisterModalComponent } from './utils/modals/register-modal/register-modal.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, MultipageComponent, DetailsComponent],
+  declarations: [AppComponent, HomeComponent, MultipageComponent, DetailsComponent, LoginModalComponent, RegisterModalComponent],
   imports: [
     HttpClientModule,
     BrowserModule,

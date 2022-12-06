@@ -5,13 +5,22 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class ModalHandlerService {
-  private subject = new Subject<boolean>();
+  private subjectLogin = new Subject<boolean>();
+  private subjectRegister = new Subject<boolean>();
 
   loginModal(value: boolean) {
-    this.subject.next(value);
+    this.subjectLogin.next(value);
   }
 
   getLoginModal() {
-    return this.subject.asObservable();
+    return this.subjectLogin.asObservable();
+  }
+
+  registerModal(value: boolean) {
+    this.subjectRegister.next(value);
+  }
+
+  getRegisterModal() {
+    return this.subjectRegister.asObservable();
   }
 }
