@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { OrdersService } from 'src/app/services/orders.service';
 import { Order } from 'src/app/types/order';
+import { Sneaker } from 'src/app/types/sneaker';
 
 @Component({
   selector: 'app-cart-list',
@@ -8,10 +10,13 @@ import { Order } from 'src/app/types/order';
 export class CartListComponent {
   @Input() orders: Order[] = [];
 
-  constructor() {
-    console.log(
-      '🚀 ~ file: cart-list.component.ts:10 ~ CartListComponent ~ orders',
-      this.orders
-    );
+  constructor(public orderService: OrdersService) {}
+
+  deleteItemHandler(sneakerId: string) {
+    this.orderService.deleteOrder(sneakerId).subscribe(() => {
+      this.orders = this.orders.filter(
+        (order) => order.cartedItem.id !== sneakerId
+      );
+    });
   }
 }

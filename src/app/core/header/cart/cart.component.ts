@@ -7,8 +7,10 @@ import { ModalHandlerService } from 'src/app/services/modal-handler.service';
 })
 export class CartComponent {
   constructor(private modalService: ModalHandlerService) {}
+  togglecart = false;
 
   handlerCartModal() {
-    this.modalService.cartModal(true);
+    this.togglecart = !this.togglecart;
+    this.modalService.cartModal(this.togglecart);
   }
 }
