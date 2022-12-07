@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { SneakersService } from '../services/sneakers.service';
-import { AppState } from '../state/app.sate';
+import { AppState } from '../state/app.state';
 import { Sneaker } from '../types/sneaker';
 
 @Component({

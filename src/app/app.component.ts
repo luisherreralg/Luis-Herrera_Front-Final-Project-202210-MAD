@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { ModalHandlerService } from './services/modal-handler.service';
 import { SneakersService } from './services/sneakers.service';
-import { AppState } from './state/app.sate';
+import { AppState } from './state/app.state';
 import * as actions from './state/sneaker.reducer/sneaker.action.creator';
 import { Sneaker } from './types/sneaker';
 

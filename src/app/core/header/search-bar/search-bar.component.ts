@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { SneakersService } from 'src/app/services/sneakers.service';
-import { AppState } from 'src/app/state/app.sate';
+import { AppState } from 'src/app/state/app.state';
 import * as actions from 'src/app/state/sneaker.reducer/sneaker.action.creator';
 
 @Component({
