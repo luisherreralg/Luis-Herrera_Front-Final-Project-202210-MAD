@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { OrdersService } from '../services/orders.service';
 import { SneakersService } from '../services/sneakers.service';
+import { AppState } from '../state/app.state';
+import * as actions from '../state/order.reducer/order.action.creator';
 import { ProtoOrder } from '../types/order';
 import { Sizes, Sneaker } from '../types/sneaker';
 
@@ -28,7 +31,8 @@ export class DetailsComponent implements OnInit {
   constructor(
     public route: ActivatedRoute,
     public service: SneakersService,
-    public orderService: OrdersService
+    public orderService: OrdersService,
+    public store: Store<AppState>
   ) {}
 
   selectSize(size: Sizes) {
@@ -40,6 +44,9 @@ export class DetailsComponent implements OnInit {
       .postOrder({ size: this.selectedSize }, this.sneaker.id)
       .subscribe(() => {
         this.selectedSize = 'initialValue';
+        this.orderService.getOrders().subscribe((data) => {
+          this.store.dispatch(actions.loadOrders({ orders: data.orders }));
+        });
       });
   }
 
