@@ -20,15 +20,26 @@
         <p class="font-Roboto">Tallas disponibles:</p>
         <ul class="flex flex-wrap gap-2">
           <li *ngFor="let size of sneaker.size">
-            <button class="bg-gray-100 border-2 border-neutral-500 px-3">
+            <button
+              (click)="selectSize(size)"
+              class="bg-gray-100 border-2 border-neutral-500 px-3"
+            >
               {{ size }}
             </button>
           </li>
         </ul>
       </div>
-
       <div>
-        <button class="w-96 bg-orange-400 text-slate-100 text-2xl p-2">
+        <p
+          class="text-2xl font-Roboto"
+          [ngClass]="{ invisible: selectedSize === 'initialValue' }"
+        >
+          Talla Seleccionada: {{ selectedSize }}
+        </p>
+        <button
+          (click)="addCartHandler()"
+          class="w-96 bg-orange-400 text-slate-100 text-2xl p-2"
+        >
           Añadir a la cesta
         </button>
       </div>

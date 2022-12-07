@@ -61,8 +61,6 @@ describe('OrdersService', () => {
     it('should call to the HttpClient', () => {
       const newOrder: ProtoOrder = {
         size: '35.5',
-        cartedItem: '',
-        cartedBy: '',
       };
 
       service.postOrder(newOrder, 'sneakerId').subscribe((resp) => {

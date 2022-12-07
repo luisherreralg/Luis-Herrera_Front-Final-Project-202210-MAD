@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { OrdersService } from '../services/orders.service';
 import { SneakersService } from '../services/sneakers.service';
-import { Sneaker } from '../types/sneaker';
+import { ProtoOrder } from '../types/order';
+import { Sizes, Sneaker } from '../types/sneaker';
 
 @Component({
   selector: 'app-details',
@@ -21,11 +23,27 @@ export class DetailsComponent implements OnInit {
     gender: '',
     images: ['', ''],
   };
+  selectedSize: Sizes = 'initialValue';
 
-  constructor(public route: ActivatedRoute, public service: SneakersService) {}
+  constructor(
+    public route: ActivatedRoute,
+    public service: SneakersService,
+    public orderService: OrdersService
+  ) {}
+
+  selectSize(size: Sizes) {
+    this.selectedSize = size as Sizes;
+  }
+
+  addCartHandler() {
+    this.orderService
+      .postOrder({ size: this.selectedSize }, this.sneaker.id)
+      .subscribe(() => {
+        this.selectedSize = 'initialValue';
+      });
+  }
 
   ngOnInit() {
-    // Para sacar el queryparam
     this.id = this.route.snapshot.paramMap.get('id') as string;
 
     this.service.getSneaker(this.id).subscribe((data) => {

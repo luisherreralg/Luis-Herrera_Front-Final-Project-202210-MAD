@@ -40,7 +40,7 @@ export class OrdersService {
     };
 
     return this.http.post(
-      this.apiUrl + '/' + sneakerId,
+      this.apiUrl + '/newOrder/' + sneakerId,
       newOrder,
       httpOptions
     ) as unknown as Observable<Order>;
@@ -56,7 +56,7 @@ export class OrdersService {
     };
 
     return this.http.delete(
-      this.apiUrl + '/' + sneakerId,
+      this.apiUrl + '/delete/' + sneakerId,
       httpOptions
     ) as unknown as Observable<Order>;
   }

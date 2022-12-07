@@ -10,6 +10,4 @@ export type Order = {
 
 export type ProtoOrder = {
   size: Sizes;
-  cartedItem: string;
-  cartedBy: string;
 };
