@@ -5,7 +5,6 @@ export type Order = {
   size: Sizes[];
   cartedItem: Sneaker;
   cartedBy: User;
-  amount: number;
   orderId: string;
 };
 
