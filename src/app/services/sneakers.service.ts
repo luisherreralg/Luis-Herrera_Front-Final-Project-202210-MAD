@@ -2,13 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProtoSneaker, Sneaker } from '../types/sneaker';
 import { Observable } from 'rxjs';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SneakersService {
   apiUrl: string;
-  constructor(public http: HttpClient) {
+  constructor(
+    public http: HttpClient,
+    public storageService: LocalStorageService
+  ) {
     this.apiUrl = 'http://localhost:7700/sneakers';
   }
 
@@ -47,15 +51,34 @@ export class SneakersService {
     }>;
   }
 
-  postSneaker(sneaker: ProtoSneaker, authToken: string): Observable<Sneaker> {
-    return this.http.post(this.apiUrl, sneaker, {
-      headers: { Authorization: 'Bearer ' + authToken },
-    }) as Observable<Sneaker>;
+  postSneaker(sneaker: ProtoSneaker): Observable<Sneaker> {
+    const httpOptions = {
+      method: 'POST',
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + this.storageService.getToken(),
+      }),
+    };
+
+    return this.http.post(
+      this.apiUrl,
+      sneaker,
+      httpOptions
+    ) as Observable<Sneaker>;
   }
 
-  deleteSneaker(sneakerId: string, authToken: string): Observable<Sneaker> {
-    return this.http.delete(this.apiUrl + '/' + sneakerId, {
-      headers: { Authorization: 'Bearer ' + authToken },
-    }) as Observable<Sneaker>;
+  deleteSneaker(sneakerId: string): Observable<Sneaker> {
+    const httpOptions = {
+      method: 'DELETE',
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + this.storageService.getToken(),
+      }),
+    };
+
+    return this.http.delete(
+      this.apiUrl + '/' + sneakerId,
+      httpOptions
+    ) as Observable<Sneaker>;
   }
 }

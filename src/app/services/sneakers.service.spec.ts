@@ -4,7 +4,6 @@ import {
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { ProtoSneaker, Sneaker } from '../types/sneaker';
-
 import { SneakersService } from './sneakers.service';
 
 describe('SneakersService', () => {
@@ -70,7 +69,7 @@ describe('SneakersService', () => {
     const sneakerToPost: ProtoSneaker = { ...mockSneaker };
 
     it('should call to the HttpClient', () => {
-      service.postSneaker(sneakerToPost, 'token').subscribe((resp) => {
+      service.postSneaker(sneakerToPost).subscribe((resp) => {
         expect(resp).not.toBeNull();
         expect(JSON.stringify(resp)).toBe(JSON.stringify(sneakerToPost));
       });
@@ -80,7 +79,7 @@ describe('SneakersService', () => {
 
   describe('When the deleteSneaker method is invoked', () => {
     it('should call to the HttpClient', () => {
-      service.deleteSneaker(mockSneaker.id, 'token').subscribe((resp) => {
+      service.deleteSneaker(mockSneaker.id).subscribe((resp) => {
         expect(resp).not.toBeNull();
         expect(JSON.stringify(resp)).toBe(JSON.stringify(mockSneaker));
       });
