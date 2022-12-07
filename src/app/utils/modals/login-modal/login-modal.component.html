@@ -1,5 +1,4 @@
 <div
-  ng-include="src\app\utils\modals\login-modal.html"
   class="flex bg-black absolute w-full h-full bg-opacity-50 z-10 font-Roboto text-slate-100 shadow-lg"
 >
   <div
@@ -7,17 +6,44 @@
   >
     <button
       (click)="handlerLoginModalEvent()"
-      class="text-4xl translate-x-2/4 translate-y-2"
+      class="text-4xl translate-x-2/4 translate-y-2/4"
     >
       ❎
     </button>
     <p class="text-center text-4xl font-Koulen m-20">LOGIN</p>
-    <form action="" class="flex flex-col gap-2 text-lg">
+    <form [formGroup]="formLogin" class="flex flex-col gap-2 text-lg">
       <label for="email">Email</label>
-      <input type="email" name="email" id="email" class="text-black" />
+      <input
+        type="email"
+        name="email"
+        id="email"
+        class="text-black"
+        formControlName="email"
+      />
       <label for="password">Password</label>
-      <input type="password" name="password" id="password" class="text-black" />
+      <input
+        type="password"
+        name="password"
+        id="password"
+        class="text-black"
+        formControlName="password"
+      />
     </form>
-    <button class="bg-green-600 my-9 text-xl">LOGIN</button>
+
+    <p
+      *ngIf="invalidCredentials"
+      class="text-xl bg-red-500 animate-pulse transition-all my-2 absolute -translate-y-10"
+    >
+      ERROR: Datos de acceso incorrectos
+    </p>
+    <p
+      *ngIf="invalidType"
+      class="text-xl bg-red-500 animate-pulse transition-all my-2 absolute -translate-y-10"
+    >
+      ERROR: Por favor, introduzca datos válidos
+    </p>
+    <button (click)="loginHandler()" class="bg-green-600 my-9 text-xl">
+      LOGIN
+    </button>
   </div>
 </div>
