@@ -25,7 +25,10 @@ export class OrdersService {
       }),
     };
 
-    return this.http.get(this.apiUrl, httpOptions) as unknown as Observable<{
+    return this.http.get(
+      this.apiUrl + '/cart',
+      httpOptions
+    ) as unknown as Observable<{
       orders: Order[];
     }>;
   }

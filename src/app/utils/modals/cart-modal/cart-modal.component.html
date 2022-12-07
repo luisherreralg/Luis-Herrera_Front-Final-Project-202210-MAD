@@ -1,0 +1,12 @@
+<div class="font-Roboto flex justify-end">
+  <div class="fixed bg-slate-200 w-2/12 h-full p-5 flex flex-col pl-10 z-10">
+    <button (click)="handlerLoginModalEvent()">
+      <p class="text-2xl text-right">❎</p>
+    </button>
+    <p class="text-5xl">Carro:</p>
+    <app-cart-list [orders]="orders"></app-cart-list>
+    <div class="bg-green-600 text-slate-100 text-2xl text-center p-1 m-4">
+      <button>Comprar</button>
+    </div>
+  </div>
+</div>

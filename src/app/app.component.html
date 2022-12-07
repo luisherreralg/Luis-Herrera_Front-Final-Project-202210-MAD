@@ -8,6 +8,11 @@
   (handlerRegisterModal)="handlerRegisterModal()"
 ></app-register-modal>
 
+<app-cart-modal
+  *ngIf="cartModal"
+  (handlerCartModal)="handlerCartModal()"
+></app-cart-modal>
+
 <div
   [ngClass]="{
     blur: loginModal || registerModal

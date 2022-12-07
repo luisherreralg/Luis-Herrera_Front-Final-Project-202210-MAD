@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LogoComponent } from './logo/logo.component';
 import { BannerComponent } from './banner/banner.component';
 import { AuthComponent } from './auth/auth.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { AuthComponent } from './auth/auth.component';
     LogoComponent,
     BannerComponent,
     AuthComponent,
+    CartComponent,
   ],
   imports: [CommonModule, HeaderRoutingModule, ReactiveFormsModule],
   exports: [
@@ -23,6 +25,7 @@ import { AuthComponent } from './auth/auth.component';
     LogoComponent,
     BannerComponent,
     AuthComponent,
+    CartComponent,
   ],
 })
 export class HeaderModule {}

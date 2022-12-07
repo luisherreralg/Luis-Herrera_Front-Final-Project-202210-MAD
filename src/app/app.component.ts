@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
 
   loginModal = false;
   registerModal = false;
+  cartModal = false;
 
   constructor(
     public store: Store<AppState>,
@@ -33,6 +34,10 @@ export class AppComponent implements OnInit {
       .subscribe((value) => {
         this.registerModal = value;
       });
+
+    this.subscription = this.modalService.getCartModal().subscribe((value) => {
+      this.cartModal = value;
+    });
   }
 
   handlerLoginModal() {
@@ -43,6 +48,11 @@ export class AppComponent implements OnInit {
   handlerRegisterModal() {
     this.registerModal = !this.registerModal;
     this.modalService.registerModal(this.registerModal);
+  }
+
+  handlerCartModal() {
+    this.cartModal = !this.cartModal;
+    this.modalService.cartModal(this.cartModal);
   }
 
   ngOnInit(): void {
