@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { LocalStorageService } from '../services/local-storage.service';
+import { ModalHandlerService } from '../services/modal-handler.service';
 import { OrdersService } from '../services/orders.service';
 import { SneakersService } from '../services/sneakers.service';
 import { AppState } from '../state/app.state';
@@ -32,7 +34,9 @@ export class DetailsComponent implements OnInit {
     public route: ActivatedRoute,
     public service: SneakersService,
     public orderService: OrdersService,
-    public store: Store<AppState>
+    public store: Store<AppState>,
+    public storageService: LocalStorageService,
+    public modalService: ModalHandlerService
   ) {}
 
   selectSize(size: Sizes) {
@@ -40,6 +44,15 @@ export class DetailsComponent implements OnInit {
   }
 
   addCartHandler() {
+    if (this.storageService.getToken() === null) {
+      this.modalService.loginModal(true);
+      return;
+    }
+
+    if (this.selectedSize === 'initialValue') {
+      return;
+    }
+
     this.orderService
       .postOrder({ size: this.selectedSize }, this.sneaker.id)
       .subscribe(() => {

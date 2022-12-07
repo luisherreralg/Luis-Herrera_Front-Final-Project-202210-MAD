@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
@@ -6,6 +6,8 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit {
+  @Input() isScrolled = false;
+
   isLogged = false;
   constructor(public storageService: LocalStorageService) {}
 

@@ -14,3 +14,11 @@
   </div>
   <app-banner></app-banner>
 </header>
+
+<header
+  *ngIf="isScrolled"
+  class="fixed w-full top-0 bg-white flex align-middle justify-center items-center"
+>
+  <app-logo [isScrolled]="isScrolled"></app-logo>
+  <app-menu [isScrolled]="isScrolled"></app-menu>
+</header>
