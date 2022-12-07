@@ -45,6 +45,14 @@
         formControlName="password"
       />
     </form>
-    <button class="bg-green-600 my-9 text-xl">LOGIN</button>
+    <p
+      *ngIf="invalidType"
+      class="text-xl bg-red-500 animate-pulse transition-all my-2 absolute -translate-y-24"
+    >
+      ERROR: Por favor, introduzca datos válidos
+    </p>
+    <button (click)="registerHandler()" class="bg-green-600 my-9 text-xl">
+      REGISTER
+    </button>
   </div>
 </div>
