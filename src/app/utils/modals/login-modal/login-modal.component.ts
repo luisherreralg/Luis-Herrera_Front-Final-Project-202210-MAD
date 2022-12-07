@@ -12,7 +12,6 @@ export class LoginModalComponent {
   @Output() handlerLoginModal: EventEmitter<void> = new EventEmitter();
   invalidCredentials = false;
 
-  // TODO: Queda pendiente gestionar el error para cuando el usuario no introduce correctamente el email.
   invalidType = false;
 
   constructor(
@@ -38,13 +37,14 @@ export class LoginModalComponent {
       .login(this.formLogin.value as Partial<User>)
       .subscribe((res) => {
         this.storageService.saveToken(res.token);
-        return this.handlerLoginModalEvent();
+        this.handlerLoginModalEvent();
+      })
+      .add(() => {
+        this.invalidCredentials = true;
+        setTimeout(() => {
+          this.invalidCredentials = false;
+        }, 3000);
       });
-
-    this.invalidCredentials = true;
-    setTimeout(() => {
-      this.invalidCredentials = false;
-    }, 3000);
   }
 
   handlerLoginModalEvent() {

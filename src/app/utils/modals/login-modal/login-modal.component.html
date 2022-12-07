@@ -1,5 +1,4 @@
 <div
-  ng-include="src\app\utils\modals\login-modal.html"
   class="flex bg-black absolute w-full h-full bg-opacity-50 z-10 font-Roboto text-slate-100 shadow-lg"
 >
   <div
@@ -7,7 +6,7 @@
   >
     <button
       (click)="handlerLoginModalEvent()"
-      class="text-4xl translate-x-2/4 translate-y-2"
+      class="text-4xl translate-x-2/4 translate-y-2/4"
     >
       ❎
     </button>
@@ -33,13 +32,13 @@
 
     <p
       *ngIf="invalidCredentials"
-      class="text-xl bg-red-500 animate-pulse transition-all my-2"
+      class="text-xl bg-red-500 animate-pulse transition-all my-2 absolute -translate-y-10"
     >
       ERROR: Datos de acceso incorrectos
     </p>
     <p
       *ngIf="invalidType"
-      class="text-xl bg-red-500 animate-pulse transition-all my-2"
+      class="text-xl bg-red-500 animate-pulse transition-all my-2 absolute -translate-y-10"
     >
       ERROR: Por favor, introduzca un email válido
     </p>
