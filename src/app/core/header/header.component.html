@@ -7,9 +7,9 @@
       </div>
       <div class="flex items-center">
         <app-search-bar></app-search-bar>
-        <app-cart></app-cart>
+        <app-cart *ngIf="isLogged"></app-cart>
       </div>
-      <app-auth></app-auth>
+      <app-auth [isLogged]="isLogged"></app-auth>
     </div>
   </div>
   <app-banner></app-banner>

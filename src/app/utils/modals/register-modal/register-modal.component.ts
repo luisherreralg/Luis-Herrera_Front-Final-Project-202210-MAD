@@ -57,6 +57,7 @@ export class RegisterModalComponent implements OnInit, OnDestroy {
             this.storageService.saveToken(res.token);
             this.handlerRegisterModalEvent();
             this.destroyBodyClass();
+            window.location.reload();
           })
           .add(() => {
             this.invalidCredentials = true;

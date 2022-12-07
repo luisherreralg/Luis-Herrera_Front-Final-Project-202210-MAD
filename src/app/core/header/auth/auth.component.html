@@ -1,5 +1,10 @@
-<div class="font-Koulen flex gap-2 text-4xl -translate-y-20">
-  <button (click)="handlerLoginModal()"><p>LOGIN</p></button>
-  <p>/</p>
-  <button (click)="handlerRegisterModal()"><p>REGISTER</p></button>
+<div class="font-Koulen text-4xl -translate-y-20">
+  <div *ngIf="!isLogged" class="flex gap-2">
+    <button (click)="handlerLoginModal()"><p>LOGIN</p></button>
+    <p>/</p>
+    <button (click)="handlerRegisterModal()"><p>REGISTER</p></button>
+  </div>
+  <div *ngIf="isLogged">
+    <button (click)="handlerLogout()">LOGOUT</button>
+  </div>
 </div>
