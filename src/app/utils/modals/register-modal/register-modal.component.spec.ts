@@ -55,7 +55,7 @@ describe('RegisterModalComponent', () => {
     });
   });
 
-  describe('Given the registerForm validators, when the form is setted', () => {
+  describe('Given the registerForm validators, when the form is assigned', () => {
     it('should be false if the form data do not pass the validations', () => {
       component.formRegister.setValue({
         name: 'name',
