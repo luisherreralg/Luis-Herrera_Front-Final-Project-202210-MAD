@@ -96,7 +96,6 @@ describe('RegisterModalComponent', () => {
       expect(component.invalidType).toEqual(true);
       tick(3000);
       expect(component.invalidType).toEqual(false);
-      expect(userServiceSpy.register).not.toHaveBeenCalled();
     }));
 
     it('should call to the userService if the formData is valid', fakeAsync(() => {
