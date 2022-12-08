@@ -29,6 +29,9 @@ export class DetailsComponent implements OnInit {
   };
   selectedSize: Sizes = 'initialValue';
 
+  focusedImage = this.sneaker.images[0];
+  restOfImages = this.sneaker.images.slice(1);
+
   constructor(
     public route: ActivatedRoute,
     public service: SneakersService,
@@ -62,11 +65,25 @@ export class DetailsComponent implements OnInit {
       });
   }
 
+  nextImageHandler() {
+    this.restOfImages = [...this.restOfImages, this.focusedImage];
+    this.focusedImage = this.restOfImages[0];
+    this.restOfImages = this.restOfImages.slice(1);
+  }
+
+  prevImageHandler() {
+    this.restOfImages = [this.focusedImage, ...this.restOfImages];
+    this.focusedImage = this.restOfImages[this.restOfImages.length - 1];
+    this.restOfImages = this.restOfImages.slice(0, -1);
+  }
+
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id') as string;
 
     this.service.getSneaker(this.id).subscribe((data) => {
       this.sneaker = data.sneaker;
+      this.focusedImage = this.sneaker.images[0];
+      this.restOfImages = this.sneaker.images.slice(1);
     });
   }
 }

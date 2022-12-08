@@ -1,13 +1,21 @@
 <div class="flex gap-20 m-20 justify-center">
   <div>
     <ul class="flex flex-col w-44 gap-6">
-      <li *ngFor="let image of sneaker.images">
+      <li *ngFor="let image of restOfImages">
         <img [src]="image" alt="sneaker image" />
       </li>
     </ul>
   </div>
-  <div>
-    <img [src]="sneaker.images[0]" alt="" />
+  <div class="flex">
+    <button (click)="prevImageHandler()" class="p-5 transofrm -rotate-180">
+      <img src="../../assets/details-icons/arrow-icon.svg" alt="" />
+    </button>
+
+    <img [src]="focusedImage" alt="" />
+
+    <button (click)="nextImageHandler()" class="p-5">
+      <img src="../../assets/details-icons/arrow-icon.svg" alt="Arrow Icon" />
+    </button>
   </div>
   <div>
     <div>
