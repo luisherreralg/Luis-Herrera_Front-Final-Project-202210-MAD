@@ -96,6 +96,8 @@ describe('LoginModalComponent', () => {
         email: 'email@gmail.com',
         password: 'password',
       };
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      spyOn(component, 'reload').and.callFake(() => {});
 
       const spyLocalService = spyOn(component.storageService, 'saveToken');
 

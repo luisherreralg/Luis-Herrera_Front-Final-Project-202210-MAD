@@ -57,7 +57,7 @@ export class RegisterModalComponent implements OnInit, OnDestroy {
             this.storageService.saveToken(res.token);
             this.handlerRegisterModalEvent();
             this.destroyBodyClass();
-            // window.location.reload();
+            this.reload();
           })
           .add(() => {
             this.invalidCredentials = true;
@@ -67,6 +67,8 @@ export class RegisterModalComponent implements OnInit, OnDestroy {
           });
       });
   }
+
+  reload = () => window.location.reload();
 
   addBodyClass() {
     const bodyTag = document.body;

@@ -44,7 +44,7 @@ export class LoginModalComponent implements OnInit, OnDestroy {
         this.storageService.saveToken(res.token);
         this.handlerLoginModalEvent();
         this.destroyBodyClass();
-        // window.location.reload();
+        this.reload();
       })
       .add(() => {
         this.invalidCredentials = true;
@@ -53,6 +53,8 @@ export class LoginModalComponent implements OnInit, OnDestroy {
         }, 3000);
       });
   }
+
+  reload = () => window.location.reload();
 
   handlerLoginModalEvent() {
     this.handlerLoginModal.emit();
