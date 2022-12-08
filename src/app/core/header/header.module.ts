@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from './menu/menu.component';
 import { HeaderRoutingModule } from './header-routing.module';
@@ -27,5 +27,6 @@ import { CartComponent } from './cart/cart.component';
     AuthComponent,
     CartComponent,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HeaderModule {}

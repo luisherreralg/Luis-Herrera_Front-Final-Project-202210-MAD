@@ -2,7 +2,9 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
+import { mockOrderInitialState } from '../utils/mocks/mocks';
 
 import { DetailsComponent } from './details.component';
 
@@ -15,6 +17,7 @@ describe('DetailsComponent', () => {
       declarations: [DetailsComponent],
       imports: [RouterTestingModule, HttpClientTestingModule],
       providers: [
+        provideMockStore(mockOrderInitialState),
         DetailsComponent,
         {
           provide: ActivatedRoute,

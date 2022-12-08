@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartModalComponent } from './cart-modal/cart-modal.component';
 import { LoginModalComponent } from './login-modal/login-modal.component';
@@ -14,5 +14,6 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [CommonModule, CartModalModule, ReactiveFormsModule],
   exports: [CartModalComponent, LoginModalComponent, RegisterModalComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ModalsModule {}

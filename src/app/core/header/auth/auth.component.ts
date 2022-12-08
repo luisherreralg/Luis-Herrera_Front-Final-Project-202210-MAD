@@ -24,6 +24,6 @@ export class AuthComponent {
 
   handlerLogout() {
     this.storageService.deleteToken();
-    window.location.reload();
+    // window.location.reload();
   }
 }

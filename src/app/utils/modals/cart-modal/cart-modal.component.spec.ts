@@ -1,4 +1,7 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
+import { mockInitialState, mockOrderInitialState } from '../../mocks/mocks';
 
 import { CartModalComponent } from './cart-modal.component';
 
@@ -8,9 +11,10 @@ describe('CartModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CartModalComponent ]
-    })
-    .compileComponents();
+      imports: [HttpClientTestingModule],
+      declarations: [CartModalComponent],
+      providers: [provideMockStore(mockOrderInitialState)],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CartModalComponent);
     component = fixture.componentInstance;
