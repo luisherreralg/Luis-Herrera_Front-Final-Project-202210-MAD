@@ -4,6 +4,7 @@ import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
+import { Order } from '../types/order';
 import { mockOrderInitialState } from '../utils/mocks/mocks';
 
 import { DetailsComponent } from './details.component';
@@ -60,5 +61,63 @@ describe('DetailsComponent', () => {
     );
     component.ngOnInit();
     expect(spyService).toHaveBeenCalled();
+  });
+
+  describe('Given the selectSize method, when its invoked', () => {
+    it('should change the selectedSize value', () => {
+      component.selectSize('40');
+      expect(component.selectedSize).toBe('40');
+    });
+  });
+
+  describe('Given the addCartHandler method, when its invoked', () => {
+    it('should call to the modalServices if there is an existing token', () => {
+      const spyStorageService = spyOn(
+        component.storageService,
+        'getToken'
+      ).and.returnValue(null);
+      const spyModalService = spyOn(component.modalService, 'loginModal');
+
+      component.addCartHandler();
+      expect(spyModalService).toHaveBeenCalled();
+      expect(spyStorageService).toHaveBeenCalled();
+    });
+
+    it('should return if the selectedSize = "initualValue"', () => {
+      const spyStorageService = spyOn(
+        component.storageService,
+        'getToken'
+      ).and.returnValue('token');
+
+      component.selectedSize = 'initialValue';
+      component.addCartHandler();
+
+      expect(spyStorageService).toHaveBeenCalled();
+    });
+
+    it('should call to the orderService if all the previous conditions are correct', () => {
+      const spyStorageService = spyOn(
+        component.storageService,
+        'getToken'
+      ).and.returnValue('token');
+      const spyOrderServicePost = spyOn(
+        component.orderService,
+        'postOrder'
+      ).and.returnValue(of({} as Order));
+      const spyOrderServiceGet = spyOn(
+        component.orderService,
+        'getOrders'
+      ).and.returnValue(of({ orders: [] }));
+      const spyStore = spyOn(component.store, 'dispatch');
+
+      component.selectedSize = '40';
+
+      component.addCartHandler();
+
+      expect(spyStore).toHaveBeenCalled();
+      expect(spyStorageService).toHaveBeenCalled();
+      expect(spyOrderServicePost).toHaveBeenCalled();
+      expect(spyOrderServiceGet).toHaveBeenCalled();
+    });
   });
 });
