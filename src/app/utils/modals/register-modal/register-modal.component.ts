@@ -57,6 +57,7 @@ export class RegisterModalComponent implements OnInit, OnDestroy {
             this.storageService.saveToken(res.token);
             this.handlerRegisterModalEvent();
             this.destroyBodyClass();
+            this.reload();
           })
           .add(() => {
             this.invalidCredentials = true;
@@ -84,4 +85,7 @@ export class RegisterModalComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroyBodyClass();
   }
+
+  /* istanbul ignore next */
+  reload = () => window.location.reload();
 }

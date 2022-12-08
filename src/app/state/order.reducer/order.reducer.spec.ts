@@ -25,7 +25,6 @@ describe('Given the OrderReducer', () => {
       password: '123456',
       role: 'user',
     },
-    amount: 1,
     orderId: '1',
   };
 

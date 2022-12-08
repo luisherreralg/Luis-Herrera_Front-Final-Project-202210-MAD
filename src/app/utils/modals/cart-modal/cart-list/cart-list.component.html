@@ -1,0 +1,17 @@
+<ul *ngIf="!!orders">
+  <li *ngFor="let order of orders">
+    <div class="flex flex-col">
+      <div class="font-Koulen flex flex-col p-5">
+        <button (click)="deleteItemHandler(order.cartedItem.id)">
+          <p class="text-xl text-right">❌</p>
+        </button>
+        <p class="text-slate-700 text-xl">{{ order.cartedItem.brand }}</p>
+        <P class="text-slate-900 text-2xl">{{ order.cartedItem.model }}</P>
+        <p class="text-slate-900 text-2xl">Talla: {{ order.size }}</p>
+        <p class="text-slate-900 text-2xl text-right">
+          {{ order.cartedItem.price }}€
+        </p>
+      </div>
+    </div>
+  </li>
+</ul>

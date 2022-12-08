@@ -1,4 +1,4 @@
-export const mockInitialState = {
+export const mockSneakersInitialState = {
   initialState: {
     sneakers: {
       sneakers: [
@@ -25,6 +25,39 @@ export const mockInitialState = {
           stock: 1,
           gender: 'male',
           images: ['url'],
+        },
+      ],
+    },
+  },
+};
+
+export const mockOrderInitialState = {
+  initialState: {
+    orders: {
+      orders: [
+        {
+          size: [],
+          cartedItem: {
+            id: '',
+            brand: '',
+            model: '',
+            size: [],
+            price: 0,
+            onSalePrice: 0,
+            onSale: '',
+            stock: 0,
+            gender: '',
+            images: [],
+          },
+          cartedBy: {
+            id: '',
+            name: '',
+            surname: '',
+            email: '',
+            password: '',
+            role: 'user',
+          },
+          orderId: '',
         },
       ],
     },

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { ModalHandlerService } from './services/modal-handler.service';
@@ -18,6 +18,9 @@ export class AppComponent implements OnInit {
 
   loginModal = false;
   registerModal = false;
+  cartModal = false;
+
+  isScrolled = false;
 
   constructor(
     public store: Store<AppState>,
@@ -33,6 +36,10 @@ export class AppComponent implements OnInit {
       .subscribe((value) => {
         this.registerModal = value;
       });
+
+    this.subscription = this.modalService.getCartModal().subscribe((value) => {
+      this.cartModal = value;
+    });
   }
 
   handlerLoginModal() {
@@ -43,6 +50,23 @@ export class AppComponent implements OnInit {
   handlerRegisterModal() {
     this.registerModal = !this.registerModal;
     this.modalService.registerModal(this.registerModal);
+  }
+
+  handlerCartModal() {
+    this.cartModal = !this.cartModal;
+    this.modalService.cartModal(this.cartModal);
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const number =
+      document.documentElement.scrollTop || document.body.scrollTop || 0;
+    if (number > 260) {
+      this.isScrolled = true;
+    }
+    if (number < 260) {
+      this.isScrolled = false;
+    }
   }
 
   ngOnInit(): void {

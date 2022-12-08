@@ -5,7 +5,7 @@
 </style>
 
 <nav>
-  <ul class="flex text-6xl gap-20">
+  <ul [class]="isScrolled ? 'flex text-4xl gap-20' : 'flex text-6xl gap-20'">
     <li><a routerLink="multipage/hombre">HOMBRE</a></li>
     <li><a routerLink="multipage/mujer">MUJER</a></li>
     <li><a routerLink="multipage/onSale" class="text-red-500">OFERTAS</a></li>

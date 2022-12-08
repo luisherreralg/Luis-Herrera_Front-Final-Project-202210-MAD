@@ -1,6 +1,5 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
@@ -12,9 +11,7 @@ import { LayoutModule } from './core/layout.module';
 import { MultipageComponent } from './multipage/multipage.component';
 import { SneakerListModule } from './sneaker-list/sneaker-list.module';
 import { DetailsComponent } from './details/details.component';
-import { LoginModalComponent } from './utils/modals/login-modal/login-modal.component';
-import { RegisterModalComponent } from './utils/modals/register-modal/register-modal.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ModalsModule } from './utils/modals/modals.module';
 
 @NgModule({
   declarations: [
@@ -22,8 +19,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     MultipageComponent,
     DetailsComponent,
-    LoginModalComponent,
-    RegisterModalComponent,
   ],
   imports: [
     HttpClientModule,
@@ -33,7 +28,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     LayoutModule,
     SneakerListModule,
-    ReactiveFormsModule,
+    ModalsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

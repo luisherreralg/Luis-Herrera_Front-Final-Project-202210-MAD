@@ -1,4 +1,5 @@
 export type Sizes =
+  | 'initialValue'
   | '35.5'
   | '36'
   | '36,5'

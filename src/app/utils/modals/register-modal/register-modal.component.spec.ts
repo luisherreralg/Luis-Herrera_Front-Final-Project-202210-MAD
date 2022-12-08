@@ -107,6 +107,9 @@ describe('RegisterModalComponent', () => {
         role: 'test',
       };
 
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      spyOn(component, 'reload').and.callFake(() => {});
+
       const spyLocalService = spyOn(component.storageService, 'saveToken');
 
       component.formRegister.setValue(formData);

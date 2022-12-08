@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
-import { mockInitialState } from '../utils/mocks/mocks';
+import { mockSneakersInitialState } from '../utils/mocks/mocks';
 
 import { HomeComponent } from './home.component';
 
@@ -10,7 +10,7 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [provideMockStore(mockInitialState)],
+      providers: [provideMockStore(mockSneakersInitialState)],
       declarations: [HomeComponent],
     }).compileComponents();
 

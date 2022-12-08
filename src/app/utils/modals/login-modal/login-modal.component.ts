@@ -44,6 +44,7 @@ export class LoginModalComponent implements OnInit, OnDestroy {
         this.storageService.saveToken(res.token);
         this.handlerLoginModalEvent();
         this.destroyBodyClass();
+        this.reload();
       })
       .add(() => {
         this.invalidCredentials = true;
@@ -74,4 +75,7 @@ export class LoginModalComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroyBodyClass();
   }
+
+  /* istanbul ignore next */
+  reload = () => window.location.reload();
 }

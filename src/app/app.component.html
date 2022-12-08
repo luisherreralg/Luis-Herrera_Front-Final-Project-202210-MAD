@@ -8,12 +8,17 @@
   (handlerRegisterModal)="handlerRegisterModal()"
 ></app-register-modal>
 
+<app-cart-modal
+  *ngIf="cartModal"
+  (handlerCartModal)="handlerCartModal()"
+></app-cart-modal>
+
 <div
   [ngClass]="{
     blur: loginModal || registerModal
   }"
 >
-  <app-header></app-header>
+  <app-header [isScrolled]="isScrolled"></app-header>
   <router-outlet></router-outlet>
   <app-footer></app-footer>
 </div>
