@@ -8,8 +8,19 @@
         <p class="text-slate-700 text-xl">{{ order.cartedItem.brand }}</p>
         <P class="text-slate-900 text-2xl">{{ order.cartedItem.model }}</P>
         <p class="text-slate-900 text-2xl">Talla: {{ order.size }}</p>
+        <p class="text-slate-900 text-xl">Cantidad: {{ order.amount }}</p>
+        <div class="flex">
+          <button>
+            <p (click)="removeAmountHandler(order.amount, order.cartedItem.id)">
+              ➖
+            </p>
+          </button>
+          <button (click)="addAmountHandler(order.amount, order.cartedItem.id)">
+            <p>➕</p>
+          </button>
+        </div>
         <p class="text-slate-900 text-2xl text-right">
-          {{ order.cartedItem.price }}€
+          {{ calcProductPrice(order) }}€
         </p>
       </div>
     </div>

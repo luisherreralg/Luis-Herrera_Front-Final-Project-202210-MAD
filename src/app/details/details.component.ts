@@ -56,7 +56,7 @@ export class DetailsComponent implements OnInit {
     }
 
     this.orderService
-      .postOrder({ size: this.selectedSize }, this.sneaker.id)
+      .postOrder({ size: this.selectedSize, amount: 1 }, this.sneaker.id)
       .subscribe(() => {
         this.selectedSize = 'initialValue';
         this.orderService.getOrders().subscribe((data) => {

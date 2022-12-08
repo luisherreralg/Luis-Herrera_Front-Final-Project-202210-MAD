@@ -12,6 +12,7 @@ import { Order } from 'src/app/types/order';
 export class CartModalComponent implements OnInit {
   @Output() handlerCartModal: EventEmitter<void> = new EventEmitter();
   orders: Order[] = [];
+  totalPrice!: number;
 
   constructor(
     public orderService: OrdersService,
@@ -26,6 +27,12 @@ export class CartModalComponent implements OnInit {
     this.orderService.getOrders().subscribe((data) => {
       this.orders = data.orders;
       this.store.dispatch(actions.loadOrders({ orders: this.orders }));
+    });
+
+    this.store.select('orders').subscribe((data) => {
+      this.totalPrice = data.orders.reduce((acc, order) => {
+        return acc + order.amount * order.cartedItem.price;
+      }, 0);
     });
   }
 }
