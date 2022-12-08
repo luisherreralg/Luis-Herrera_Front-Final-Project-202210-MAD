@@ -1,9 +1,10 @@
 <header>
-  <div class="flex flex-col items-center justify-center pb-10">
+  <div class="flex flex-col items-center justify-center">
     <app-logo></app-logo>
     <app-menu></app-menu>
     <app-cart *ngIf="isLogged" class="absolute top-5 right-32"></app-cart>
     <app-auth [isLogged]="isLogged" class="absolute top-5 right-5"></app-auth>
+    <div class="p-10"><app-search-bar></app-search-bar></div>
   </div>
   <app-banner></app-banner>
 </header>
