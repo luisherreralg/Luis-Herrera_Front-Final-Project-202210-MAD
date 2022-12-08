@@ -39,7 +39,7 @@ export class DetailsComponent implements OnInit {
   ) {}
 
   selectSize(size: Sizes) {
-    this.selectedSize = size as Sizes;
+    this.selectedSize = size;
   }
 
   addCartHandler() {

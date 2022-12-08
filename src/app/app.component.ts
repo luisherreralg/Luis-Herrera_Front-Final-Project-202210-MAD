@@ -60,10 +60,7 @@ export class AppComponent implements OnInit {
   @HostListener('window:scroll', [])
   onWindowScroll() {
     const number =
-      window.pageYOffset ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop ||
-      0;
+      document.documentElement.scrollTop || document.body.scrollTop || 0;
     if (number > 260) {
       this.isScrolled = true;
     }
