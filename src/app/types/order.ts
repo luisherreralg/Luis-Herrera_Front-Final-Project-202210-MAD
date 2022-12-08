@@ -6,8 +6,10 @@ export type Order = {
   cartedItem: Sneaker;
   cartedBy: User;
   orderId: string;
+  amount: number;
 };
 
 export type ProtoOrder = {
   size: Sizes;
+  amount: number;
 };
