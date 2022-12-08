@@ -29,7 +29,7 @@ describe('SearchBarComponent', () => {
   describe('When calling to the onInput method', () => {
     it('should call to the services and store', () => {
       const spyService = spyOn(
-        component.searchService,
+        component.sneakerService,
         'searchSneakers'
       ).and.returnValues(of({ sneakers: [] }));
 
@@ -45,7 +45,7 @@ describe('SearchBarComponent', () => {
   describe('When calling to the onInput method with an empty search', () => {
     it('should call to the services and store', () => {
       const spyService = spyOn(
-        component.searchService,
+        component.sneakerService,
         'getSneakers'
       ).and.returnValues(of({ sneakers: [] }));
 
