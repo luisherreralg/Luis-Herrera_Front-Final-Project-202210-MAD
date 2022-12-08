@@ -5,9 +5,9 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class ModalHandlerService {
-  private subjectLogin = new Subject<boolean>();
-  private subjectRegister = new Subject<boolean>();
-  private subjectCart = new Subject<boolean>();
+  public subjectLogin = new Subject<boolean>();
+  public subjectRegister = new Subject<boolean>();
+  public subjectCart = new Subject<boolean>();
 
   loginModal(value: boolean) {
     this.subjectLogin.next(value);
