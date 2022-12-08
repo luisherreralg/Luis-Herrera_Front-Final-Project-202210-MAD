@@ -49,6 +49,25 @@ export class OrdersService {
     ) as unknown as Observable<Order>;
   }
 
+  updateOrder(
+    updatedOrder: Partial<Order>,
+    sneakerId: string
+  ): Observable<Order> {
+    const httpOptions = {
+      method: 'PATCH',
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + this.storageService.getToken(),
+      }),
+    };
+
+    return this.http.patch(
+      this.apiUrl + '/updateOrder/' + sneakerId,
+      updatedOrder,
+      httpOptions
+    ) as unknown as Observable<Order>;
+  }
+
   deleteOrder(sneakerId: string): Observable<Order> {
     const httpOptions = {
       method: 'DELETE',
