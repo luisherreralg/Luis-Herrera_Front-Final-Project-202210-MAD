@@ -1,4 +1,4 @@
-<div class="flex m-20">
+<div class="flex">
   <form [formGroup]="searchForm">
     <input
       type="text"
@@ -6,7 +6,7 @@
       id="search"
       formControlName="search"
       (input)="onInput()"
-      class="border-2 border-black placeholder: pl-2"
+      class="border-2 border-black placeholder: pl-2 w-96"
       placeholder="Search..."
     />
   </form>
