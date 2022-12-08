@@ -120,4 +120,19 @@ describe('DetailsComponent', () => {
       expect(spyOrderServiceGet).toHaveBeenCalled();
     });
   });
+
+  describe('Given the nextImageHandler method, when its invoked', () => {
+    it('should change the values of restOfImages and focusedImage variables', () => {
+      component.nextImageHandler();
+      expect(component.focusedImage).toBe('');
+      expect(component.restOfImages).toEqual(['']);
+    });
+  });
+
+  describe('Givene the prevImageHandler method, when its invoked', () => {
+    it('shoudl change the value of the restOfImages and focusedImage variables', () => {
+      component.prevImageHandler();
+      expect(component.focusedImage).toBe('');
+    });
+  });
 });

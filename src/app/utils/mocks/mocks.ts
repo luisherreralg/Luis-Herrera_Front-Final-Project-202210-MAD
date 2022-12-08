@@ -12,7 +12,7 @@ export const mockSneakersInitialState = {
           onSale: 'notOnSale',
           stock: 1,
           gender: 'male',
-          images: ['url'],
+          images: ['url1', 'url2'],
         },
         {
           id: '2',
@@ -24,7 +24,7 @@ export const mockSneakersInitialState = {
           onSale: 'onSale',
           stock: 1,
           gender: 'male',
-          images: ['url'],
+          images: ['url1', 'url2'],
         },
       ],
     },
