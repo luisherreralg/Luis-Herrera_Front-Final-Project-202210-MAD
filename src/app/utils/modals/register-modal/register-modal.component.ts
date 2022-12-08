@@ -68,8 +68,6 @@ export class RegisterModalComponent implements OnInit, OnDestroy {
       });
   }
 
-  reload = () => window.location.reload();
-
   addBodyClass() {
     const bodyTag = document.body;
     bodyTag.classList.add('overflow-hidden');
@@ -87,4 +85,7 @@ export class RegisterModalComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroyBodyClass();
   }
+
+  /* istanbul ignore next */
+  reload = () => window.location.reload();
 }

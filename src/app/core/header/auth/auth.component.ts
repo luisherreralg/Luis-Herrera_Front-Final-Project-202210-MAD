@@ -26,6 +26,7 @@ export class AuthComponent {
     this.storageService.deleteToken();
     this.reload();
   }
+
   /* istanbul ignore next */
   reload = () => window.location.reload();
 }

@@ -54,8 +54,6 @@ export class LoginModalComponent implements OnInit, OnDestroy {
       });
   }
 
-  reload = () => window.location.reload();
-
   handlerLoginModalEvent() {
     this.handlerLoginModal.emit();
   }
@@ -77,4 +75,7 @@ export class LoginModalComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroyBodyClass();
   }
+
+  /* istanbul ignore next */
+  reload = () => window.location.reload();
 }
