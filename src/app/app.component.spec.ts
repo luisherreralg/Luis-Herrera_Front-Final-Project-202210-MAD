@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { provideMockStore } from '@ngrx/store/testing';
@@ -7,24 +7,26 @@ import { of } from 'rxjs';
 import { mockInitialState } from './utils/mocks/mocks';
 
 describe('AppComponent', () => {
+  let app: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [AppComponent],
       providers: [provideMockStore(mockInitialState), HttpClient, HttpHandler],
     }).compileComponents();
+
+    fixture = TestBed.createComponent(AppComponent);
+    app = fixture.componentInstance;
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
   describe('When loading the app component', () => {
     it('should bring sneaker data from the server with the sneakers services', () => {
-      const fixture = TestBed.createComponent(AppComponent);
-      const app = fixture.componentInstance;
       spyOn(app.store, 'dispatch');
       spyOn(app.sneakerService, 'getSneakers').and.returnValue(
         of({ sneakers: [] })
@@ -37,18 +39,45 @@ describe('AppComponent', () => {
 
   describe('Given the handlerLoginModal function, when its invoked', () => {
     it('should change the value of the loginModal property', () => {
-      const fixture = TestBed.createComponent(AppComponent);
-      const app = fixture.componentInstance;
       app.handlerLoginModal();
       expect(app.loginModal).toBeTrue();
     });
   });
+
   describe('Given the handlerRegisterModal function, when its invoked', () => {
     it('it should change the value of the registerModal property', () => {
-      const fixture = TestBed.createComponent(AppComponent);
-      const app = fixture.componentInstance;
       app.handlerRegisterModal();
       expect(app.registerModal).toBeTrue();
+    });
+  });
+
+  describe('Given the handlerCartModal method, when its invoked', () => {
+    it('should call to the modalService', () => {
+      spyOn(app.modalService, 'cartModal').and.callThrough();
+      app.handlerCartModal();
+      expect(app.modalService.cartModal).toHaveBeenCalled();
+    });
+  });
+
+  describe('Given the onWindowScroll method, when its invoked', () => {
+    it('should change the isScrolled variable to true if the document scroll top is more than 260px', () => {
+      spyOnProperty(document.documentElement, 'scrollTop').and.returnValue(300);
+      app.onWindowScroll();
+      expect(app.isScrolled).toBeTrue();
+    });
+
+    it('should change the isScrolled variable to false if the document scroll top is less than 260px', () => {
+      spyOnProperty(document.body, 'scrollTop').and.returnValue(100);
+      app.onWindowScroll();
+      expect(app.isScrolled).toBeFalse();
+    });
+
+    it('same case but with a different values tu cover the "0" case', () => {
+      spyOnProperty(document.body, 'scrollTop').and.returnValue(0);
+      spyOnProperty(document.documentElement, 'scrollTop').and.returnValue(0);
+
+      app.onWindowScroll();
+      expect(app.isScrolled).toBeFalse();
     });
   });
 });
