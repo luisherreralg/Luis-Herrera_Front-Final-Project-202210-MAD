@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
 import { Order } from 'src/app/types/order';
-import { mockInitialState, mockOrderInitialState } from '../../mocks/mocks';
+import { mockOrderInitialState } from '../../mocks/mocks';
 
 import { CartModalComponent } from './cart-modal.component';
 

@@ -1,6 +1,4 @@
-import { Order } from 'src/app/types/order';
-
-export const mockInitialState = {
+export const mockSneakersInitialState = {
   initialState: {
     sneakers: {
       sneakers: [

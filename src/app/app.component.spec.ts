@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { provideMockStore } from '@ngrx/store/testing';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { of } from 'rxjs';
-import { mockInitialState } from './utils/mocks/mocks';
+import { mockSneakersInitialState } from './utils/mocks/mocks';
 
 describe('AppComponent', () => {
   let app: AppComponent;
@@ -14,7 +14,11 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [AppComponent],
-      providers: [provideMockStore(mockInitialState), HttpClient, HttpHandler],
+      providers: [
+        provideMockStore(mockSneakersInitialState),
+        HttpClient,
+        HttpHandler,
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);

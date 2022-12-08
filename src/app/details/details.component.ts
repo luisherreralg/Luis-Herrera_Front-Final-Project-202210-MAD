@@ -7,7 +7,6 @@ import { OrdersService } from '../services/orders.service';
 import { SneakersService } from '../services/sneakers.service';
 import { AppState } from '../state/app.state';
 import * as actions from '../state/order.reducer/order.action.creator';
-import { ProtoOrder } from '../types/order';
 import { Sizes, Sneaker } from '../types/sneaker';
 
 @Component({

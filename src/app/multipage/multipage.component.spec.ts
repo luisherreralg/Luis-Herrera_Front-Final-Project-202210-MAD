@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
-import { mockInitialState } from '../utils/mocks/mocks';
+import { mockSneakersInitialState } from '../utils/mocks/mocks';
 
 import { MultipageComponent } from './multipage.component';
 
@@ -26,7 +26,7 @@ describe('MultipageComponent', () => {
             }),
           },
         },
-        provideMockStore(mockInitialState),
+        provideMockStore(mockSneakersInitialState),
       ],
     }).compileComponents();
 
