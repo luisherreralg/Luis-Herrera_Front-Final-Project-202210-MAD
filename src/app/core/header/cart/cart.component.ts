@@ -6,7 +6,7 @@ import { ModalHandlerService } from 'src/app/services/modal-handler.service';
   templateUrl: './cart.component.html',
 })
 export class CartComponent {
-  constructor(private modalService: ModalHandlerService) {}
+  constructor(public modalService: ModalHandlerService) {}
   togglecart = false;
 
   handlerCartModal() {

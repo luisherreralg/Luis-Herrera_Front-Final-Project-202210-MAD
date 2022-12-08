@@ -8,9 +8,8 @@ describe('CartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CartComponent ]
-    })
-    .compileComponents();
+      declarations: [CartComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CartComponent);
     component = fixture.componentInstance;
@@ -19,5 +18,15 @@ describe('CartComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('Given the handlerCartModal method, when its invoked', () => {
+    it('should call to the modalService', () => {
+      const spy = spyOn(component.modalService, 'cartModal');
+
+      component.handlerCartModal();
+
+      expect(spy).toHaveBeenCalled();
+    });
   });
 });
