@@ -35,4 +35,16 @@ describe('AuthComponent', () => {
       expect(spy).toHaveBeenCalled();
     });
   });
+
+  describe('Given the handlerLogout method, when its invoked', () => {
+    it('should call to the storageService', () => {
+      const spyStorageService = spyOn(component.storageService, 'deleteToken');
+
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      spyOn(component, 'reload').and.callFake(() => {});
+
+      component.handlerLogout();
+      expect(spyStorageService).toHaveBeenCalled();
+    });
+  });
 });
