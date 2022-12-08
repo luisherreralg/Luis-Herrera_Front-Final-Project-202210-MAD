@@ -83,7 +83,7 @@ describe('DetailsComponent', () => {
       expect(spyStorageService).toHaveBeenCalled();
     });
 
-    it('should return if the selectedSize = "initualValue"', () => {
+    it('should return if the selectedSize = "initialValue"', () => {
       const spyStorageService = spyOn(
         component.storageService,
         'getToken'
@@ -129,8 +129,8 @@ describe('DetailsComponent', () => {
     });
   });
 
-  describe('Givene the prevImageHandler method, when its invoked', () => {
-    it('shoudl change the value of the restOfImages and focusedImage variables', () => {
+  describe('Given the prevImageHandler method, when its invoked', () => {
+    it('should change the value of the restOfImages and focusedImage variables', () => {
       component.prevImageHandler();
       expect(component.focusedImage).toBe('');
     });
