@@ -1,11 +1,10 @@
-<div class="flex">
+<div class="flex" (keyup.enter)="searchHandler()">
   <form [formGroup]="searchForm">
     <input
       type="text"
       name="search"
       id="search"
       formControlName="search"
-      (input)="onInput()"
       class="border-2 border-black placeholder: pl-2 w-96"
       placeholder="Search..."
     />

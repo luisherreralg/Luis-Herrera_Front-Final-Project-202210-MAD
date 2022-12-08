@@ -19,7 +19,7 @@ export class SearchBarComponent {
     public store: Store<AppState>
   ) {}
 
-  onInput() {
+  searchHandler() {
     this.searchService
       .searchSneakers(this.searchForm.value.search as string)
       .subscribe((data) => {
@@ -31,5 +31,6 @@ export class SearchBarComponent {
         this.store.dispatch(actions.loadSneakers({ sneakers: data.sneakers }));
       });
     }
+    this.searchForm.reset();
   }
 }
