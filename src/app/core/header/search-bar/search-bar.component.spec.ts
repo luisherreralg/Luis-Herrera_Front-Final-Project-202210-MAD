@@ -25,4 +25,91 @@ describe('SearchBarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('Given the filterSearch method, when its invoked', () => {
+    it('should return the same data if there is not any switch case', () => {
+      const mockSneakers =
+        mockSneakersInitialState.initialState.sneakers.sneakers;
+      const spyStore = spyOn(component.store, 'dispatch').and.callThrough();
+
+      component.filterSearch({ sneakers: mockSneakers });
+      expect(spyStore).toHaveBeenCalled();
+    });
+
+    it('should return the gender "Hombre" sneakers if there is a title = "Hombre"', () => {
+      const mockSneakers =
+        mockSneakersInitialState.initialState.sneakers.sneakers;
+      const spyStore = spyOn(component.store, 'dispatch').and.callThrough();
+      component.title = 'Hombre';
+
+      component.filterSearch({ sneakers: mockSneakers });
+      expect(spyStore).toHaveBeenCalled();
+    });
+
+    it('should return the gender "Mujer" sneakers if there is a title = "Mujer"', () => {
+      const mockSneakers =
+        mockSneakersInitialState.initialState.sneakers.sneakers;
+      const spyStore = spyOn(component.store, 'dispatch').and.callThrough();
+      component.title = 'Mujer';
+
+      component.filterSearch({ sneakers: mockSneakers });
+      expect(spyStore).toHaveBeenCalled();
+    });
+
+    it('should return the gender "onSale" sneakers if there is a title = "OnSale"', () => {
+      const mockSneakers =
+        mockSneakersInitialState.initialState.sneakers.sneakers;
+      const spyStore = spyOn(component.store, 'dispatch').and.callThrough();
+      component.title = 'OnSale';
+
+      component.filterSearch({ sneakers: mockSneakers });
+      expect(spyStore).toHaveBeenCalled();
+    });
+  });
+
+  describe('Given the pathService service, when the searchBar is invoked', () => {
+    it('should call to the pathService', () => {
+      const spyPathService = spyOn(
+        component.pathService,
+        'getPath'
+      ).and.returnValue(of('Hombre'));
+
+      new SearchBarComponent(
+        component.sneakerService,
+        component.store,
+        component.pathService
+      );
+
+      expect(spyPathService).toHaveBeenCalled();
+    });
+  });
+
+  describe('Given the searchHandler method, when its invoked', () => {
+    it('should call to the sneaker service if the searchform value is not null or an empty string', () => {
+      const spySneakerServiceSearch = spyOn(
+        component.sneakerService,
+        'searchSneakers'
+      ).and.returnValue(of({ sneakers: [] }));
+      const spyFilterSearch = spyOn(component, 'filterSearch');
+      component.searchForm.setValue({ search: 'test' });
+
+      component.searchHandler();
+
+      expect(spySneakerServiceSearch).toHaveBeenCalled();
+      expect(spyFilterSearch).toHaveBeenCalled();
+    });
+
+    it('should call to the sneaker service if the searchform value is not null or an empty string', () => {
+      component.searchForm.setValue({ search: null });
+      const spySneakerServiceGet = spyOn(
+        component.sneakerService,
+        'getSneakers'
+      ).and.returnValue(of({ sneakers: [] }));
+      const spyFilterSearch = spyOn(component, 'filterSearch');
+
+      component.searchHandler();
+      expect(spySneakerServiceGet).toHaveBeenCalled();
+      expect(spyFilterSearch).toHaveBeenCalled();
+    });
+  });
 });
