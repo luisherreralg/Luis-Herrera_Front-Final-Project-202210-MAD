@@ -25,36 +25,4 @@ describe('SearchBarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  describe('When calling to the onInput method', () => {
-    it('should call to the services and store', () => {
-      const spyService = spyOn(
-        component.sneakerService,
-        'searchSneakers'
-      ).and.returnValues(of({ sneakers: [] }));
-
-      const spyStore = spyOn(component.store, 'dispatch');
-
-      component.onInput();
-
-      expect(spyService).toHaveBeenCalled();
-      expect(spyStore).toHaveBeenCalled();
-    });
-  });
-
-  describe('When calling to the onInput method with an empty search', () => {
-    it('should call to the services and store', () => {
-      const spyService = spyOn(
-        component.sneakerService,
-        'getSneakers'
-      ).and.returnValues(of({ sneakers: [] }));
-
-      const spyStore = spyOn(component.store, 'dispatch');
-
-      component.onInput();
-
-      expect(spyService).toHaveBeenCalled();
-      expect(spyStore).toHaveBeenCalled();
-    });
-  });
 });

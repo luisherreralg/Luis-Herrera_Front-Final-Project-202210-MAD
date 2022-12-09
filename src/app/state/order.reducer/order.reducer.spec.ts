@@ -26,6 +26,7 @@ describe('Given the OrderReducer', () => {
       role: 'user',
     },
     orderId: '1',
+    amount: 1,
   };
 
   const initialState = {

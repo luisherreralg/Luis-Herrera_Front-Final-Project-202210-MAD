@@ -30,6 +30,7 @@ describe('OrdersService', () => {
       role: 'user',
     },
     orderId: '',
+    amount: 0,
   };
 
   let service: OrdersService;
@@ -61,6 +62,7 @@ describe('OrdersService', () => {
     it('should call to the HttpClient', () => {
       const newOrder: ProtoOrder = {
         size: '35.5',
+        amount: 1,
       };
 
       service.postOrder(newOrder, 'sneakerId').subscribe((resp) => {
