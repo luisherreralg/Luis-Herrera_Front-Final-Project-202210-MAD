@@ -4,9 +4,20 @@
       <p class="text-2xl text-right">❎</p>
     </button>
     <p class="text-5xl">Carro:</p>
-    <app-cart-list></app-cart-list>
+    <p *ngIf="totalPrice === 0" class="text-2xl my-16">
+      No hay productos en el carrito 😢
+    </p>
+    <app-cart-list [totalPrice]="totalPrice"></app-cart-list>
+    <p *ngIf="!!totalPrice" class="text-2xl font-Koulen mt-10">
+      Total: {{ totalPrice }} €
+    </p>
     <div class="bg-green-600 text-slate-100 text-2xl text-center p-1 m-4">
-      <button>Comprar</button>
+      <button
+        (click)="initializePayment(totalPrice, completeOrders.bind(this))"
+      >
+        Comprar
+      </button>
     </div>
+    <p class="my-10">PLACEHOLDER: 4242424242424242</p>
   </div>
 </div>

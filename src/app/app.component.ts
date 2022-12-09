@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { ModalHandlerService } from './services/modal-handler.service';
 import { SneakersService } from './services/sneakers.service';
+import { WebLocationService } from './services/web-location.service';
 import { AppState } from './state/app.state';
 import * as actions from './state/sneaker.reducer/sneaker.action.creator';
 import { Sneaker } from './types/sneaker';
@@ -22,10 +23,13 @@ export class AppComponent implements OnInit {
 
   isScrolled = false;
 
+  path!: string;
+
   constructor(
     public store: Store<AppState>,
     public sneakerService: SneakersService,
-    public modalService: ModalHandlerService
+    public modalService: ModalHandlerService,
+    public pathService: WebLocationService
   ) {
     this.subscription = this.modalService.getLoginModal().subscribe((value) => {
       this.loginModal = value;
@@ -39,6 +43,10 @@ export class AppComponent implements OnInit {
 
     this.subscription = this.modalService.getCartModal().subscribe((value) => {
       this.cartModal = value;
+    });
+
+    this.subscription = this.pathService.getPath().subscribe((value) => {
+      this.path = value;
     });
   }
 

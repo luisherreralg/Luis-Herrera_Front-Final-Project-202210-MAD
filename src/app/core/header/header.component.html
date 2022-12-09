@@ -1,24 +1,22 @@
 <header>
-  <div class="flex items-center justify-evenly">
+  <div class="flex flex-col items-center justify-center">
     <app-logo></app-logo>
-    <div class="flex items-center gap-10">
-      <div>
-        <app-menu></app-menu>
-      </div>
-      <div class="flex items-center">
-        <app-search-bar></app-search-bar>
-        <app-cart *ngIf="isLogged"></app-cart>
-      </div>
-      <app-auth [isLogged]="isLogged"></app-auth>
-    </div>
+    <app-menu></app-menu>
+    <app-cart *ngIf="isLogged" class="absolute top-5 right-32"></app-cart>
+    <app-auth [isLogged]="isLogged" class="absolute top-5 right-5"></app-auth>
+    <div class="p-10"><app-search-bar></app-search-bar></div>
   </div>
   <app-banner></app-banner>
 </header>
 
 <header
   *ngIf="isScrolled"
-  class="fixed w-full top-0 bg-white flex align-middle justify-center items-center"
+  class="fixed w-full top-0 bg-white flex flex-col align-middle justify-center items-center"
 >
-  <app-logo [isScrolled]="isScrolled"></app-logo>
-  <app-menu [isScrolled]="isScrolled"></app-menu>
+  <div class="flex items-center">
+    <app-logo [isScrolled]="isScrolled"></app-logo>
+    <app-menu [isScrolled]="isScrolled"></app-menu>
+    <app-cart *ngIf="isLogged" class="absolute right-24"></app-cart>
+  </div>
+  <div class="p-5"><app-search-bar></app-search-bar></div>
 </header>

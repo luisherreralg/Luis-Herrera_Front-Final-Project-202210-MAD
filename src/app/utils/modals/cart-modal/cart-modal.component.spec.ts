@@ -48,4 +48,28 @@ describe('CartModalComponent', () => {
       expect(spy).toHaveBeenCalled();
     });
   });
+
+  describe('Given the completeOrders function, when its invoked', () => {
+    it('should call to the orderService, and store dispatcher', () => {
+      const spyOrderServiceGet = spyOn(
+        component.orderService,
+        'getOrders'
+      ).and.returnValue(
+        of({
+          orders: mockOrderInitialState.initialState.orders.orders as Order[],
+        })
+      );
+      const spyOrderServiceDelete = spyOn(
+        component.orderService,
+        'deleteOrder'
+      ).and.returnValue(of({} as Order));
+
+      const spyStoreDispatcher = spyOn(component.store, 'dispatch');
+
+      component.completeOrders();
+      expect(spyOrderServiceGet).toHaveBeenCalled();
+      expect(spyOrderServiceDelete).toHaveBeenCalled();
+      expect(spyStoreDispatcher).toHaveBeenCalled();
+    });
+  });
 });

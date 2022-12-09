@@ -45,4 +45,52 @@ describe('CartListComponent', () => {
       expect(spyStore).toHaveBeenCalled();
     });
   });
+
+  describe('Given the addAmountHandler method, when its invoked', () => {
+    it('should call to the orderService and store', () => {
+      const spyOrderServiceUpdate = spyOn(
+        component.orderService,
+        'updateOrder'
+      ).and.returnValue(of({} as Order));
+      const spyOrderServiceGet = spyOn(
+        component.orderService,
+        'getOrders'
+      ).and.returnValue(of({ orders: [] }));
+      const spyDispatcher = spyOn(component.store, 'dispatch');
+
+      component.addAmountHandler(1, '');
+
+      expect(spyOrderServiceUpdate).toHaveBeenCalled();
+      expect(spyOrderServiceGet).toHaveBeenCalled();
+      expect(spyDispatcher).toHaveBeenCalled();
+    });
+  });
+
+  describe('Given the removeAmountHandler method, when its invoked', () => {
+    it('should call to the orderService and store if the amount is bigger than "2"', () => {
+      const spyOrderServiceUpdate = spyOn(
+        component.orderService,
+        'updateOrder'
+      ).and.returnValue(of({} as Order));
+      const spyOrderServiceGet = spyOn(
+        component.orderService,
+        'getOrders'
+      ).and.returnValue(of({ orders: [] }));
+      const spyDispatcher = spyOn(component.store, 'dispatch');
+
+      component.removeAmountHandler(2, '');
+
+      expect(spyOrderServiceUpdate).toHaveBeenCalled();
+      expect(spyOrderServiceGet).toHaveBeenCalled();
+      expect(spyDispatcher).toHaveBeenCalled();
+    });
+
+    it('should call to the orderService and store if the amount is bigger than "2"', () => {
+      const spyDeleteHandler = spyOn(component, 'deleteItemHandler');
+
+      component.removeAmountHandler(1, '');
+
+      expect(spyDeleteHandler).toHaveBeenCalled();
+    });
+  });
 });

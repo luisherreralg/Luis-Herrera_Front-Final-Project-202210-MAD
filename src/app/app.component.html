@@ -1,24 +1,23 @@
-<app-login-modal
-  *ngIf="loginModal"
-  (handlerLoginModal)="handlerLoginModal()"
-></app-login-modal>
+<div>
+  <app-login-modal *ngIf="loginModal"></app-login-modal>
 
-<app-register-modal
-  *ngIf="registerModal"
-  (handlerRegisterModal)="handlerRegisterModal()"
-></app-register-modal>
+  <app-register-modal
+    *ngIf="registerModal"
+    (handlerRegisterModal)="handlerRegisterModal()"
+  ></app-register-modal>
 
-<app-cart-modal
-  *ngIf="cartModal"
-  (handlerCartModal)="handlerCartModal()"
-></app-cart-modal>
+  <app-cart-modal
+    *ngIf="cartModal"
+    (handlerCartModal)="handlerCartModal()"
+  ></app-cart-modal>
 
-<div
-  [ngClass]="{
-    blur: loginModal || registerModal
-  }"
->
-  <app-header [isScrolled]="isScrolled"></app-header>
-  <router-outlet></router-outlet>
-  <app-footer></app-footer>
+  <div
+    [ngClass]="{
+      blur: loginModal || registerModal
+    }"
+  >
+    <app-header [isScrolled]="isScrolled"></app-header>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </div>
 </div>

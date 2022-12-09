@@ -1,3 +1,5 @@
+import { Sizes } from 'src/app/types/sneaker';
+
 export const mockSneakersInitialState = {
   initialState: {
     sneakers: {
@@ -6,25 +8,25 @@ export const mockSneakersInitialState = {
           id: '1',
           brand: 'brandTest',
           model: 'modelTest',
-          size: ['40'],
+          size: ['40' as Sizes],
           price: 100,
           onSalePrice: 90,
           onSale: 'notOnSale',
           stock: 1,
           gender: 'male',
-          images: ['url'],
+          images: ['url1', 'url2'],
         },
         {
           id: '2',
           brand: 'brandTest',
           model: 'modelTest',
-          size: ['40'],
+          size: ['40' as Sizes],
           price: 100,
           onSalePrice: 90,
           onSale: 'onSale',
           stock: 1,
           gender: 'male',
-          images: ['url'],
+          images: ['url1', 'url2'],
         },
       ],
     },
@@ -36,7 +38,7 @@ export const mockOrderInitialState = {
     orders: {
       orders: [
         {
-          size: [],
+          size: ['' as Sizes],
           cartedItem: {
             id: '',
             brand: '',
@@ -58,6 +60,7 @@ export const mockOrderInitialState = {
             role: 'user',
           },
           orderId: '',
+          amount: 1,
         },
       ],
     },

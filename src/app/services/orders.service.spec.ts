@@ -30,6 +30,7 @@ describe('OrdersService', () => {
       role: 'user',
     },
     orderId: '',
+    amount: 0,
   };
 
   let service: OrdersService;
@@ -61,6 +62,7 @@ describe('OrdersService', () => {
     it('should call to the HttpClient', () => {
       const newOrder: ProtoOrder = {
         size: '35.5',
+        amount: 1,
       };
 
       service.postOrder(newOrder, 'sneakerId').subscribe((resp) => {
@@ -74,6 +76,16 @@ describe('OrdersService', () => {
   describe('When the deleteOrder method is invoked', () => {
     it('should call to the HttpClient', () => {
       service.deleteOrder('sneakerId').subscribe((resp) => {
+        expect(resp).not.toBeNull();
+        expect(JSON.stringify(resp)).toBe(JSON.stringify({}));
+      });
+      expect(httpTest).toBeTruthy();
+    });
+  });
+
+  describe('when the updateOrder method is invoked', () => {
+    it('should call to the HttpClient', () => {
+      service.updateOrder({}, '').subscribe((resp) => {
         expect(resp).not.toBeNull();
         expect(JSON.stringify(resp)).toBe(JSON.stringify({}));
       });
