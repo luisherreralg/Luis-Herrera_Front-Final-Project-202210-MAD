@@ -9,6 +9,7 @@ import { SearchBarComponent } from './search-bar.component';
 describe('SearchBarComponent', () => {
   let component: SearchBarComponent;
   let fixture: ComponentFixture<SearchBarComponent>;
+  const mockSneakers = mockSneakersInitialState.initialState.sneakers.sneakers;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -27,19 +28,18 @@ describe('SearchBarComponent', () => {
   });
 
   describe('Given the filterSearch method, when its invoked', () => {
-    it('should return the same data if there is not any switch case', () => {
-      const mockSneakers =
-        mockSneakersInitialState.initialState.sneakers.sneakers;
-      const spyStore = spyOn(component.store, 'dispatch').and.callThrough();
+    let spyStore: jasmine.Spy;
 
+    beforeEach(() => {
+      spyStore = spyOn(component.store, 'dispatch').and.callThrough();
+    });
+
+    it('should return the same data if there is not any switch case', () => {
       component.filterSearch({ sneakers: mockSneakers });
       expect(spyStore).toHaveBeenCalled();
     });
 
     it('should return the gender "Hombre" sneakers if there is a title = "Hombre"', () => {
-      const mockSneakers =
-        mockSneakersInitialState.initialState.sneakers.sneakers;
-      const spyStore = spyOn(component.store, 'dispatch').and.callThrough();
       component.title = 'Hombre';
 
       component.filterSearch({ sneakers: mockSneakers });
@@ -47,9 +47,6 @@ describe('SearchBarComponent', () => {
     });
 
     it('should return the gender "Mujer" sneakers if there is a title = "Mujer"', () => {
-      const mockSneakers =
-        mockSneakersInitialState.initialState.sneakers.sneakers;
-      const spyStore = spyOn(component.store, 'dispatch').and.callThrough();
       component.title = 'Mujer';
 
       component.filterSearch({ sneakers: mockSneakers });
@@ -57,9 +54,6 @@ describe('SearchBarComponent', () => {
     });
 
     it('should return the gender "onSale" sneakers if there is a title = "OnSale"', () => {
-      const mockSneakers =
-        mockSneakersInitialState.initialState.sneakers.sneakers;
-      const spyStore = spyOn(component.store, 'dispatch').and.callThrough();
       component.title = 'OnSale';
 
       component.filterSearch({ sneakers: mockSneakers });
