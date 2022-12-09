@@ -1,13 +1,13 @@
 <div class="flex gap-20 m-20">
   <div class="flex">
-    <ul class="flex flex-col gap-6 justify-center">
+    <ul class="flex flex-col justify-center gap-6">
       <li *ngFor="let image of restOfImages">
-        <img [src]="image" alt="Sneaker Image" class="w-44 object-scale-down" />
+        <img [src]="image" alt="Sneaker Image" class="object-scale-down w-44" />
       </li>
     </ul>
   </div>
   <div class="flex">
-    <button (click)="prevImageHandler()" class="p-5 transofrm -rotate-180">
+    <button (click)="prevImageHandler()" class="p-5 -rotate-180 transofrm">
       <img
         src="../../assets/details-icons/arrow-icon.svg"
         alt="Next button icon"
@@ -21,19 +21,35 @@
     </button>
   </div>
   <div>
-    <div>
+    <div *ngIf="sneaker.stock !== 0">
       <div class="mb-36">
-        <p class="font-Koulen text-gray-500 text-5xl">{{ sneaker.brand }}</p>
+        <p class="text-5xl text-gray-500 font-Koulen">{{ sneaker.brand }}</p>
         <p class="font-Koulen text-7xl">{{ sneaker.model }}</p>
       </div>
 
       <div class="mb-36">
+        <div class="text-right m-5">
+          <p
+            [ngClass]="{
+              'line-through text-3xl': sneaker.onSale === 'onSale'
+            }"
+            class="text-5xl font-Koulen"
+          >
+            {{ sneaker.price }}€
+          </p>
+          <p
+            *ngIf="sneaker.onSale === 'onSale'"
+            class="text-5xl text-red-500 font-Koulen"
+          >
+            {{ sneaker.onSalePrice }}€
+          </p>
+        </div>
         <p class="font-Roboto">Tallas disponibles:</p>
         <ul class="flex flex-wrap gap-2">
           <li *ngFor="let size of sneaker.size">
             <button
               (click)="selectSize(size)"
-              class="bg-gray-100 border-2 border-neutral-500 px-3"
+              class="px-3 bg-gray-100 border-2 border-neutral-500"
             >
               {{ size }}
             </button>
@@ -49,11 +65,15 @@
         </p>
         <button
           (click)="addCartHandler()"
-          class="w-96 bg-orange-400 text-slate-100 text-2xl p-2"
+          class="p-2 text-2xl bg-orange-400 w-96 text-slate-100"
         >
           Añadir a la cesta
         </button>
       </div>
+    </div>
+
+    <div *ngIf="sneaker.stock === 0" class="flex m-10">
+      <p class="text-5xl">Sin stock de este producto actualmente 😢</p>
     </div>
   </div>
 </div>

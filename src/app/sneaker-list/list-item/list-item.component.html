@@ -16,11 +16,11 @@
 <p class="text-gray-500 text-2xl">{{ sneaker.brand }}</p>
 <p class="text-3xl">{{ sneaker.model }}</p>
 
-<div *ngIf="sneaker.onSale" class="flex justify-end gap-5">
+<div *ngIf="sneaker.onSale === 'onSale'" class="flex justify-end gap-5">
   <p class="line-through text-2xl">{{ sneaker.price }}€</p>
   <p class="text-red-500 text-2xl">{{ sneaker.onSalePrice }}€</p>
 </div>
 
-<div *ngIf="!sneaker.onSale" class="flex justify-end gap-5">
+<div *ngIf="sneaker.onSale !== 'onSale'" class="flex justify-end gap-5">
   <p class="text-2xl">{{ sneaker.price }}€</p>
 </div>
