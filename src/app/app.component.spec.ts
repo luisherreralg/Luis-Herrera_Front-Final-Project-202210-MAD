@@ -39,6 +39,23 @@ describe('AppComponent', () => {
       fixture.detectChanges();
       expect(app.store.dispatch).toHaveBeenCalled();
     });
+
+    it('should call to the pathService', () => {
+      const spyPathService = spyOn(app.pathService, 'getPath').and.returnValue(
+        of('path')
+      );
+
+      new AppComponent(
+        app.store,
+        app.sneakerService,
+        app.modalService,
+        app.pathService
+      );
+
+      fixture.componentInstance;
+      fixture.detectChanges();
+      expect(spyPathService).toHaveBeenCalled();
+    });
   });
 
   describe('Given the handlerLoginModal function, when its invoked', () => {
