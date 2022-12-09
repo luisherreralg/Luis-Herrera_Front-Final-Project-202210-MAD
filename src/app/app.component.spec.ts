@@ -52,8 +52,6 @@ describe('AppComponent', () => {
         app.pathService
       );
 
-      fixture.componentInstance;
-      fixture.detectChanges();
       expect(spyPathService).toHaveBeenCalled();
     });
   });
