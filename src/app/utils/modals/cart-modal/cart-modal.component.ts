@@ -25,23 +25,6 @@ export class CartModalComponent implements OnInit {
     this.handlerCartModal.emit();
   }
 
-  initializePayment(amount: number, completeOrders: () => void) {
-    const paymentHandler = (<any>window).StripeCheckout.configure({
-      key: 'pk_test_51MCt1qDJ11wdXcrRVZsbJThCSedIFdM3PZ2yMOTqvOEYv4krrtJ7xHFHWuLdPyl9bFrutuiHgOc1sKZKnBm9YOGb00D42yzQH2',
-      locale: 'auto',
-      token: function (stripeToken: string) {
-        alert('Payment has been successfull!');
-        completeOrders();
-      },
-    });
-
-    paymentHandler.open({
-      name: 'Disi Sneakers',
-      description: 'Payment for your order',
-      amount: amount * 100,
-    });
-  }
-
   completeOrders() {
     this.orderService.getOrders().subscribe((data) => {
       data.orders.forEach((order: Order) => {
@@ -50,25 +33,6 @@ export class CartModalComponent implements OnInit {
         });
       });
     });
-  }
-
-  invokeStripe() {
-    if (!window.document.getElementById('stripe-script')) {
-      const script = window.document.createElement('script');
-      script.id = 'stripe-script';
-      script.type = 'text/javascript';
-      script.src = 'https://checkout.stripe.com/checkout.js';
-      script.onload = () => {
-        this.paymentHandler = (<any>window).StripeCheckout.configure({
-          key: 'pk_test_51MCt1qDJ11wdXcrRVZsbJThCSedIFdM3PZ2yMOTqvOEYv4krrtJ7xHFHWuLdPyl9bFrutuiHgOc1sKZKnBm9YOGb00D42yzQH2',
-          locale: 'auto',
-          token: function (stripeToken: string) {
-            alert('Payment has been successfull!');
-          },
-        });
-      };
-      window.document.body.appendChild(script);
-    }
   }
 
   ngOnInit(): void {
@@ -86,5 +50,43 @@ export class CartModalComponent implements OnInit {
 
       this.totalPrice = Math.round(this.totalPrice * 100) / 100;
     });
+  }
+
+  /* istanbul ignore next */
+  initializePayment(amount: number, completeOrders: () => void) {
+    const paymentHandler = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_51MCt1qDJ11wdXcrRVZsbJThCSedIFdM3PZ2yMOTqvOEYv4krrtJ7xHFHWuLdPyl9bFrutuiHgOc1sKZKnBm9YOGb00D42yzQH2',
+      locale: 'auto',
+      token: function (stripeToken: string) {
+        alert('Payment has been successfull!');
+        completeOrders();
+      },
+    });
+
+    paymentHandler.open({
+      name: 'Disi Sneakers',
+      description: 'Payment for your order',
+      amount: amount * 100,
+    });
+  }
+
+  /* istanbul ignore next */
+  invokeStripe() {
+    if (!window.document.getElementById('stripe-script')) {
+      const script = window.document.createElement('script');
+      script.id = 'stripe-script';
+      script.type = 'text/javascript';
+      script.src = 'https://checkout.stripe.com/checkout.js';
+      script.onload = () => {
+        this.paymentHandler = (<any>window).StripeCheckout.configure({
+          key: 'pk_test_51MCt1qDJ11wdXcrRVZsbJThCSedIFdM3PZ2yMOTqvOEYv4krrtJ7xHFHWuLdPyl9bFrutuiHgOc1sKZKnBm9YOGb00D42yzQH2',
+          locale: 'auto',
+          token: function (stripeToken: string) {
+            alert('Payment has been successfull!');
+          },
+        });
+      };
+      window.document.body.appendChild(script);
+    }
   }
 }

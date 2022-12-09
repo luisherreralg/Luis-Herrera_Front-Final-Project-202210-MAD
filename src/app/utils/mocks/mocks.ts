@@ -38,7 +38,7 @@ export const mockOrderInitialState = {
     orders: {
       orders: [
         {
-          size: [],
+          size: ['' as Sizes],
           cartedItem: {
             id: '',
             brand: '',
@@ -60,6 +60,7 @@ export const mockOrderInitialState = {
             role: 'user',
           },
           orderId: '',
+          amount: 1,
         },
       ],
     },
