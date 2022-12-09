@@ -57,7 +57,7 @@ export class CartModalComponent implements OnInit {
     const paymentHandler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_51MCt1qDJ11wdXcrRVZsbJThCSedIFdM3PZ2yMOTqvOEYv4krrtJ7xHFHWuLdPyl9bFrutuiHgOc1sKZKnBm9YOGb00D42yzQH2',
       locale: 'auto',
-      token: function (stripeToken: string) {
+      token: function () {
         alert('Payment has been successfull!');
         completeOrders();
       },
@@ -81,8 +81,10 @@ export class CartModalComponent implements OnInit {
         this.paymentHandler = (<any>window).StripeCheckout.configure({
           key: 'pk_test_51MCt1qDJ11wdXcrRVZsbJThCSedIFdM3PZ2yMOTqvOEYv4krrtJ7xHFHWuLdPyl9bFrutuiHgOc1sKZKnBm9YOGb00D42yzQH2',
           locale: 'auto',
-          token: function (stripeToken: string) {
-            alert('Payment has been successfull!');
+          token: function () {
+            alert(
+              'Compra completada con éxito!, Te llegará un mail con los detalles de tu compra.'
+            );
           },
         });
       };
