@@ -59,7 +59,7 @@ export class CartListComponent implements OnInit {
   removeAmountHandler(amount: number, sneakerId: string) {
     const newAmount = amount - 1;
 
-    if (newAmount === 0) {
+    if (newAmount <= 0) {
       this.deleteItemHandler(sneakerId);
       return;
     }
@@ -78,9 +78,5 @@ export class CartListComponent implements OnInit {
     this.store.subscribe((state) => {
       this.orders = state.orders.orders;
     });
-
-    if (typeof this.totalPrice === 'string') {
-      this.totalPrice = 0;
-    }
   }
 }
