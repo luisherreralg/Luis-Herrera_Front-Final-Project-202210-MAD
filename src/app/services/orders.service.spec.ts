@@ -82,4 +82,14 @@ describe('OrdersService', () => {
       expect(httpTest).toBeTruthy();
     });
   });
+
+  describe('when the updateOrder method is invoked', () => {
+    it('should call to the HttpClient', () => {
+      service.updateOrder({}, '').subscribe((resp) => {
+        expect(resp).not.toBeNull();
+        expect(JSON.stringify(resp)).toBe(JSON.stringify({}));
+      });
+      expect(httpTest).toBeTruthy();
+    });
+  });
 });
