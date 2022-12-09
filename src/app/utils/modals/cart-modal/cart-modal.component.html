@@ -12,7 +12,11 @@
       Total: {{ totalPrice }} €
     </p>
     <div class="bg-green-600 text-slate-100 text-2xl text-center p-1 m-4">
-      <button (click)="initializePayment(totalPrice)">Comprar</button>
+      <button
+        (click)="initializePayment(totalPrice, completeOrders.bind(this))"
+      >
+        Comprar
+      </button>
     </div>
     <p class="my-10">PLACEHOLDER: 4242424242424242</p>
   </div>

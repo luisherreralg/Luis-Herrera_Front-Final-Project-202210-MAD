@@ -25,13 +25,14 @@ export class CartModalComponent implements OnInit {
     this.handlerCartModal.emit();
   }
 
-  initializePayment(amount: number) {
+  initializePayment(amount: number, completeOrders: () => void) {
     const paymentHandler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_51MCt1qDJ11wdXcrRVZsbJThCSedIFdM3PZ2yMOTqvOEYv4krrtJ7xHFHWuLdPyl9bFrutuiHgOc1sKZKnBm9YOGb00D42yzQH2',
       locale: 'auto',
-      token: function (stripeToken: any) {
-        console.log({ stripeToken });
-        alert('Stripe token generated!');
+      token: function (stripeToken: string) {
+        console.log(stripeToken);
+        alert('Payment has been successfull!');
+        completeOrders();
       },
     });
 
@@ -39,6 +40,17 @@ export class CartModalComponent implements OnInit {
       name: 'Disi Sneakers',
       description: 'Payment for your order',
       amount: amount * 100,
+    });
+  }
+
+  completeOrders() {
+    console.log('Ha entrado en completeOrders');
+    this.orderService.getOrders().subscribe((data) => {
+      data.orders.forEach((order: Order) => {
+        this.orderService.deleteOrder(order.cartedItem.id).subscribe(() => {
+          this.store.dispatch(actions.deleteOrder({ idDelete: order.orderId }));
+        });
+      });
     });
   }
 
@@ -52,7 +64,7 @@ export class CartModalComponent implements OnInit {
         this.paymentHandler = (<any>window).StripeCheckout.configure({
           key: 'pk_test_51MCt1qDJ11wdXcrRVZsbJThCSedIFdM3PZ2yMOTqvOEYv4krrtJ7xHFHWuLdPyl9bFrutuiHgOc1sKZKnBm9YOGb00D42yzQH2',
           locale: 'auto',
-          token: function (stripeToken: any) {
+          token: function (stripeToken: string) {
             console.log(stripeToken);
             alert('Payment has been successfull!');
           },
@@ -74,6 +86,8 @@ export class CartModalComponent implements OnInit {
       this.totalPrice = data.orders.reduce((acc, order) => {
         return acc + order.amount * order.cartedItem.price;
       }, 0);
+
+      this.totalPrice = Math.round(this.totalPrice * 100) / 100;
     });
   }
 }

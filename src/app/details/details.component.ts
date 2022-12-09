@@ -63,6 +63,8 @@ export class DetailsComponent implements OnInit {
           this.store.dispatch(actions.loadOrders({ orders: data.orders }));
         });
       });
+
+    this.modalService.cartModal(true);
   }
 
   nextImageHandler() {
