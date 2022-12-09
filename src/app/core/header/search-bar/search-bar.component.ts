@@ -5,6 +5,7 @@ import { SneakersService } from 'src/app/services/sneakers.service';
 import { WebLocationService } from 'src/app/services/web-location.service';
 import { AppState } from 'src/app/state/app.state';
 import * as actions from 'src/app/state/sneaker.reducer/sneaker.action.creator';
+import { Sneaker } from 'src/app/types/sneaker';
 
 @Component({
   selector: 'app-search-bar',
@@ -24,10 +25,6 @@ export class SearchBarComponent {
   ) {
     this.pathService.getPath().subscribe((path) => {
       this.title = path;
-      console.log(
-        '🚀 ~ file: search-bar.component.ts:27 ~ SearchBarComponent ~ this.pathService.getPath ~ this.title',
-        this.title
-      );
     });
   }
 
@@ -37,32 +34,7 @@ export class SearchBarComponent {
       this.searchForm.value.search === null
     ) {
       this.sneakerService.getSneakers().subscribe((data) => {
-        let sneakers = data.sneakers;
-
-        switch (this.title) {
-          case 'Hombre':
-            sneakers = sneakers.filter((sneaker) => {
-              return sneaker.gender === 'hombre';
-            });
-            break;
-
-          case 'Mujer':
-            sneakers = sneakers.filter((sneaker) => {
-              return sneaker.gender === 'mujer';
-            });
-            break;
-
-          case 'onSale':
-            sneakers = sneakers.filter((sneaker) => {
-              return sneaker.onSale === 'onSale';
-            });
-            break;
-
-          default:
-            break;
-        }
-
-        this.store.dispatch(actions.loadSneakers({ sneakers: sneakers }));
+        this.filterSearch(data);
       });
       return this.searchForm.reset();
     }
@@ -70,34 +42,37 @@ export class SearchBarComponent {
     this.sneakerService
       .searchSneakers(this.searchForm.value.search as string)
       .subscribe((data) => {
-        let sneakers = data.sneakers;
-
-        switch (this.title) {
-          case 'Hombre':
-            sneakers = sneakers.filter((sneaker) => {
-              return sneaker.gender === 'hombre';
-            });
-            break;
-
-          case 'Mujer':
-            sneakers = sneakers.filter((sneaker) => {
-              return sneaker.gender === 'mujer';
-            });
-            break;
-
-          case 'onSale':
-            sneakers = sneakers.filter((sneaker) => {
-              return sneaker.onSale === 'onSale';
-            });
-            break;
-
-          default:
-            break;
-        }
-
-        this.store.dispatch(actions.loadSneakers({ sneakers: sneakers }));
+        this.filterSearch(data);
       });
 
     return this.searchForm.reset();
+  }
+
+  filterSearch(data: { sneakers: Sneaker[] }) {
+    let sneakers = data.sneakers;
+    switch (this.title) {
+      case 'Hombre':
+        sneakers = sneakers.filter((sneaker) => {
+          return sneaker.gender === 'hombre';
+        });
+        break;
+
+      case 'Mujer':
+        sneakers = sneakers.filter((sneaker) => {
+          return sneaker.gender === 'mujer';
+        });
+        break;
+
+      case 'OnSale':
+        sneakers = sneakers.filter((sneaker) => {
+          return sneaker.onSale === 'onSale';
+        });
+        break;
+
+      default:
+        break;
+    }
+
+    this.store.dispatch(actions.loadSneakers({ sneakers: sneakers }));
   }
 }

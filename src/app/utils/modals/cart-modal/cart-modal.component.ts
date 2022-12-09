@@ -30,7 +30,6 @@ export class CartModalComponent implements OnInit {
       key: 'pk_test_51MCt1qDJ11wdXcrRVZsbJThCSedIFdM3PZ2yMOTqvOEYv4krrtJ7xHFHWuLdPyl9bFrutuiHgOc1sKZKnBm9YOGb00D42yzQH2',
       locale: 'auto',
       token: function (stripeToken: string) {
-        console.log(stripeToken);
         alert('Payment has been successfull!');
         completeOrders();
       },
@@ -44,7 +43,6 @@ export class CartModalComponent implements OnInit {
   }
 
   completeOrders() {
-    console.log('Ha entrado en completeOrders');
     this.orderService.getOrders().subscribe((data) => {
       data.orders.forEach((order: Order) => {
         this.orderService.deleteOrder(order.cartedItem.id).subscribe(() => {
@@ -65,7 +63,6 @@ export class CartModalComponent implements OnInit {
           key: 'pk_test_51MCt1qDJ11wdXcrRVZsbJThCSedIFdM3PZ2yMOTqvOEYv4krrtJ7xHFHWuLdPyl9bFrutuiHgOc1sKZKnBm9YOGb00D42yzQH2',
           locale: 'auto',
           token: function (stripeToken: string) {
-            console.log(stripeToken);
             alert('Payment has been successfull!');
           },
         });
