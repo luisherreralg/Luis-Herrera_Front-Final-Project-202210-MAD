@@ -11,7 +11,7 @@ import { Order } from 'src/app/types/order';
 })
 export class CartModalComponent implements OnInit {
   @Output() handlerCartModal: EventEmitter<void> = new EventEmitter();
-  paymentHandler: any = null;
+  paymentHandler: unknown = null;
 
   orders: Order[] = [];
   totalPrice!: number;
