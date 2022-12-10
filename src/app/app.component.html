@@ -1,5 +1,8 @@
 <div>
-  <app-login-modal *ngIf="loginModal"></app-login-modal>
+  <app-login-modal
+    *ngIf="loginModal"
+    (handlerLoginModal)="handlerLoginModal()"
+  ></app-login-modal>
 
   <app-register-modal
     *ngIf="registerModal"

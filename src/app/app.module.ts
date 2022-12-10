@@ -32,5 +32,6 @@ import { ModalsModule } from './utils/modals/modals.module';
   ],
   providers: [],
   bootstrap: [AppComponent],
+  schemas: [],
 })
 export class AppModule {}
