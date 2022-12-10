@@ -1,13 +1,11 @@
 /* istanbul ignore file */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-empty-function */
-/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
+
 /* eslint-disable @angular-eslint/no-input-rename */
 /* eslint-disable @typescript-eslint/no-this-alias */
 
 import {
   Component,
-  OnInit,
   AfterViewInit,
   Input,
   ViewChild,
@@ -21,9 +19,8 @@ import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 @Component({
   selector: 'app-banner-three',
   templateUrl: './banner-three.component.html',
-  styleUrls: ['./banner-three.component.css'],
 })
-export class BannerThreeComponent implements OnInit, AfterViewInit {
+export class BannerThreeComponent implements AfterViewInit {
   @ViewChild('canvas') public canvasRef!: ElementRef;
 
   //* Stage Properties
@@ -175,10 +172,6 @@ export class BannerThreeComponent implements OnInit, AfterViewInit {
       requestAnimationFrame(render);
     })();
   }
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   ngAfterViewInit() {
     this.createScene();
