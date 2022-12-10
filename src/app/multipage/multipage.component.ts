@@ -34,6 +34,13 @@ export class MultipageComponent implements OnInit {
 
       this.service.searchSneakers(this.title).subscribe((data) => {
         this.sneakers = data.sneakers;
+
+        if (this.title === 'OnSale') {
+          this.sneakers = this.sneakers.filter(
+            (sneaker) => sneaker.onSale === 'onSale'
+          );
+        }
+
         this.store.dispatch(actions.loadSneakers({ sneakers: this.sneakers }));
       });
     });
