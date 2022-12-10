@@ -21,15 +21,16 @@ describe('BannerThreeComponent', () => {
   });
 
   describe('Given the animateModel method, when its invoked', () => {
-    it('should change the this.model value', () => {
+    it('should be called', () => {
       spyOn(component, 'animateModel').and.callThrough();
+
       component.animateModel();
       expect(component.animateModel).toHaveBeenCalled();
     });
   });
 
-  describe('Given the createScene method, when its invoked', () => {
-    it('should do things', () => {
+  describe('When the three js methods are invoked', () => {
+    it('should create a new scene', () => {
       spyOn(component, 'createScene').and.callThrough();
       spyOnProperty(component, 'canvas', 'get').and.returnValue(
         document.createElement('canvas')
