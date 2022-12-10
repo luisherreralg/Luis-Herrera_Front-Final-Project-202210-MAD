@@ -49,4 +49,23 @@ describe('MultipageComponent', () => {
       expect(serviceSpy).toHaveBeenCalled();
     });
   });
+
+  describe('When the multipage component its invoked and the title is "onSale,"', () => {
+    it('should filter the onSale sneakers to the list', () => {
+      const mockSneaker =
+        mockSneakersInitialState.initialState.sneakers.sneakers[0];
+      mockSneaker.onSale = 'onSale';
+
+      TestBed.get(ActivatedRoute).params = of({
+        title: 'onSale',
+      });
+
+      spyOn(component.service, 'searchSneakers').and.returnValue(
+        of({ sneakers: [mockSneaker] })
+      );
+
+      component.ngOnInit();
+      expect(component.sneakers).toEqual([mockSneaker]);
+    });
+  });
 });
