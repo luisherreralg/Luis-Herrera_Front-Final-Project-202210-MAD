@@ -1,4 +1,10 @@
+/* istanbul ignore file */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
+/* eslint-disable @angular-eslint/no-input-rename */
+/* eslint-disable @typescript-eslint/no-this-alias */
+
 import {
   Component,
   OnInit,
@@ -11,11 +17,6 @@ import * as THREE from 'three';
 import { GLTFLoader, GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
-
-/* eslint-disable @typescript-eslint/no-empty-function */
-/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
-/* eslint-disable @angular-eslint/no-input-rename */
-/* eslint-disable @typescript-eslint/no-this-alias */
 
 @Component({
   selector: 'app-banner-three',
@@ -73,7 +74,7 @@ export class BannerThreeComponent implements OnInit, AfterViewInit {
   public animateModel() {
     if (this.model) {
       this.model.rotation.z += 0;
-      this.model.rotation.y += -0.001;
+      this.model.rotation.y += 0.001;
     }
   }
 
@@ -133,16 +134,16 @@ export class BannerThreeComponent implements OnInit, AfterViewInit {
     this.directionalLight.position.set(0, 1, 0);
     this.directionalLight.castShadow = true;
     this.scene.add(this.directionalLight);
-    this.light1 = new THREE.PointLight(0xffffff, 1);
+    this.light1 = new THREE.PointLight(0xffffff, 0.5);
     this.light1.position.set(0, 200, 400);
     this.scene.add(this.light1);
-    this.light2 = new THREE.PointLight(0xffffff, 1);
+    this.light2 = new THREE.PointLight(0xffffff, 0.9);
     this.light2.position.set(500, 100, 0);
     this.scene.add(this.light2);
-    this.light3 = new THREE.PointLight(0xffffff, 1);
+    this.light3 = new THREE.PointLight(0xffffff, 0.5);
     this.light3.position.set(0, 100, -500);
     this.scene.add(this.light3);
-    this.light4 = new THREE.PointLight(0xffffff, 1);
+    this.light4 = new THREE.PointLight(0xffffff, 0.5);
     this.light4.position.set(-500, 300, 500);
     this.scene.add(this.light4);
   }
