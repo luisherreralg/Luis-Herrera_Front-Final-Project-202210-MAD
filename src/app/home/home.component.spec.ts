@@ -29,7 +29,7 @@ describe('HomeComponent', () => {
   describe('When the Home component is initialized', () => {
     it('Then it should filter the sneakers on sale from the store', () => {
       component.ngOnInit();
-      expect(component.onSaleSneakers.length).toBe(1);
+      expect(component.onSaleSneakers.length).toBe(2);
     });
 
     it('should call to the sneakerService and store', () => {
