@@ -8,9 +8,8 @@ describe('BannerThreeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BannerThreeComponent ]
-    })
-    .compileComponents();
+      declarations: [BannerThreeComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BannerThreeComponent);
     component = fixture.componentInstance;
@@ -19,5 +18,25 @@ describe('BannerThreeComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('Given the animateModel method, when its invoked', () => {
+    it('should change the this.model value', () => {
+      spyOn(component, 'animateModel').and.callThrough();
+      component.animateModel();
+      expect(component.animateModel).toHaveBeenCalled();
+    });
+  });
+
+  describe('Given the createScene method, when its invoked', () => {
+    it('should do things', () => {
+      spyOn(component, 'createScene').and.callThrough();
+      spyOnProperty(component, 'canvas', 'get').and.returnValue(
+        document.createElement('canvas')
+      );
+
+      component.createScene();
+      expect(component.createScene).toHaveBeenCalled();
+    });
   });
 });

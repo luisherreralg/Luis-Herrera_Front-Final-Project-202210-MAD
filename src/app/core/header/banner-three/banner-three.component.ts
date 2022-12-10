@@ -23,7 +23,7 @@ import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
   styleUrls: ['./banner-three.component.css'],
 })
 export class BannerThreeComponent implements OnInit, AfterViewInit {
-  @ViewChild('canvas') private canvasRef!: ElementRef;
+  @ViewChild('canvas') public canvasRef!: ElementRef;
 
   //* Stage Properties
 
@@ -34,43 +34,43 @@ export class BannerThreeComponent implements OnInit, AfterViewInit {
   @Input('farClipping') public farClippingPane = 1000;
 
   //? Scene properties
-  private camera!: THREE.PerspectiveCamera;
+  public camera!: THREE.PerspectiveCamera;
 
-  private controls!: OrbitControls;
+  public controls!: OrbitControls;
 
-  private ambientLight!: THREE.AmbientLight;
+  public ambientLight!: THREE.AmbientLight;
 
-  private light1!: THREE.PointLight;
+  public light1!: THREE.PointLight;
 
-  private light2!: THREE.PointLight;
+  public light2!: THREE.PointLight;
 
-  private light3!: THREE.PointLight;
+  public light3!: THREE.PointLight;
 
-  private light4!: THREE.PointLight;
+  public light4!: THREE.PointLight;
 
-  private model: any;
+  public model: any;
 
-  private directionalLight!: THREE.DirectionalLight;
+  public directionalLight!: THREE.DirectionalLight;
 
-  //? Helper Properties (Private Properties);
+  //? Helper Properties (public Properties);
 
-  private get canvas(): HTMLCanvasElement {
+  public get canvas(): HTMLCanvasElement {
     return this.canvasRef.nativeElement;
   }
 
-  private loaderGLTF = new GLTFLoader();
+  public loaderGLTF = new GLTFLoader();
 
-  private renderer!: THREE.WebGLRenderer;
+  public renderer!: THREE.WebGLRenderer;
 
-  private scene!: THREE.Scene;
+  public scene!: THREE.Scene;
 
   /**
    *Animate the model
    *
-   * @private
+   * @public
    * @memberof ModelComponent
    */
-  private animateModel() {
+  public animateModel() {
     if (this.model) {
       this.model.rotation.z += 0;
       this.model.rotation.y += -0.001;
@@ -80,10 +80,10 @@ export class BannerThreeComponent implements OnInit, AfterViewInit {
   /**
    *create controls
    *
-   * @private
+   * @public
    * @memberof ModelComponent
    */
-  private createControls = () => {
+  public createControls = () => {
     const renderer = new CSS2DRenderer();
     renderer.setSize(400, 200);
     renderer.domElement.style.position = 'absolute';
@@ -99,10 +99,10 @@ export class BannerThreeComponent implements OnInit, AfterViewInit {
   /**
    * Create the scene
    *
-   * @private
+   * @public
    * @memberof CubeComponent
    */
-  private createScene() {
+  public createScene() {
     //* Scene
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color(0xffffff); //0x000000
@@ -147,17 +147,17 @@ export class BannerThreeComponent implements OnInit, AfterViewInit {
     this.scene.add(this.light4);
   }
 
-  private getAspectRatio() {
+  public getAspectRatio() {
     return this.canvas.clientWidth / this.canvas.clientHeight;
   }
 
   /**
    * Start the rendering loop
    *
-   * @private
+   * @public
    * @memberof CubeComponent
    */
-  private startRenderingLoop() {
+  public startRenderingLoop() {
     //* Renderer
     // Use canvas element in template
     this.renderer = new THREE.WebGLRenderer({
