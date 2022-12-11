@@ -4,7 +4,11 @@
     <p>/</p>
     <button (click)="handlerRegisterModal()"><p>REGISTER</p></button>
   </div>
+
   <div *ngIf="isLogged">
     <button (click)="handlerLogout()">LOGOUT</button>
+    <div *ngIf="isAdmin">
+      <button>ADMIN</button>
+    </div>
   </div>
 </div>

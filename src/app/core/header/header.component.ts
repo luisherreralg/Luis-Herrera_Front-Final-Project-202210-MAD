@@ -9,9 +9,17 @@ export class HeaderComponent implements OnInit {
   @Input() isScrolled = false;
 
   isLogged = false;
+  isAdmin = false;
+
   constructor(public storageService: LocalStorageService) {}
 
   ngOnInit(): void {
     this.isLogged = this.storageService.getToken() ? true : false;
+    this.isAdmin =
+      this.storageService.checkTokenRole(
+        this.storageService.getToken() as string
+      )?.role === 'admin'
+        ? true
+        : false;
   }
 }

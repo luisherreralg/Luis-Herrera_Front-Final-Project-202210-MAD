@@ -8,6 +8,7 @@ import { ModalHandlerService } from 'src/app/services/modal-handler.service';
 })
 export class AuthComponent {
   @Input() isLogged = false;
+  @Input() isAdmin = false;
 
   constructor(
     private modalService: ModalHandlerService,
