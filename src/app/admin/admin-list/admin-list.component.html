@@ -21,11 +21,10 @@
       <td class="p-5">{{ sneaker.gender }}</td>
 
       <td>
-        <button (click)="preDeleteModal = true">❌</button>
+        <button (click)="handleDeleteSneaker(sneaker.id)">❌</button>
       </td>
-
-      <td *ngIf="preDeleteModal">
-        <button (click)="handleDeleteSneaker(sneaker.id)">DELETE</button>
+      <td>
+        <button>✏️</button>
       </td>
     </tr>
   </tbody>

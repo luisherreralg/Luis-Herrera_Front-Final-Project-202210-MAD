@@ -12,8 +12,6 @@ import { Sneaker } from 'src/app/types/sneaker';
 export class AdminListComponent implements OnInit {
   sneakers: Sneaker[] = [];
 
-  preDeleteModal = false;
-
   constructor(
     public sneakerServices: SneakersService,
     public store: Store<AppState>
