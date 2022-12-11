@@ -96,4 +96,13 @@ describe('LoginModalComponent', () => {
       expect(spyLocalService).toHaveBeenCalled();
     }));
   });
+
+  describe('Given the goToRegisterHandler method, when its invoked', () => {
+    it('should call to the modalService', () => {
+      const spyModalService = spyOn(component.modalService, 'registerModal');
+
+      component.goToRegisterHanlder();
+      expect(spyModalService).toHaveBeenCalled();
+    });
+  });
 });
