@@ -27,13 +27,6 @@ describe('HeaderComponent', () => {
       expect(spyStorageService).toHaveBeenCalled();
     });
 
-    it('should the isLogged variable to true if there is a token', () => {
-      spyOn(component.storageService, 'getToken').and.returnValue('token');
-
-      component.ngOnInit();
-      expect(component.isLogged).toBeTruthy();
-    });
-
     it('should change the isAdmin variable to true if the checkTokenRole returns an object with the role = "admin"', () => {
       spyOn(component.storageService, 'getToken').and.returnValue('token');
       spyOn(component.storageService, 'checkTokenRole').and.returnValue({
