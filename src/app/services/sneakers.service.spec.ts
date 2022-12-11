@@ -86,4 +86,14 @@ describe('SneakersService', () => {
       expect(httpTestingController).toBeTruthy();
     });
   });
+
+  describe('When the patchSneaker method is invoked', () => {
+    it('should call tot the HttpClient', () => {
+      service.patchSneaker(mockSneaker).subscribe((resp) => {
+        expect(resp).not.toBeNull();
+        expect(JSON.stringify(resp)).toBe(JSON.stringify(mockSneaker));
+      });
+      expect(httpTestingController).toBeTruthy();
+    });
+  });
 });
