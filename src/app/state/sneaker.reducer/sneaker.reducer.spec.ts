@@ -1,6 +1,7 @@
 import {
   addSneaker,
   deleteSneaker,
+  editSneaker,
   loadSneakers,
   searchSneaker,
 } from './sneaker.action.creator';
@@ -59,6 +60,15 @@ describe('Given the sneaker reducer', () => {
   describe('Given the searchSneaker action', () => {
     it('should add to the state the sneakers that come from a search', () => {
       const action = searchSneaker({ sneakers: [sneakerMock] });
+      const state = SneakerReducer(initialState, action);
+      expect(state.sneakers[0]).toBe(sneakerMock);
+    });
+  });
+
+  describe('Given the editSneaker action', () => {
+    it('should update the state with the new changes', () => {
+      const initialState = { sneakers: [sneakerMock] };
+      const action = editSneaker({ sneaker: sneakerMock });
       const state = SneakerReducer(initialState, action);
       expect(state.sneakers[0]).toBe(sneakerMock);
     });
