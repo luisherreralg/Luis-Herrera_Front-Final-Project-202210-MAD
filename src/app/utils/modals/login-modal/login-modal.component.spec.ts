@@ -41,22 +41,6 @@ describe('LoginModalComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('Given the handlerLoginModalEvent, when its invoked', () => {
-    it('it should call to the emit function when the button is clicked', () => {
-      // spy on the output emitter
-      spyOn(component.handlerLoginModal, 'emit');
-
-      //trigger the click
-      const element = fixture.nativeElement;
-      const button = element.querySelector('button');
-      button.dispatchEvent(new Event('click'));
-
-      // detect changes
-      fixture.detectChanges();
-      expect(component.handlerLoginModal.emit).toHaveBeenCalled();
-    });
-  });
-
   describe('Given the loginForm validators, when the form is assigned', () => {
     it('should be false if the form data do not pass the validations', () => {
       component.formLogin.setValue({

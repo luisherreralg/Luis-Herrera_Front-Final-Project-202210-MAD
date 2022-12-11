@@ -27,16 +27,6 @@ describe('CartModalComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('Given the handlerLoginModalEvent, when its invoked', () => {
-    it('should emit an event with the handlerCartModal event emitter', () => {
-      const spy = spyOn(component.handlerCartModal, 'emit');
-
-      component.handlerLoginModalEvent();
-
-      expect(spy).toHaveBeenCalled();
-    });
-  });
-
   describe('When the ngOnInit es invoked', () => {
     it('should call to the orderServices', () => {
       const spy = spyOn(component.orderService, 'getOrders').and.returnValue(

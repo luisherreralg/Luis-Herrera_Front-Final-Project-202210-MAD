@@ -56,28 +56,6 @@ describe('AppComponent', () => {
     });
   });
 
-  describe('Given the handlerLoginModal function, when its invoked', () => {
-    it('should change the value of the loginModal property', () => {
-      app.handlerLoginModal();
-      expect(app.loginModal).toBeTrue();
-    });
-  });
-
-  describe('Given the handlerRegisterModal function, when its invoked', () => {
-    it('it should change the value of the registerModal property', () => {
-      app.handlerRegisterModal();
-      expect(app.registerModal).toBeTrue();
-    });
-  });
-
-  describe('Given the handlerCartModal method, when its invoked', () => {
-    it('should call to the modalService', () => {
-      spyOn(app.modalService, 'cartModal').and.callThrough();
-      app.handlerCartModal();
-      expect(app.modalService.cartModal).toHaveBeenCalled();
-    });
-  });
-
   describe('Given the onWindowScroll method, when its invoked', () => {
     it('should change the isScrolled variable to true if the document scroll top is more than 260px', () => {
       spyOnProperty(document.documentElement, 'scrollTop').and.returnValue(300);

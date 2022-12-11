@@ -19,16 +19,4 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  describe('Given the ngOnInit method, when its invoked', () => {
-    it('it should return true if the storage service returns an existing token', () => {
-      const spyStorageService = spyOn(
-        component.storageService,
-        'getToken'
-      ).and.returnValue('token');
-      component.ngOnInit();
-      expect(spyStorageService).toHaveBeenCalled();
-      expect(component.isLogged).toBeTrue();
-    });
-  });
 });
