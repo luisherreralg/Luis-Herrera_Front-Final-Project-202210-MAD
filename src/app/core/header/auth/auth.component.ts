@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { ModalHandlerService } from 'src/app/services/modal-handler.service';
 
@@ -12,7 +13,8 @@ export class AuthComponent {
 
   constructor(
     private modalService: ModalHandlerService,
-    public storageService: LocalStorageService
+    public storageService: LocalStorageService,
+    public router: ActivatedRoute
   ) {}
 
   handlerLoginModal() {

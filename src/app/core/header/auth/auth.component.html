@@ -8,7 +8,7 @@
   <div *ngIf="isLogged">
     <button (click)="handlerLogout()">LOGOUT</button>
     <div *ngIf="isAdmin">
-      <button>ADMIN</button>
+      <button><a routerLink="admin">ADMIN</a></button>
     </div>
   </div>
 </div>

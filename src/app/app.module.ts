@@ -12,6 +12,7 @@ import { MultipageComponent } from './multipage/multipage.component';
 import { SneakerListModule } from './sneaker-list/sneaker-list.module';
 import { DetailsComponent } from './details/details.component';
 import { ModalsModule } from './utils/modals/modals.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ModalsModule } from './utils/modals/modals.module';
     LayoutModule,
     SneakerListModule,
     ModalsModule,
+    AdminModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
