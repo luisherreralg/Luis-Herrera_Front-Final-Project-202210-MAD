@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { ModalHandlerService } from 'src/app/services/modal-handler.service';
 import { SneakersService } from 'src/app/services/sneakers.service';
 import { AppState } from 'src/app/state/app.state';
 import * as actions from 'src/app/state/sneaker.reducer/sneaker.action.creator';
@@ -14,7 +15,8 @@ export class AdminListComponent implements OnInit {
 
   constructor(
     public sneakerServices: SneakersService,
-    public store: Store<AppState>
+    public store: Store<AppState>,
+    public editModalService: ModalHandlerService
   ) {}
 
   handleDeleteSneaker = (id: string) => {
@@ -22,6 +24,10 @@ export class AdminListComponent implements OnInit {
       this.sneakers = this.sneakers.filter((sneaker) => sneaker.id !== id);
       this.store.dispatch(actions.loadSneakers({ sneakers: this.sneakers }));
     });
+  };
+
+  handleEditSneaker = () => {
+    this.editModalService.adminEditModal(true);
   };
 
   ngOnInit(): void {

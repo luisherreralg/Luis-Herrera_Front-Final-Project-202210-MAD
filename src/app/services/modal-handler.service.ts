@@ -8,6 +8,7 @@ export class ModalHandlerService {
   public subjectLogin = new Subject<boolean>();
   public subjectRegister = new Subject<boolean>();
   public subjectCart = new Subject<boolean>();
+  public subjectAdminEdit = new Subject<boolean>();
 
   loginModal(value: boolean) {
     this.subjectLogin.next(value);
@@ -31,5 +32,13 @@ export class ModalHandlerService {
 
   getCartModal() {
     return this.subjectCart.asObservable();
+  }
+
+  adminEditModal(value: boolean) {
+    this.subjectAdminEdit.next(value);
+  }
+
+  getAdminEditModal() {
+    return this.subjectAdminEdit.asObservable();
   }
 }

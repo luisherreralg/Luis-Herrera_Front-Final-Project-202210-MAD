@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { ModalHandlerService } from 'src/app/services/modal-handler.service';
 import { UsersService } from 'src/app/services/users.service';
 import { User } from 'src/app/types/user';
 
@@ -15,13 +16,13 @@ import { User } from 'src/app/types/user';
   templateUrl: './login-modal.component.html',
 })
 export class LoginModalComponent implements OnInit, OnDestroy {
-  @Output() handlerLoginModal: EventEmitter<void> = new EventEmitter();
   invalidCredentials = false;
   invalidType = false;
 
   constructor(
     public userService: UsersService,
-    public storageService: LocalStorageService
+    public storageService: LocalStorageService,
+    public modalService: ModalHandlerService
   ) {}
 
   formLogin = new FormGroup({
@@ -55,7 +56,7 @@ export class LoginModalComponent implements OnInit, OnDestroy {
   }
 
   handlerLoginModalEvent() {
-    this.handlerLoginModal.emit();
+    this.modalService.loginModal(false);
   }
 
   addBodyClass() {

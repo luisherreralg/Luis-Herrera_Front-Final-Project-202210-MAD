@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { ModalHandlerService } from 'src/app/services/modal-handler.service';
 import { OrdersService } from 'src/app/services/orders.service';
 import { AppState } from 'src/app/state/app.state';
 import * as actions from 'src/app/state/order.reducer/order.action.creator';
@@ -10,7 +11,6 @@ import { Order } from 'src/app/types/order';
   templateUrl: './cart-modal.component.html',
 })
 export class CartModalComponent implements OnInit {
-  @Output() handlerCartModal: EventEmitter<void> = new EventEmitter();
   paymentHandler: unknown = null;
 
   orders: Order[] = [];
@@ -18,11 +18,12 @@ export class CartModalComponent implements OnInit {
 
   constructor(
     public orderService: OrdersService,
-    public store: Store<AppState>
+    public store: Store<AppState>,
+    public modalService: ModalHandlerService
   ) {}
 
   handlerLoginModalEvent() {
-    this.handlerCartModal.emit();
+    this.modalService.cartModal(false);
   }
 
   completeOrders() {
