@@ -1,1 +1,75 @@
-<p>admin-edit-modal works!</p>
+<div
+  *ngIf="sneakerId"
+  class="fixed z-20 flex w-screen h-full bg-black bg-opacity-50 shadow-lg font-Roboto text-slate-100"
+>
+  <div
+    class="flex flex-col justify-center w-2/6 p-10 mx-auto bg-gray-700 h-4/6 translate-y-1/4"
+  >
+    <button
+      (click)="handlerAdminEditModalEvent()"
+      class="text-4xl translate-x-2/4 translate-y-2/4"
+    >
+      ❎
+    </button>
+    <p>Editar</p>
+    <form [formGroup]="formEditSneaker" class="flex flex-col gap-2 text-lg">
+      <label for="brand">Marca:</label>
+      <input
+        type="text"
+        name="brand"
+        id="brand"
+        formControlName="brand"
+        class="text-black"
+      />
+      <label for="model">Modelo:</label>
+      <input
+        type="text"
+        name="model"
+        id="model"
+        formControlName="model"
+        class="text-black"
+      />
+      <label for="onSale">En venta:</label>
+      <input
+        type="text"
+        name="onSale"
+        id="onSale"
+        formControlName="onSale"
+        class="text-black"
+      />
+      <label for="price">Precio:</label>
+      <input
+        type="number"
+        name="price"
+        id="price"
+        formControlName="price"
+        class="text-black"
+      />
+      <label for="onSalePrice">Precio de oferta:</label>
+      <input
+        type="number"
+        name="onSalePrice"
+        id="onSalePrice"
+        formControlName="onSalePrice"
+        class="text-black"
+      />
+      <label for="stock">Stock:</label>
+      <input
+        type="number"
+        name="stock"
+        id="stock"
+        formControlName="stock"
+        class="text-black"
+      />
+      <label for="gender">Género:</label>
+      <input
+        type="text"
+        name="gender"
+        id="gender"
+        formControlName="gender"
+        class="text-black"
+      />
+    </form>
+    <button>EDITAR</button>
+  </div>
+</div>

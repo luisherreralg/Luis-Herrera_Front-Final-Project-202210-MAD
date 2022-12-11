@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { ModalHandlerService } from 'src/app/services/modal-handler.service';
 import { SneakersService } from 'src/app/services/sneakers.service';
 import { AppState } from 'src/app/state/app.state';
@@ -16,7 +17,8 @@ export class AdminListComponent implements OnInit {
   constructor(
     public sneakerServices: SneakersService,
     public store: Store<AppState>,
-    public editModalService: ModalHandlerService
+    public editModalService: ModalHandlerService,
+    public localStorageService: LocalStorageService
   ) {}
 
   handleDeleteSneaker = (id: string) => {
@@ -26,7 +28,8 @@ export class AdminListComponent implements OnInit {
     });
   };
 
-  handleEditSneaker = () => {
+  handleEditSneaker = (sneakerId: string) => {
+    this.localStorageService.saveSneakerId(sneakerId);
     this.editModalService.adminEditModal(true);
   };
 

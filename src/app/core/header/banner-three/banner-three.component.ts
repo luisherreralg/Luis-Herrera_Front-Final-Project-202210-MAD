@@ -107,7 +107,6 @@ export class BannerThreeComponent implements AfterViewInit {
     this.loaderGLTF.load('assets/3d-model/scene.gltf', (gltf: GLTF) => {
       this.model = gltf.scene.children[0];
       this.model.scale.set(0.1, 0.1, 0.1);
-      console.log(this.model);
       const box = new THREE.Box3().setFromObject(this.model);
       box.getCenter(this.model.position); // this re-sets the mesh position
       this.model.position.multiplyScalar(-1);

@@ -20,6 +20,18 @@ export class LocalStorageService {
     return token;
   }
 
+  saveSneakerId(id: string) {
+    return localStorage.setItem('sneakerId', id);
+  }
+
+  getSneakerId() {
+    return localStorage.getItem('sneakerId');
+  }
+
+  deleteSneakerId() {
+    return localStorage.removeItem('sneakerId');
+  }
+
   checkTokenRole(token: string) {
     if (!token) {
       return;
