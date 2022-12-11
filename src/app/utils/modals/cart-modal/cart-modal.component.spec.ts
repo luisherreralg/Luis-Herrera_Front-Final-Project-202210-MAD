@@ -62,4 +62,13 @@ describe('CartModalComponent', () => {
       expect(spyStoreDispatcher).toHaveBeenCalled();
     });
   });
+
+  describe('Given the handlerLoginModalEvent, when its invoked', () => {
+    it('should call to the modalService', () => {
+      const spymodalService = spyOn(component.modalService, 'cartModal');
+
+      component.handlerLoginModalEvent();
+      expect(spymodalService).toHaveBeenCalled();
+    });
+  });
 });
