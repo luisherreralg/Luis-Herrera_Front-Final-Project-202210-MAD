@@ -11,7 +11,7 @@
     >
       ❎
     </button>
-    <p>Editar</p>
+    <p class="mb-5 text-3xl">Editar Producto:</p>
     <form [formGroup]="formEditSneaker" class="flex flex-col gap-2 text-lg">
       <label for="brand">Marca:</label>
       <input
@@ -70,6 +70,8 @@
         class="text-black"
       />
     </form>
-    <button>EDITAR</button>
+    <button (click)="handleEditSneaker()" class="text-xl bg-green-600 my-9">
+      EDITAR
+    </button>
   </div>
 </div>

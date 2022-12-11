@@ -1,5 +1,5 @@
 <table class="p-56">
-  <thead class="text-3xl">
+  <thead class="text-4xl">
     <th class="p-5">MARCA</th>
     <th class="p-5">MODELO</th>
     <th class="p-5">TALLAS</th>
@@ -9,8 +9,8 @@
     <th class="p-5">STOCK</th>
     <th class="p-5">GENERO</th>
   </thead>
-  <tbody>
-    <tr *ngFor="let sneaker of sneakers" class="border-y-2">
+  <tbody class="text-xl">
+    <tr *ngFor="let sneaker of sneakers" class="border-y-2 bg-slate-50">
       <td class="p-5">{{ sneaker.brand }}</td>
       <td class="p-5">{{ sneaker.model }}</td>
       <td class="p-5">{{ sneaker.size }}</td>
@@ -20,11 +20,21 @@
       <td class="p-5">{{ sneaker.stock }}</td>
       <td class="p-5">{{ sneaker.gender }}</td>
 
-      <td>
-        <button (click)="handleDeleteSneaker(sneaker.id)">❌</button>
+      <td class="p-2">
+        <button
+          (click)="handleDeleteSneaker(sneaker.id)"
+          class="p-2 bg-slate-200"
+        >
+          ❌
+        </button>
       </td>
-      <td>
-        <button (click)="handleEditSneaker(sneaker.id)">✏️</button>
+      <td class="p-2">
+        <button
+          (click)="handleEditSneaker(sneaker.id)"
+          class="p-2 bg-slate-200"
+        >
+          ✏️
+        </button>
       </td>
     </tr>
   </tbody>

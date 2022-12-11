@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { ModalHandlerService } from 'src/app/services/modal-handler.service';
 import { SneakersService } from 'src/app/services/sneakers.service';
+import { AppState } from 'src/app/state/app.state';
+import * as actions from 'src/app/state/sneaker.reducer/sneaker.action.creator';
 import { Sneaker } from 'src/app/types/sneaker';
 
 @Component({
@@ -16,7 +19,8 @@ export class AdminEditModalComponent implements OnInit {
   constructor(
     public modalService: ModalHandlerService,
     public sneakerService: SneakersService,
-    public localStorageService: LocalStorageService
+    public localStorageService: LocalStorageService,
+    public store: Store<AppState>
   ) {}
 
   formEditSneaker = new FormGroup({
@@ -31,6 +35,20 @@ export class AdminEditModalComponent implements OnInit {
 
   handlerAdminEditModalEvent() {
     this.modalService.adminEditModal(false);
+  }
+
+  handleEditSneaker() {
+    const saveSneaker: Partial<Sneaker> = this.formEditSneaker.value as Sneaker;
+    saveSneaker.id = this.sneakerId;
+    this.sneakerService.patchSneaker(saveSneaker).subscribe(() => {
+      this.store.dispatch(
+        actions.editSneaker({
+          sneaker: this.formEditSneaker.value as Sneaker,
+        })
+      );
+      this.localStorageService.deleteSneakerId();
+      this.modalService.adminEditModal(false);
+    });
   }
 
   ngOnInit(): void {

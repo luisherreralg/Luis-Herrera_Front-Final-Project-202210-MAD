@@ -35,7 +35,7 @@ export class SneakersService {
     }>;
   }
 
-  patchSneaker(sneaker: Sneaker): Observable<Sneaker> {
+  patchSneaker(sneaker: Partial<Sneaker>): Observable<Sneaker> {
     const httpOptions = {
       method: 'PATCH',
       headers: new HttpHeaders({

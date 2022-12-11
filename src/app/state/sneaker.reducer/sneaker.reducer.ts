@@ -21,6 +21,12 @@ export const SneakerReducer = createReducer(
     sneakers: [...state.sneakers, newSneaker],
   })),
 
+  on(actions.editSneaker, (state, { sneaker }) => ({
+    sneakers: state.sneakers.map((sneakerItem) =>
+      sneakerItem.id === sneaker.id ? sneaker : sneakerItem
+    ),
+  })),
+
   on(actions.deleteSneaker, (state, { idDelete }) => ({
     sneakers: state.sneakers.filter((sneaker) => sneaker.id !== idDelete),
   }))
