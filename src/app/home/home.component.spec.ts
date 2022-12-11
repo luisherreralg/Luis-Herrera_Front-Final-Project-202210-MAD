@@ -9,11 +9,12 @@ import { HomeComponent } from './home.component';
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
+  const mockStore = mockSneakersInitialState;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [provideMockStore(mockSneakersInitialState)],
+      providers: [provideMockStore(mockStore)],
       declarations: [HomeComponent],
     }).compileComponents();
 
@@ -28,8 +29,12 @@ describe('HomeComponent', () => {
 
   describe('When the Home component is initialized', () => {
     it('Then it should filter the sneakers on sale from the store', () => {
+      const spyStore = spyOn(component.store, 'subscribe').and.callThrough();
+
       component.ngOnInit();
-      expect(component.onSaleSneakers.length).toBe(2);
+
+      expect(spyStore).toHaveBeenCalled();
+      expect(component.sneakers).not.toBeNull();
     });
 
     it('should call to the sneakerService and store', () => {
