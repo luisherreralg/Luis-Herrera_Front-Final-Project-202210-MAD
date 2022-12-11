@@ -40,10 +40,26 @@ describe('AppComponent', () => {
       expect(app.store.dispatch).toHaveBeenCalled();
     });
 
-    it('should call to the pathService', () => {
+    it('should call to the subscriptions', () => {
       const spyPathService = spyOn(app.pathService, 'getPath').and.returnValue(
         of('path')
       );
+      const spyModalServiceLogin = spyOn(
+        app.modalService,
+        'getLoginModal'
+      ).and.returnValue(of(true));
+      const spyModalServiceCart = spyOn(
+        app.modalService,
+        'getCartModal'
+      ).and.returnValue(of(true));
+      const spyModalServiceRegister = spyOn(
+        app.modalService,
+        'getRegisterModal'
+      ).and.returnValue(of(true));
+      const spyModalServiceAdmin = spyOn(
+        app.modalService,
+        'getAdminEditModal'
+      ).and.returnValue(of(true));
 
       new AppComponent(
         app.store,
@@ -53,6 +69,10 @@ describe('AppComponent', () => {
       );
 
       expect(spyPathService).toHaveBeenCalled();
+      expect(spyModalServiceLogin).toHaveBeenCalled();
+      expect(spyModalServiceCart).toHaveBeenCalled();
+      expect(spyModalServiceRegister).toHaveBeenCalled();
+      expect(spyModalServiceAdmin).toHaveBeenCalled();
     });
   });
 
