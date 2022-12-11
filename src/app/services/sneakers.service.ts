@@ -35,6 +35,22 @@ export class SneakersService {
     }>;
   }
 
+  patchSneaker(sneaker: Sneaker): Observable<Sneaker> {
+    const httpOptions = {
+      method: 'PATCH',
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + this.storageService.getToken(),
+      }),
+    };
+
+    return this.http.patch(
+      this.apiUrl + '/' + sneaker.id,
+      sneaker,
+      httpOptions
+    ) as Observable<Sneaker>;
+  }
+
   searchSneakers(search: string): Observable<{ sneakers: Sneaker[] }> {
     const httpOptions = {
       method: 'GET',
