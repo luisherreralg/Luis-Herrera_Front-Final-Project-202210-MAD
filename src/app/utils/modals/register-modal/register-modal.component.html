@@ -1,8 +1,8 @@
 <div
-  class="flex bg-black fixed w-screen h-full bg-opacity-50 z-20 font-Roboto text-slate-100 shadow-lg"
+  class="fixed z-20 flex w-screen h-full bg-black bg-opacity-50 shadow-lg font-Roboto text-slate-100"
 >
   <div
-    class="flex flex-col bg-gray-700 w-2/6 h-4/6 mx-auto translate-y-1/4 justify-center p-10"
+    class="flex flex-col justify-center w-2/6 p-10 mx-auto bg-gray-700 h-4/6 translate-y-1/4"
   >
     <button
       (click)="handlerRegisterModalEvent()"
@@ -10,7 +10,7 @@
     >
       ❎
     </button>
-    <p class="text-center text-4xl font-Koulen m-20">REGISTER</p>
+    <p class="m-20 text-4xl text-center font-Koulen">REGISTER</p>
     <form [formGroup]="formRegister" class="flex flex-col gap-2 text-lg">
       <label for="name">Nombre</label>
       <input
@@ -47,12 +47,21 @@
     </form>
     <p
       *ngIf="invalidType"
-      class="text-xl bg-red-500 animate-pulse transition-all my-2 absolute -translate-y-24"
+      class="absolute my-2 text-xl transition-all -translate-y-24 bg-red-500 animate-pulse"
     >
       ERROR: Por favor, introduzca datos válidos
     </p>
-    <button (click)="registerHandler()" class="bg-green-600 my-9 text-xl">
+    <button
+      (click)="registerHandler()"
+      class="text-xl bg-green-600 mt-9 hover:bg-green-900"
+    >
       REGISTER
+    </button>
+    <button
+      (click)="goToLoginHanlder()"
+      class="mt-5 text-left text-blue-400 hover:text-purple-600"
+    >
+      Si ya estás registrado, inicia sesión
     </button>
   </div>
 </div>

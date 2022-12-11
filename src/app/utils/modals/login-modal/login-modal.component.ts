@@ -1,10 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { ModalHandlerService } from 'src/app/services/modal-handler.service';
@@ -29,6 +23,11 @@ export class LoginModalComponent implements OnInit, OnDestroy {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
+
+  goToRegisterHanlder() {
+    this.handlerLoginModalEvent();
+    this.modalService.registerModal(true);
+  }
 
   loginHandler() {
     if (!this.formLogin.valid) {

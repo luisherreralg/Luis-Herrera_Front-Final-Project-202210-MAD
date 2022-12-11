@@ -37,6 +37,11 @@ export class RegisterModalComponent implements OnInit, OnDestroy {
     this.modalService.registerModal(false);
   }
 
+  goToLoginHanlder() {
+    this.handlerRegisterModalEvent();
+    this.modalService.loginModal(true);
+  }
+
   registerHandler() {
     if (!this.formRegister.valid) {
       this.invalidType = true;
