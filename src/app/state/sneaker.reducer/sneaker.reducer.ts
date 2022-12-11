@@ -23,7 +23,9 @@ export const SneakerReducer = createReducer(
 
   on(actions.editSneaker, (state, { sneaker }) => ({
     sneakers: state.sneakers.map((sneakerItem) =>
-      sneakerItem.id === sneaker.id ? sneaker : sneakerItem
+      sneakerItem.id === sneaker.id
+        ? { ...sneakerItem, ...sneaker }
+        : sneakerItem
     ),
   })),
 
