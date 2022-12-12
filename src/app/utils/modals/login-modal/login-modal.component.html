@@ -1,16 +1,16 @@
 <div
-  class="flex bg-black fixed w-full h-full bg-opacity-50 z-10 font-Roboto text-slate-100 shadow-lg"
+  class="fixed z-10 flex w-full h-full bg-black bg-opacity-50 shadow-lg font-Roboto text-slate-100"
 >
   <div
-    class="flex flex-col bg-gray-700 w-2/6 h-3/6 mx-auto translate-y-1/3 justify-center p-10"
+    class="flex flex-col justify-center w-2/6 p-10 mx-auto bg-gray-700 h-3/6 translate-y-1/3"
   >
     <button
       (click)="handlerLoginModalEvent()"
-      class="text-4xl translate-x-2/4 translate-y-2/4"
+      class="text-4xl transition-all translate-x-2/4 translate-y-2/4 hover:scale-110"
     >
       ❎
     </button>
-    <p class="text-center text-4xl font-Koulen m-20">LOGIN</p>
+    <p class="m-20 text-4xl text-center font-Koulen">LOGIN</p>
     <form [formGroup]="formLogin" class="flex flex-col gap-2 text-lg">
       <label for="email">Email</label>
       <input
@@ -32,18 +32,27 @@
 
     <p
       *ngIf="invalidCredentials"
-      class="text-xl bg-red-500 animate-pulse transition-all my-2 absolute -translate-y-10"
+      class="absolute my-2 text-xl transition-all -translate-y-10 bg-red-500 animate-pulse"
     >
       ERROR: Datos de acceso incorrectos
     </p>
     <p
       *ngIf="invalidType"
-      class="text-xl bg-red-500 animate-pulse transition-all my-2 absolute -translate-y-10"
+      class="absolute my-2 text-xl transition-all -translate-y-10 bg-red-500 animate-pulse"
     >
       ERROR: Por favor, introduzca datos válidos
     </p>
-    <button (click)="loginHandler()" class="bg-green-600 my-9 text-xl">
+    <button
+      (click)="loginHandler()"
+      class="text-xl transition-colors bg-green-600 mt-9 hover:bg-green-900"
+    >
       LOGIN
+    </button>
+    <button
+      (click)="goToRegisterHanlder()"
+      class="mt-5 text-left text-blue-400 transition-colors hover:text-purple-600"
+    >
+      ¡Si no tienes cuenta únete!
     </button>
   </div>
 </div>

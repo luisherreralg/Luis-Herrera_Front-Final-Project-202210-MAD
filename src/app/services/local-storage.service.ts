@@ -19,4 +19,25 @@ export class LocalStorageService {
     }
     return token;
   }
+
+  saveSneakerId(id: string) {
+    return localStorage.setItem('sneakerId', id);
+  }
+
+  getSneakerId() {
+    return localStorage.getItem('sneakerId');
+  }
+
+  deleteSneakerId() {
+    return localStorage.removeItem('sneakerId');
+  }
+
+  checkTokenRole(token: string) {
+    if (!token) {
+      return;
+    }
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+  }
 }

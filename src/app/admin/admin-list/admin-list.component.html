@@ -1,0 +1,44 @@
+<table class="p-56">
+  <caption>
+    Disi Sneakers Products
+  </caption>
+  <thead class="text-4xl">
+    <th class="p-5">MARCA</th>
+    <th class="p-5">MODELO</th>
+    <th class="p-5">TALLAS</th>
+    <th class="p-5">ESTADO</th>
+    <th class="p-5">PRECIO</th>
+    <th class="p-5">OFERTA</th>
+    <th class="p-5">STOCK</th>
+    <th class="p-5">GENERO</th>
+  </thead>
+  <tbody class="text-xl">
+    <tr *ngFor="let sneaker of sneakers" class="border-y-2 bg-slate-50">
+      <td class="p-5">{{ sneaker.brand }}</td>
+      <td class="p-5">{{ sneaker.model }}</td>
+      <td class="p-5">{{ sneaker.size }}</td>
+      <td class="p-5">{{ sneaker.onSale }}</td>
+      <td class="p-5">{{ sneaker.price }}€</td>
+      <td class="p-5">{{ sneaker.onSalePrice }}€</td>
+      <td class="p-5">{{ sneaker.stock }}</td>
+      <td class="p-5">{{ sneaker.gender }}</td>
+
+      <td class="p-2">
+        <button
+          (click)="handleDeleteSneaker(sneaker.id)"
+          class="p-2 transition-colors bg-slate-200 hover:bg-slate-500"
+        >
+          ❌
+        </button>
+      </td>
+      <td class="p-2">
+        <button
+          (click)="handleEditSneaker(sneaker.id)"
+          class="p-2 transition-colors bg-slate-200 hover:bg-slate-500"
+        >
+          ✏️
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

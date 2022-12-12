@@ -21,14 +21,20 @@ describe('HeaderComponent', () => {
   });
 
   describe('Given the ngOnInit method, when its invoked', () => {
-    it('it should return true if the storage service returns an existing token', () => {
-      const spyStorageService = spyOn(
-        component.storageService,
-        'getToken'
-      ).and.returnValue('token');
+    it('should call to the storageService', () => {
+      const spyStorageService = spyOn(component.storageService, 'getToken');
       component.ngOnInit();
       expect(spyStorageService).toHaveBeenCalled();
-      expect(component.isLogged).toBeTrue();
+    });
+
+    it('should change the isAdmin variable to true if the checkTokenRole returns an object with the role = "admin"', () => {
+      spyOn(component.storageService, 'getToken').and.returnValue('token');
+      spyOn(component.storageService, 'checkTokenRole').and.returnValue({
+        role: 'admin',
+      });
+
+      component.ngOnInit();
+      expect(component.isAdmin).toBeTruthy();
     });
   });
 });

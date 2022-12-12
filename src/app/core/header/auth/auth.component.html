@@ -1,10 +1,33 @@
-<div class="font-Koulen text-4xl">
+<div class="text-4xl font-Koulen">
   <div *ngIf="!isLogged" class="flex gap-2">
-    <button (click)="handlerLoginModal()"><p>LOGIN</p></button>
+    <button
+      (click)="handlerLoginModal()"
+      class="transition-colors hover:text-slate-400"
+    >
+      <p>LOGIN</p>
+    </button>
     <p>/</p>
-    <button (click)="handlerRegisterModal()"><p>REGISTER</p></button>
+    <button
+      (click)="handlerRegisterModal()"
+      class="transition-colors hover:text-slate-400"
+    >
+      <p>REGISTER</p>
+    </button>
   </div>
+
   <div *ngIf="isLogged">
-    <button (click)="handlerLogout()">LOGOUT</button>
+    <button
+      (click)="handlerLogout()"
+      class="transition-colors hover:text-slate-400"
+    >
+      LOGOUT
+    </button>
+    <div *ngIf="isAdmin">
+      <button>
+        <a routerLink="admin" class="transition-colors hover:text-slate-400"
+          >ADMIN</a
+        >
+      </button>
+    </div>
   </div>
 </div>

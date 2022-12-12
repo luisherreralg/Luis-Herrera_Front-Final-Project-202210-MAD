@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   loginModal = false;
   registerModal = false;
   cartModal = false;
+  adminEditModal = false;
 
   isScrolled = false;
 
@@ -48,21 +49,12 @@ export class AppComponent implements OnInit {
     this.subscription = this.pathService.getPath().subscribe((value) => {
       this.path = value;
     });
-  }
 
-  handlerLoginModal() {
-    this.loginModal = !this.loginModal;
-    this.modalService.loginModal(this.loginModal);
-  }
-
-  handlerRegisterModal() {
-    this.registerModal = !this.registerModal;
-    this.modalService.registerModal(this.registerModal);
-  }
-
-  handlerCartModal() {
-    this.cartModal = !this.cartModal;
-    this.modalService.cartModal(this.cartModal);
+    this.subscription = this.modalService
+      .getAdminEditModal()
+      .subscribe((value) => {
+        this.adminEditModal = value;
+      });
   }
 
   @HostListener('window:scroll', [])

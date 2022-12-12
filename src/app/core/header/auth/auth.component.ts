@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { ModalHandlerService } from 'src/app/services/modal-handler.service';
 
@@ -8,10 +9,12 @@ import { ModalHandlerService } from 'src/app/services/modal-handler.service';
 })
 export class AuthComponent {
   @Input() isLogged = false;
+  @Input() isAdmin = false;
 
   constructor(
     private modalService: ModalHandlerService,
-    public storageService: LocalStorageService
+    public storageService: LocalStorageService,
+    public router: ActivatedRoute
   ) {}
 
   handlerLoginModal() {

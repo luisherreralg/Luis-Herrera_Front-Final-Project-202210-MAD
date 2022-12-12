@@ -42,19 +42,6 @@ describe('RegisterModalComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('Given the handlerRegisterModal event function, when its invoked', () => {
-    it('it should call the .emit function when a button is clicked', () => {
-      spyOn(component.handlerRegisterModal, 'emit');
-
-      const element = fixture.nativeElement;
-      const button = element.querySelector('button');
-      button.dispatchEvent(new Event('click'));
-
-      fixture.detectChanges();
-      expect(component.handlerRegisterModal.emit).toHaveBeenCalled();
-    });
-  });
-
   describe('Given the registerForm validators, when the form is assigned', () => {
     it('should be false if the form data do not pass the validations', () => {
       component.formRegister.setValue({
@@ -123,5 +110,13 @@ describe('RegisterModalComponent', () => {
       expect(userServiceSpy.login).toHaveBeenCalled();
       expect(spyLocalService).toHaveBeenCalled();
     }));
+  });
+
+  describe('Given the goToLogin method, when its invoked', () => {
+    it('should call to the modalServices', () => {
+      const spyModalService = spyOn(component.modalService, 'loginModal');
+      component.goToLoginHanlder();
+      expect(spyModalService).toHaveBeenCalled();
+    });
   });
 });

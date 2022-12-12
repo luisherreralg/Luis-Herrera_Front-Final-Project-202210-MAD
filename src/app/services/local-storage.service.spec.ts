@@ -47,4 +47,35 @@ describe('LocalStorageService', () => {
       expect(localStorage.removeItem).toHaveBeenCalled();
     });
   });
+
+  describe('When the saveSneakerId method is invoked', () => {
+    it('should call to the localStorage.setItem method', () => {
+      spyOn(localStorage, 'setItem');
+
+      service.saveSneakerId('id');
+      expect(localStorage.setItem).toHaveBeenCalled();
+    });
+  });
+
+  describe('When the deleteSneakerId method is invoked', () => {
+    it('should call to the localStorage.removeItem method', () => {
+      spyOn(localStorage, 'removeItem');
+
+      service.deleteSneakerId();
+      expect(localStorage.removeItem).toHaveBeenCalled();
+    });
+  });
+
+  describe('Given the checkTokenRole method, when its invoked', () => {
+    it('should return an object if its all correct', () => {
+      const result = service.checkTokenRole(
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+      );
+      expect(result).toEqual({
+        sub: '1234567890',
+        name: 'John Doe',
+        iat: 1516239022,
+      });
+    });
+  });
 });

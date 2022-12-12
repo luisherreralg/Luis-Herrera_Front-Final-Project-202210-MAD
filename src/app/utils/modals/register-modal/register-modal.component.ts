@@ -1,12 +1,7 @@
-import {
-  Component,
-  EventEmitter,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { ModalHandlerService } from 'src/app/services/modal-handler.service';
 import { UsersService } from 'src/app/services/users.service';
 import { ProtoUser, User } from 'src/app/types/user';
 
@@ -15,13 +10,13 @@ import { ProtoUser, User } from 'src/app/types/user';
   templateUrl: './register-modal.component.html',
 })
 export class RegisterModalComponent implements OnInit, OnDestroy {
-  @Output() handlerRegisterModal: EventEmitter<void> = new EventEmitter();
   invalidCredentials = false;
   invalidType = false;
 
   constructor(
     public userService: UsersService,
-    public storageService: LocalStorageService
+    public storageService: LocalStorageService,
+    public modalService: ModalHandlerService
   ) {}
 
   formRegister = new FormGroup({
@@ -33,7 +28,12 @@ export class RegisterModalComponent implements OnInit, OnDestroy {
   });
 
   handlerRegisterModalEvent() {
-    this.handlerRegisterModal.emit();
+    this.modalService.registerModal(false);
+  }
+
+  goToLoginHanlder() {
+    this.handlerRegisterModalEvent();
+    this.modalService.loginModal(true);
   }
 
   registerHandler() {

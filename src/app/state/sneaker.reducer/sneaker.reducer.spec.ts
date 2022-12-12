@@ -1,6 +1,7 @@
 import {
   addSneaker,
   deleteSneaker,
+  editSneaker,
   loadSneakers,
   searchSneaker,
 } from './sneaker.action.creator';
@@ -24,6 +25,28 @@ describe('Given the sneaker reducer', () => {
   const initialState = {
     sneakers: [],
   };
+
+  describe('Given the editSneaker action', () => {
+    it('should update the state with the new changes', () => {
+      const initialState = { sneakers: [sneakerMock] };
+      sneakerMock.brand = 'Adidas';
+      const action = editSneaker({ sneaker: sneakerMock });
+      const state = SneakerReducer(initialState, action);
+      expect(state.sneakers[0].brand).toBe('Adidas');
+    });
+
+    it('should not update the state if the sneaker does not exist', () => {
+      const initialState = { sneakers: [sneakerMock] };
+
+      const diferentSneaker = { ...sneakerMock };
+      diferentSneaker.brand = 'Adidas';
+      diferentSneaker.id = '2';
+      const action = editSneaker({ sneaker: diferentSneaker });
+      const state = SneakerReducer(initialState, action);
+      expect(state.sneakers[0]).toBe(sneakerMock);
+    });
+  });
+
   describe('Test loadSneakers action', () => {
     it('should load sneakers', () => {
       const action = loadSneakers({ sneakers: [sneakerMock] });

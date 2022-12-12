@@ -6,19 +6,19 @@
 
 <p
   *ngIf="sneaker.stock === 0"
-  class="bg-red-500 text-slate-50 absolute p-1 -rotate-90 -translate-x-7 translate-y-7"
+  class="absolute p-1 -rotate-90 bg-red-500 text-slate-50 -translate-x-7 translate-y-7"
 >
   OUT OF STOCK
 </p>
 <a routerLink="/details/{{ sneaker.id }}"
   ><img src="{{ sneaker.images }}" alt="{{ sneaker.model }} photo" />
 </a>
-<p class="text-gray-500 text-2xl">{{ sneaker.brand }}</p>
+<p class="text-2xl text-gray-500">{{ sneaker.brand }}</p>
 <p class="text-3xl">{{ sneaker.model }}</p>
 
 <div *ngIf="sneaker.onSale === 'onSale'" class="flex justify-end gap-5">
-  <p class="line-through text-2xl">{{ sneaker.price }}€</p>
-  <p class="text-red-500 text-2xl">{{ sneaker.onSalePrice }}€</p>
+  <p class="text-2xl line-through">{{ sneaker.price }}€</p>
+  <p class="text-2xl text-red-500">{{ sneaker.onSalePrice }}€</p>
 </div>
 
 <div *ngIf="sneaker.onSale !== 'onSale'" class="flex justify-end gap-5">

@@ -16,6 +16,11 @@ export const searchSneaker = createAction(
   props<{ sneakers: Sneaker[] }>()
 );
 
+export const editSneaker = createAction(
+  '[Sneaker List] Edit Sneaker',
+  props<{ sneaker: Sneaker }>()
+);
+
 export const deleteSneaker = createAction(
   '[Sneaker List] Delete Sneaker',
   props<{ idDelete: Sneaker['id'] }>()
