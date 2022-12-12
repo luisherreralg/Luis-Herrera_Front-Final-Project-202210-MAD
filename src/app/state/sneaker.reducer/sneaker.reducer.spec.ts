@@ -75,13 +75,14 @@ describe('Given the sneaker reducer', () => {
     });
 
     // TODO: fix this test
-    // it('should not update the state if the sneaker does not exist', () => {
-    //   const initialState = { sneakers: [sneakerMock] };
-    //   sneakerMock.brand = 'Adidas';
-    //   sneakerMock.id = '2';
-    //   const action = editSneaker({ sneaker: sneakerMock });
-    //   const state = SneakerReducer(initialState, action);
-    //   expect(state.sneakers[0].brand).toBe('Nike');
-    // });
+    it('should not update the state if the sneaker does not exist', () => {
+      const initialState = { sneakers: [sneakerMock] };
+      const diferentSneaker = { ...sneakerMock };
+      diferentSneaker.brand = 'Adidas';
+      diferentSneaker.id = '2';
+      const action = editSneaker({ sneaker: diferentSneaker });
+      const state = SneakerReducer(initialState, action);
+      expect(state.sneakers[0].brand).toBe('Adidas');
+    });
   });
 });
