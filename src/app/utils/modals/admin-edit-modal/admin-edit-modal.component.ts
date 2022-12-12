@@ -45,10 +45,11 @@ export class AdminEditModalComponent implements OnInit {
     saveSneaker.images = [];
     this.sneakerService
       .postSneaker(saveSneaker as ProtoSneaker)
-      .subscribe(() => {
+      .subscribe((response) => {
+        console.log(response);
         this.store.dispatch(
           actions.addSneaker({
-            newSneaker: this.formEditSneaker.value as Sneaker,
+            newSneaker: response.sneaker,
           })
         );
         this.localStorageService.deleteSneakerId();

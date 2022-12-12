@@ -67,7 +67,7 @@ export class SneakersService {
     }>;
   }
 
-  postSneaker(sneaker: ProtoSneaker): Observable<Sneaker> {
+  postSneaker(sneaker: ProtoSneaker): Observable<{ sneaker: Sneaker }> {
     const httpOptions = {
       method: 'POST',
       headers: new HttpHeaders({
@@ -76,11 +76,9 @@ export class SneakersService {
       }),
     };
 
-    return this.http.post(
-      this.apiUrl,
-      sneaker,
-      httpOptions
-    ) as Observable<Sneaker>;
+    return this.http.post(this.apiUrl, sneaker, httpOptions) as Observable<{
+      sneaker: Sneaker;
+    }>;
   }
 
   deleteSneaker(sneakerId: string): Observable<Sneaker> {
