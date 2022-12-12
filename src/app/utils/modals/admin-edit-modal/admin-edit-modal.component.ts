@@ -45,9 +45,6 @@ export class AdminEditModalComponent implements OnInit {
       .then(() => {
         //
       })
-      .then((res) => {
-        //
-      })
       .catch((error) => console.log(error));
   }
 
@@ -83,10 +80,12 @@ export class AdminEditModalComponent implements OnInit {
     this.modalService.adminEditModal(false);
   }
 
-  handlePostSneaker() {
+  // TODO: Hay aquí algun problemilla de asincronía que no se arreglar
+  // * Los console logs llegan en el orden correcto, pero el código no
+  async handlePostSneaker() {
     const saveSneaker: Partial<Sneaker> = this.formEditSneaker.value as Sneaker;
     saveSneaker.size = [];
-    saveSneaker.images = this.getImages();
+    saveSneaker.images = await this.getImages();
     console.log(
       '🚀 ~ file: admin-edit-modal.component.ts:89 ~ AdminEditModalComponent ~ handlePostSneaker ~ saveSneaker',
       saveSneaker
@@ -99,14 +98,23 @@ export class AdminEditModalComponent implements OnInit {
           '🚀 ~ file: admin-edit-modal.component.ts:98 ~ AdminEditModalComponent ~ .subscribe ~ response',
           response
         );
-        this.store.dispatch(
-          actions.addSneaker({
-            newSneaker: response.sneaker,
-          })
-        );
-        this.localStorageService.deleteSneakerId();
-        this.modalService.adminEditModal(false);
       });
+
+    // this.sneakerService
+    //   .postSneaker(saveSneaker as ProtoSneaker)
+    //   .subscribe((response) => {
+    //     console.log(
+    //       '🚀 ~ file: admin-edit-modal.component.ts:98 ~ AdminEditModalComponent ~ .subscribe ~ response',
+    //       response
+    //     );
+    //     this.store.dispatch(
+    //       actions.addSneaker({
+    //         newSneaker: response.sneaker,
+    //       })
+    //     );
+    //     this.localStorageService.deleteSneakerId();
+    //     this.modalService.adminEditModal(false);
+    //   });
   }
 
   handleEditSneaker() {
