@@ -23,17 +23,6 @@ describe('AuthGuard', () => {
     guard = injector.get(AuthGuard);
   });
 
-  it('should redirect an unauthenticated user to the login route', () => {
-    const spyLocalStorageService = spyOn(
-      authService.localStorageService,
-      'checkTokenRole'
-    ).and.returnValue({ role: 'user' });
-
-    expect(guard.canActivate(routeMock, routeStateMock)).toBeUndefined();
-    expect(routerMock.navigate).toHaveBeenCalledWith(['/']);
-    expect(spyLocalStorageService).toHaveBeenCalled();
-  });
-
   it('should allow an authenticated user to access the route', () => {
     const spyLocalStorageService = spyOn(
       authService.localStorageService,
@@ -41,6 +30,16 @@ describe('AuthGuard', () => {
     ).and.returnValue({ role: 'admin' });
 
     expect(guard.canActivate(routeMock, routeStateMock)).toBeTruthy();
+    expect(spyLocalStorageService).toHaveBeenCalled();
+  });
+
+  it('should redirect an unauthenticated user to the login route', () => {
+    const spyLocalStorageService = spyOn(
+      authService.localStorageService,
+      'checkTokenRole'
+    ).and.returnValue({});
+
+    expect(guard.canActivate(routeMock, routeStateMock)).toBeUndefined();
     expect(routerMock.navigate).toHaveBeenCalledWith(['/']);
     expect(spyLocalStorageService).toHaveBeenCalled();
   });

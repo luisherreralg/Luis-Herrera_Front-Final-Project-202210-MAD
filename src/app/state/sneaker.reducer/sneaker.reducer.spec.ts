@@ -43,7 +43,7 @@ describe('Given the sneaker reducer', () => {
       diferentSneaker.id = '2';
       const action = editSneaker({ sneaker: diferentSneaker });
       const state = SneakerReducer(initialState, action);
-      expect(state.sneakers[0].brand).toBe('Adidas');
+      expect(state.sneakers[0]).toBe(sneakerMock);
     });
   });
 
