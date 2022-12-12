@@ -2,7 +2,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
-import { ProtoSneaker, Sneaker } from 'src/app/types/sneaker';
+import { Sneaker } from 'src/app/types/sneaker';
 import { mockSneakersInitialState } from '../../mocks/mocks';
 
 import { AdminEditModalComponent } from './admin-edit-modal.component';

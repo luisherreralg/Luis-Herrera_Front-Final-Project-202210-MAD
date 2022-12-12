@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ModalHandlerService } from 'src/app/services/modal-handler.service';
 import { OrdersService } from 'src/app/services/orders.service';

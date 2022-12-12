@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@angular/core';
 import {
-  ActivatedRoute,
   ActivatedRouteSnapshot,
   CanActivate,
   Router,
