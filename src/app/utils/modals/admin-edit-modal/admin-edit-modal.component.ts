@@ -6,7 +6,7 @@ import { ModalHandlerService } from 'src/app/services/modal-handler.service';
 import { SneakersService } from 'src/app/services/sneakers.service';
 import { AppState } from 'src/app/state/app.state';
 import * as actions from 'src/app/state/sneaker.reducer/sneaker.action.creator';
-import { Sneaker } from 'src/app/types/sneaker';
+import { ProtoSneaker, Sneaker } from 'src/app/types/sneaker';
 
 @Component({
   selector: 'app-admin-edit-modal',
@@ -14,6 +14,7 @@ import { Sneaker } from 'src/app/types/sneaker';
 })
 export class AdminEditModalComponent implements OnInit {
   sneakerId = '';
+  postSneaker = false;
   sneaker: Sneaker = {} as Sneaker;
 
   constructor(
@@ -37,6 +38,24 @@ export class AdminEditModalComponent implements OnInit {
     this.modalService.adminEditModal(false);
   }
 
+  handlePostSneaker() {
+    const saveSneaker: Partial<Sneaker> = this.formEditSneaker.value as Sneaker;
+    console.log(saveSneaker);
+    saveSneaker.size = [];
+    saveSneaker.images = [];
+    this.sneakerService
+      .postSneaker(saveSneaker as ProtoSneaker)
+      .subscribe(() => {
+        this.store.dispatch(
+          actions.addSneaker({
+            newSneaker: this.formEditSneaker.value as Sneaker,
+          })
+        );
+        this.localStorageService.deleteSneakerId();
+        this.modalService.adminEditModal(false);
+      });
+  }
+
   handleEditSneaker() {
     const saveSneaker: Partial<Sneaker> = this.formEditSneaker.value as Sneaker;
     saveSneaker.id = this.sneakerId;
@@ -53,6 +72,11 @@ export class AdminEditModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.sneakerId = this.localStorageService.getSneakerId() as string;
+
+    if (this.sneakerId === 'NewSneaker') {
+      this.postSneaker = true;
+      return;
+    }
 
     this.sneakerService.getSneaker(this.sneakerId).subscribe((data) => {
       this.sneaker = data.sneaker;

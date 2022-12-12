@@ -11,6 +11,15 @@
     <th class="p-5">OFERTA</th>
     <th class="p-5">STOCK</th>
     <th class="p-5">GENERO</th>
+    <th></th>
+    <th class="text-xl">
+      <button
+        (click)="habdlerAddSneaker()"
+        class="p-2 transition-colors bg-slate-200 hover:bg-slate-500"
+      >
+        ➕
+      </button>
+    </th>
   </thead>
   <tbody class="text-xl">
     <tr *ngFor="let sneaker of sneakers" class="border-y-2 bg-slate-50">

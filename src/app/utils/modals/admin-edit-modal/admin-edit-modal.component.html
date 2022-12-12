@@ -11,7 +11,8 @@
     >
       ❎
     </button>
-    <p class="mb-5 text-3xl">Editar Producto:</p>
+    <p *ngIf="!postSneaker" class="mb-5 text-3xl">Editar Producto:</p>
+    <p *ngIf="postSneaker" class="mb-5 text-3xl">Publicar Producto:</p>
     <form [formGroup]="formEditSneaker" class="flex flex-col gap-2 text-lg">
       <label for="brand">Marca:</label>
       <input
@@ -70,8 +71,19 @@
         class="text-black"
       />
     </form>
-    <button (click)="handleEditSneaker()" class="text-xl bg-green-600 my-9">
+    <button
+      *ngIf="!postSneaker"
+      (click)="handleEditSneaker()"
+      class="text-xl bg-green-600 my-9"
+    >
       EDITAR
+    </button>
+    <button
+      *ngIf="postSneaker"
+      (click)="handleEditSneaker()"
+      class="text-xl bg-green-600 my-9"
+    >
+      PUBLICAR
     </button>
   </div>
 </div>

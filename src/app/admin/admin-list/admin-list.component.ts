@@ -33,6 +33,11 @@ export class AdminListComponent implements OnInit {
     this.editModalService.adminEditModal(true);
   };
 
+  habdlerAddSneaker = () => {
+    this.localStorageService.saveSneakerId('NewSneaker');
+    this.editModalService.adminEditModal(true);
+  };
+
   ngOnInit(): void {
     this.store.subscribe((state) => {
       this.sneakers = state.sneakers.sneakers;
