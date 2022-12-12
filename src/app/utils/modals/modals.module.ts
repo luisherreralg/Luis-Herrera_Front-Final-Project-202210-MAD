@@ -10,6 +10,9 @@ import { RegisterModalComponent } from './register-modal/register-modal.componen
 import { CartModalModule } from './cart-modal/cart-modal.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminEditModalComponent } from './admin-edit-modal/admin-edit-modal.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideStorage, getStorage } from '@angular/fire/storage';
+import { environment } from 'src/environments/environment';
 
 export const WINDOW = new InjectionToken('WINDOW');
 @NgModule({
@@ -19,9 +22,16 @@ export const WINDOW = new InjectionToken('WINDOW');
     RegisterModalComponent,
     AdminEditModalComponent,
   ],
-  imports: [CommonModule, CartModalModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    CartModalModule,
+    ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideStorage(() => getStorage()),
+  ],
   exports: [
     CartModalComponent,
+
     LoginModalComponent,
     RegisterModalComponent,
     AdminEditModalComponent,

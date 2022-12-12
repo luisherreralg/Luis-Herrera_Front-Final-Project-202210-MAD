@@ -7,7 +7,13 @@ import { SneakersService } from 'src/app/services/sneakers.service';
 import { AppState } from 'src/app/state/app.state';
 import * as actions from 'src/app/state/sneaker.reducer/sneaker.action.creator';
 import { ProtoSneaker, Sneaker } from 'src/app/types/sneaker';
-
+import {
+  Storage,
+  ref,
+  uploadBytes,
+  listAll,
+  getDownloadURL,
+} from '@angular/fire/storage';
 @Component({
   selector: 'app-admin-edit-modal',
   templateUrl: './admin-edit-modal.component.html',
@@ -15,14 +21,53 @@ import { ProtoSneaker, Sneaker } from 'src/app/types/sneaker';
 export class AdminEditModalComponent implements OnInit {
   sneakerId = '';
   postSneaker = false;
+  postSneakerPhase = 0;
   sneaker: Sneaker = {} as Sneaker;
 
   constructor(
     public modalService: ModalHandlerService,
     public sneakerService: SneakersService,
     public localStorageService: LocalStorageService,
-    public store: Store<AppState>
+    public store: Store<AppState>,
+    public storage: Storage
   ) {}
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  uploadImage($event: any) {
+    const file = $event.target.files[0];
+
+    const imgRef = ref(
+      this.storage,
+      `sneakers/${this.formEditSneaker.value.model}/${file.name}`
+    );
+
+    uploadBytes(imgRef, file)
+      .then(() => {
+        //
+      })
+      .then((res) => {
+        //
+      })
+      .catch((error) => console.log(error));
+  }
+
+  getImages() {
+    const urls: string[] = [];
+    const imgRef = ref(
+      this.storage,
+      `sneakers/${this.formEditSneaker.value.model}`
+    );
+
+    listAll(imgRef)
+      .then(async (res) => {
+        for (const item of res.items) {
+          const url = await getDownloadURL(item);
+          urls.push(url);
+        }
+      })
+      .catch((error) => console.log(error));
+    return urls;
+  }
 
   formEditSneaker = new FormGroup({
     brand: new FormControl('', [Validators.required]),
@@ -40,13 +85,20 @@ export class AdminEditModalComponent implements OnInit {
 
   handlePostSneaker() {
     const saveSneaker: Partial<Sneaker> = this.formEditSneaker.value as Sneaker;
-    console.log(saveSneaker);
     saveSneaker.size = [];
-    saveSneaker.images = [];
+    saveSneaker.images = this.getImages();
+    console.log(
+      '🚀 ~ file: admin-edit-modal.component.ts:89 ~ AdminEditModalComponent ~ handlePostSneaker ~ saveSneaker',
+      saveSneaker
+    );
+
     this.sneakerService
       .postSneaker(saveSneaker as ProtoSneaker)
       .subscribe((response) => {
-        console.log(response);
+        console.log(
+          '🚀 ~ file: admin-edit-modal.component.ts:98 ~ AdminEditModalComponent ~ .subscribe ~ response',
+          response
+        );
         this.store.dispatch(
           actions.addSneaker({
             newSneaker: response.sneaker,

@@ -13,7 +13,12 @@
     </button>
     <p *ngIf="!postSneaker" class="mb-5 text-3xl">Editar Producto:</p>
     <p *ngIf="postSneaker" class="mb-5 text-3xl">Publicar Producto:</p>
-    <form [formGroup]="formEditSneaker" class="flex flex-col gap-2 text-lg">
+
+    <form
+      *ngIf="!postSneakerPhase"
+      [formGroup]="formEditSneaker"
+      class="flex flex-col gap-2 text-lg"
+    >
       <label for="brand">Marca:</label>
       <input
         type="text"
@@ -70,7 +75,52 @@
         formControlName="gender"
         class="text-black"
       />
+      <label *ngIf="postSneakerPhase === 1" for="file">Subir imágen</label>
+      <input
+        *ngIf="postSneakerPhase === 1"
+        type="file"
+        (change)="uploadImage($event)"
+      />
     </form>
+
+    <form *ngIf="postSneakerPhase === 1" class="flex flex-col">
+      <label for="principal">Imagen Principal</label>
+      <input
+        class="mb-10"
+        type="file"
+        id="principal"
+        (change)="uploadImage($event)"
+      />
+      <label for="image2">Imagen 2</label>
+      <input
+        class="mb-10"
+        type="file"
+        id="image2"
+        (change)="uploadImage($event)"
+      />
+      <label for="image3">Imagen 3</label>
+      <input
+        class="mb-10"
+        type="file"
+        id="image3"
+        (change)="uploadImage($event)"
+      />
+      <label for="image4">Imagen 4</label>
+      <input
+        class="mb-10"
+        type="file"
+        id="image4"
+        (change)="uploadImage($event)"
+      />
+      <label for="image5">Imagen 5</label>
+      <input
+        class="mb-10"
+        type="file"
+        id="image5"
+        (change)="uploadImage($event)"
+      />
+    </form>
+
     <button
       *ngIf="!postSneaker"
       (click)="handleEditSneaker()"
@@ -79,7 +129,14 @@
       EDITAR
     </button>
     <button
-      *ngIf="postSneaker"
+      *ngIf="postSneaker && postSneakerPhase === 0"
+      (click)="postSneakerPhase = 1"
+      class="text-xl bg-green-600 my-9"
+    >
+      SUBIR IMAGENES
+    </button>
+    <button
+      *ngIf="postSneakerPhase === 1"
       (click)="handlePostSneaker()"
       class="text-xl bg-green-600 my-9"
     >

@@ -68,6 +68,11 @@ export class SneakersService {
   }
 
   postSneaker(sneaker: ProtoSneaker): Observable<{ sneaker: Sneaker }> {
+    console.log(
+      '🚀 ~ file: sneakers.service.ts:71 ~ SneakersService ~ postSneaker ~ sneaker',
+      sneaker
+    );
+
     const httpOptions = {
       method: 'POST',
       headers: new HttpHeaders({
