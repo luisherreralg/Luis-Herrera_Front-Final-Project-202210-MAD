@@ -13,6 +13,9 @@ import { SneakerListModule } from './sneaker-list/sneaker-list.module';
 import { DetailsComponent } from './details/details.component';
 import { ModalsModule } from './utils/modals/modals.module';
 import { AdminModule } from './admin/admin.module';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideStorage,getStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,8 @@ import { AdminModule } from './admin/admin.module';
     SneakerListModule,
     ModalsModule,
     AdminModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideStorage(() => getStorage()),
   ],
   providers: [],
   bootstrap: [AppComponent],
