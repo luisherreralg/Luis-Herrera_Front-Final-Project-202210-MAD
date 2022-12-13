@@ -17,6 +17,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { AboutComponent } from './about/about.component';
+import { AboutModule } from './about/about.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,6 @@ import { AboutComponent } from './about/about.component';
     HomeComponent,
     MultipageComponent,
     DetailsComponent,
-    AboutComponent,
   ],
   imports: [
     HttpClientModule,
@@ -36,6 +36,7 @@ import { AboutComponent } from './about/about.component';
     SneakerListModule,
     ModalsModule,
     AdminModule,
+    AboutModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(() => getStorage()),
   ],

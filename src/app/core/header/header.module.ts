@@ -8,7 +8,6 @@ import { LogoComponent } from './logo/logo.component';
 import { BannerComponent } from './banner/banner.component';
 import { AuthComponent } from './auth/auth.component';
 import { CartComponent } from './cart/cart.component';
-import { BannerThreeComponent } from './banner-three/banner-three.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +17,6 @@ import { BannerThreeComponent } from './banner-three/banner-three.component';
     BannerComponent,
     AuthComponent,
     CartComponent,
-    BannerThreeComponent,
   ],
   imports: [CommonModule, HeaderRoutingModule, ReactiveFormsModule],
   exports: [
@@ -28,7 +26,6 @@ import { BannerThreeComponent } from './banner-three/banner-three.component';
     BannerComponent,
     AuthComponent,
     CartComponent,
-    BannerThreeComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

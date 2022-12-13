@@ -29,7 +29,7 @@ export class BannerThreeComponent implements AfterViewInit {
 
   @Input('nearClipping') public nearClippingPane = 2;
 
-  @Input('farClipping') public farClippingPane = 1000;
+  @Input('farClipping') public farClippingPane = 2000;
 
   //? Scene properties
   public camera!: THREE.PerspectiveCamera;
@@ -83,13 +83,13 @@ export class BannerThreeComponent implements AfterViewInit {
    */
   public createControls = () => {
     const renderer = new CSS2DRenderer();
-    renderer.setSize(400, 200);
+    renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.domElement.style.position = 'absolute';
-    renderer.domElement.style.top = '0px';
+    renderer.domElement.style.top = '800px';
     document.body.appendChild(renderer.domElement);
     this.controls = new OrbitControls(this.camera, renderer.domElement);
     this.controls.autoRotate = true;
-    this.controls.enableZoom = true;
+    this.controls.enableZoom = false;
     this.controls.enablePan = false;
     this.controls.update();
   };
@@ -106,7 +106,7 @@ export class BannerThreeComponent implements AfterViewInit {
     this.scene.background = new THREE.Color(0xffffff); //0x000000
     this.loaderGLTF.load('assets/3d-model/scene.gltf', (gltf: GLTF) => {
       this.model = gltf.scene.children[0];
-      this.model.scale.set(0.1, 0.1, 0.1);
+      this.model.scale.set(0.3, 0.3, 0.3);
       const box = new THREE.Box3().setFromObject(this.model);
       box.getCenter(this.model.position); // this re-sets the mesh position
       this.model.position.multiplyScalar(-1);
@@ -121,7 +121,7 @@ export class BannerThreeComponent implements AfterViewInit {
       this.nearClippingPane,
       this.farClippingPane
     );
-    this.camera.position.x = 200;
+    this.camera.position.x = 500;
     this.camera.position.y = 20;
     this.camera.position.z = 0;
     this.ambientLight = new THREE.AmbientLight(0x00000, 100);
@@ -130,17 +130,17 @@ export class BannerThreeComponent implements AfterViewInit {
     this.directionalLight.position.set(0, 1, 0);
     this.directionalLight.castShadow = true;
     this.scene.add(this.directionalLight);
-    this.light1 = new THREE.PointLight(0xffffff, 0.5);
+    this.light1 = new THREE.PointLight(0xffffff, 0.2);
     this.light1.position.set(0, 200, 400);
     this.scene.add(this.light1);
-    this.light2 = new THREE.PointLight(0xffffff, 0.9);
+    this.light2 = new THREE.PointLight(0xffffff, 0.5);
     this.light2.position.set(500, 100, 0);
     this.scene.add(this.light2);
-    this.light3 = new THREE.PointLight(0xffffff, 0.5);
+    this.light3 = new THREE.PointLight(0xffffff, 0.2);
     this.light3.position.set(0, 100, -500);
     this.scene.add(this.light3);
     this.light4 = new THREE.PointLight(0xffffff, 0.5);
-    this.light4.position.set(-500, 300, 500);
+    this.light4.position.set(-500, 0, 500);
     this.scene.add(this.light4);
   }
 
