@@ -78,4 +78,13 @@ describe('LocalStorageService', () => {
       });
     });
   });
+
+  describe('Given the getSneakerId method, when its invoked', () => {
+    it('should call to the localStorage.getItem method', () => {
+      spyOn(localStorage, 'getItem').and.returnValue(null);
+
+      service.getSneakerId();
+      expect(localStorage.getItem).toHaveBeenCalled();
+    });
+  });
 });

@@ -1,5 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { firebaseApp$ } from '@angular/fire/app';
+import { StorageModule } from '@angular/fire/storage';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
 import { Sneaker } from 'src/app/types/sneaker';
@@ -16,7 +18,19 @@ describe('AdminEditModalComponent', () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       declarations: [AdminEditModalComponent],
-      providers: [provideMockStore(mockStore)],
+      providers: [
+        provideMockStore(mockStore),
+        firebaseApp$,
+        // {
+        //   provide: StorageModule,
+        //   useValue: {
+        //     ref: () => {},
+        //     uploadBytes: () => {},
+        //     listAll: () => {},
+        //     getDownloadURL: () => {},
+        //   },
+        // },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AdminEditModalComponent);

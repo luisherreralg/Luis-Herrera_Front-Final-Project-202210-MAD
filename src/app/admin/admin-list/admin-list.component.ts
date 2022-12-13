@@ -33,7 +33,7 @@ export class AdminListComponent implements OnInit {
     this.editModalService.adminEditModal(true);
   };
 
-  habdlerAddSneaker = () => {
+  handlerAddSneaker = () => {
     this.localStorageService.saveSneakerId('NewSneaker');
     this.editModalService.adminEditModal(true);
   };

@@ -63,4 +63,16 @@ describe('AdminListComponent', () => {
       expect(spySneakersService).toHaveBeenCalled();
     });
   });
+
+  describe('Given the handlerAddSneaker  method, when its invoked', () => {
+    it('should call to the localStorageService', () => {
+      const spySneakersService = spyOn(
+        component.localStorageService,
+        'saveSneakerId'
+      );
+
+      component.handlerAddSneaker();
+      expect(spySneakersService).toHaveBeenCalled();
+    });
+  });
 });

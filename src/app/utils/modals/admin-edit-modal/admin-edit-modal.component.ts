@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
@@ -18,7 +18,7 @@ import {
   selector: 'app-admin-edit-modal',
   templateUrl: './admin-edit-modal.component.html',
 })
-export class AdminEditModalComponent implements OnInit {
+export class AdminEditModalComponent implements OnInit, OnDestroy {
   sneakerId = '';
   postSneaker = false;
   postSneakerPhase = 0;
@@ -94,15 +94,6 @@ export class AdminEditModalComponent implements OnInit {
           '🚀 ~ file: admin-edit-modal.component.ts:98 ~ AdminEditModalComponent ~ .subscribe ~ response',
           response
         );
-      });
-
-    this.sneakerService
-      .postSneaker(saveSneaker as ProtoSneaker)
-      .subscribe((response) => {
-        console.log(
-          '🚀 ~ file: admin-edit-modal.component.ts:98 ~ AdminEditModalComponent ~ .subscribe ~ response',
-          response
-        );
         this.store.dispatch(
           actions.addSneaker({
             newSneaker: response.sneaker,
@@ -127,7 +118,18 @@ export class AdminEditModalComponent implements OnInit {
     });
   }
 
+  addBodyClass() {
+    const bodyTag = document.body;
+    bodyTag.classList.add('overflow-hidden');
+  }
+
+  destroyBodyClass() {
+    const bodyTag = document.body;
+    bodyTag.classList.remove('overflow-hidden');
+  }
+
   ngOnInit(): void {
+    this.addBodyClass();
     this.sneakerId = this.localStorageService.getSneakerId() as string;
 
     if (this.sneakerId === 'NewSneaker') {
@@ -147,5 +149,9 @@ export class AdminEditModalComponent implements OnInit {
         gender: this.sneaker.gender,
       });
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroyBodyClass();
   }
 }
