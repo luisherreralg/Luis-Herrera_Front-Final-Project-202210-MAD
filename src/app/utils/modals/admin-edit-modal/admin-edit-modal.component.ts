@@ -45,9 +45,6 @@ export class AdminEditModalComponent implements OnInit {
       .then(() => {
         //
       })
-      .then((res) => {
-        //
-      })
       .catch((error) => console.log(error));
   }
 
@@ -89,6 +86,15 @@ export class AdminEditModalComponent implements OnInit {
       '🚀 ~ file: admin-edit-modal.component.ts:89 ~ AdminEditModalComponent ~ handlePostSneaker ~ saveSneaker',
       saveSneaker
     );
+
+    this.sneakerService
+      .postSneaker(saveSneaker as ProtoSneaker)
+      .subscribe((response) => {
+        console.log(
+          '🚀 ~ file: admin-edit-modal.component.ts:98 ~ AdminEditModalComponent ~ .subscribe ~ response',
+          response
+        );
+      });
 
     this.sneakerService
       .postSneaker(saveSneaker as ProtoSneaker)
