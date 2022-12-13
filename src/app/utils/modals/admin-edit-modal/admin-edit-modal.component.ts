@@ -58,15 +58,13 @@ export class AdminEditModalComponent implements OnInit {
       `sneakers/${this.formEditSneaker.value.model}`
     );
 
-    listAll(imgRef)
-      .then(async (res) => {
-        for (const item of res.items) {
-          const url = await getDownloadURL(item);
-          urls.push(url);
-        }
-      })
-      .catch((error) => console.log(error));
-    return urls;
+    return listAll(imgRef).then(async (res) => {
+      for (const item of res.items) {
+        const url = await getDownloadURL(item);
+        urls.push(url);
+      }
+      return urls;
+    });
   }
 
   formEditSneaker = new FormGroup({
@@ -83,10 +81,10 @@ export class AdminEditModalComponent implements OnInit {
     this.modalService.adminEditModal(false);
   }
 
-  handlePostSneaker() {
+  async handlePostSneaker() {
     const saveSneaker: Partial<Sneaker> = this.formEditSneaker.value as Sneaker;
     saveSneaker.size = [];
-    saveSneaker.images = this.getImages();
+    saveSneaker.images = await this.getImages();
     console.log(
       '🚀 ~ file: admin-edit-modal.component.ts:89 ~ AdminEditModalComponent ~ handlePostSneaker ~ saveSneaker',
       saveSneaker

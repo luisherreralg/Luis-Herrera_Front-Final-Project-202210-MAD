@@ -1,6 +1,8 @@
 <header>
   <div class="flex flex-col items-center justify-center">
     <app-logo></app-logo>
+    <!-- ! Para el banner 3d -->
+    <!-- <app-banner-three></app-banner-three> -->
     <app-menu></app-menu>
     <app-cart *ngIf="isLogged" class="absolute top-5 right-32"></app-cart>
     <app-auth
@@ -15,7 +17,7 @@
 
 <header
   *ngIf="isScrolled"
-  class="fixed top-0 flex flex-col items-center justify-center w-full align-middle bg-white z-10"
+  class="fixed top-0 z-10 flex flex-col items-center justify-center w-full align-middle bg-white"
 >
   <div class="flex items-center">
     <app-logo [isScrolled]="isScrolled"></app-logo>
