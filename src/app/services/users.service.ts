@@ -15,7 +15,8 @@ export class UsersService {
     public http: HttpClient,
     public localStorageService: LocalStorageService
   ) {
-    (this.apiUrl = 'http://localhost:7700/users'),
+    (this.apiUrl =
+      'https://luis-herrera-back-final-project-202210.onrender.com/users'),
       (this.token = localStorageService.getToken() as string);
   }
 
