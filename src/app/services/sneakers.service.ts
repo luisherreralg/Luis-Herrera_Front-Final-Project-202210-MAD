@@ -13,8 +13,7 @@ export class SneakersService {
     public http: HttpClient,
     public storageService: LocalStorageService
   ) {
-    this.apiUrl =
-      'https://luis-herrera-back-final-project-202210.onrender.com/sneakers';
+    this.apiUrl = 'http://localhost:7700/sneakers';
   }
 
   getSneakers(): Observable<{ sneakers: Sneaker[] }> {
