@@ -33,7 +33,7 @@ export class AdminEditModalComponent implements OnInit, OnDestroy {
   ) {}
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  uploadImage($event: any) {
+  async uploadImage($event: any) {
     const file = $event.target.files[0];
 
     const imgRef = ref(
@@ -41,11 +41,7 @@ export class AdminEditModalComponent implements OnInit, OnDestroy {
       `sneakers/${this.formEditSneaker.value.model}/${file.name}`
     );
 
-    uploadBytes(imgRef, file)
-      .then(() => {
-        //
-      })
-      .catch((error) => console.log(error));
+    await uploadBytes(imgRef, file);
   }
 
   getImages() {
