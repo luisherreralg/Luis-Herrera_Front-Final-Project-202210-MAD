@@ -1,13 +1,13 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from './menu/menu.component';
-import { HeaderRoutingModule } from './header-routing.module';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LogoComponent } from './logo/logo.component';
 import { BannerComponent } from './banner/banner.component';
 import { AuthComponent } from './auth/auth.component';
 import { CartComponent } from './cart/cart.component';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { CartComponent } from './cart/cart.component';
     AuthComponent,
     CartComponent,
   ],
-  imports: [CommonModule, HeaderRoutingModule, ReactiveFormsModule],
+  imports: [CommonModule, AppRoutingModule, ReactiveFormsModule],
   exports: [
     MenuComponent,
     SearchBarComponent,
