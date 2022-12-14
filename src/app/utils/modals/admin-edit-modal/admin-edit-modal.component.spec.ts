@@ -34,8 +34,6 @@ describe('AdminEditModalComponent', () => {
       declarations: [AdminEditModalComponent],
       providers: [
         provideMockStore(mockStore),
-        // Storage,
-        // firebaseApp$,
         // {
         //   provide: Storage,
         //   useValue: {
@@ -102,6 +100,69 @@ describe('AdminEditModalComponent', () => {
       component.ngOnInit();
       expect(spyLocalStorageService).toHaveBeenCalled();
       expect(spySneakerService).toHaveBeenCalled();
+    });
+  });
+
+  describe('Given the uploadImage method, when its invoked', () => {
+    it('should call to the own method', () => {
+      const spy = spyOn(component, 'uploadImage').and.callThrough();
+      const mocKEvent = {
+        target: {
+          files: [
+            {
+              name: 'test',
+              size: 0,
+              type: 'image/png',
+            },
+          ],
+        },
+      };
+      component.uploadImage(mocKEvent);
+
+      expect(spy).toHaveBeenCalled();
+    });
+  });
+
+  describe('Given the getImages method, when its invoked', () => {
+    it('should call to the own method', () => {
+      const spy = spyOn(component, 'getImages').and.callThrough();
+      component.getImages();
+      expect(spy).toHaveBeenCalled();
+    });
+  });
+
+  describe('Given the handlePostSneaker method, when its invoked', () => {
+    it('should call to the own method, the store and the sneakerService', async () => {
+      const spy = spyOn(component, 'handlePostSneaker').and.callThrough();
+      const spySneakerService = spyOn(
+        component.sneakerService,
+        'postSneaker'
+      ).and.returnValue(of({ sneaker: {} as Sneaker }));
+      const spyStore = spyOn(component.store, 'dispatch');
+
+      await component.handlePostSneaker();
+      expect(spy).toHaveBeenCalled();
+      expect(spySneakerService).toHaveBeenCalled();
+      expect(spyStore).toHaveBeenCalled();
+    });
+  });
+
+  describe('When the ngOnInit method is invoked', () => {
+    it('should cahgen postSenaker = true if the sneakerId === "newSneaker"', () => {
+      spyOn(component.localStorageService, 'getSneakerId').and.returnValue(
+        'NewSneaker'
+      );
+
+      component.ngOnInit();
+      expect(component.postSneaker).toBeTruthy();
+    });
+
+    it('should cahgen postSenaker = false if the sneakerId !== "newSneaker"', () => {
+      spyOn(component.localStorageService, 'getSneakerId').and.returnValue(
+        'test'
+      );
+      component.ngOnInit();
+      expect(component.postSneaker).toBeFalsy();
     });
   });
 });
