@@ -16,7 +16,6 @@ import { AdminModule } from './admin/admin.module';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideStorage, getStorage } from '@angular/fire/storage';
-import { AboutModule } from './about/about.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +34,6 @@ import { AboutModule } from './about/about.module';
     SneakerListModule,
     ModalsModule,
     AdminModule,
-    AboutModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(() => getStorage()),
   ],

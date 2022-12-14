@@ -11,7 +11,11 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'details/:id', component: DetailsComponent },
   { path: 'multipage/:title', component: MultipageComponent },
-  { path: 'about', component: AboutComponent },
+  {
+    path: 'about',
+    loadChildren: () =>
+      import('./about/about.module').then((m) => m.AboutModule),
+  },
   {
     path: 'admin',
     component: AdminComponent,
