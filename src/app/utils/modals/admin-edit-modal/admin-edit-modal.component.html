@@ -3,7 +3,7 @@
   class="fixed z-20 flex w-screen h-full bg-black bg-opacity-50 shadow-lg font-Roboto text-slate-100"
 >
   <div
-    class="flex flex-col justify-center w-2/6 p-10 mx-auto bg-gray-700 h-4/6 translate-y-1/4"
+    class="flex flex-col justify-center w-2/6 p-10 mx-auto bg-gray-700 h-5/6 translate-y-14"
   >
     <button
       (click)="handlerAdminEditModalEvent()"
@@ -11,8 +11,14 @@
     >
       ❎
     </button>
-    <p class="mb-5 text-3xl">Editar Producto:</p>
-    <form [formGroup]="formEditSneaker" class="flex flex-col gap-2 text-lg">
+    <p *ngIf="!postSneaker" class="mb-5 text-3xl">Editar Producto:</p>
+    <p *ngIf="postSneaker" class="mb-5 text-3xl">Publicar Producto:</p>
+
+    <form
+      *ngIf="!postSneakerPhase"
+      [formGroup]="formEditSneaker"
+      class="flex flex-col gap-2 text-lg"
+    >
       <label for="brand">Marca:</label>
       <input
         type="text"
@@ -69,9 +75,72 @@
         formControlName="gender"
         class="text-black"
       />
+      <label *ngIf="postSneakerPhase === 1" for="file">Subir imágen</label>
+      <input
+        *ngIf="postSneakerPhase === 1"
+        type="file"
+        (change)="uploadImage($event)"
+      />
     </form>
-    <button (click)="handleEditSneaker()" class="text-xl bg-green-600 my-9">
+
+    <form *ngIf="postSneakerPhase === 1" class="flex flex-col">
+      <label for="principal">Imagen Principal</label>
+      <input
+        class="mb-10"
+        type="file"
+        id="principal"
+        (change)="uploadImage($event)"
+      />
+      <label for="image2">Imagen 2</label>
+      <input
+        class="mb-10"
+        type="file"
+        id="image2"
+        (change)="uploadImage($event)"
+      />
+      <label for="image3">Imagen 3</label>
+      <input
+        class="mb-10"
+        type="file"
+        id="image3"
+        (change)="uploadImage($event)"
+      />
+      <label for="image4">Imagen 4</label>
+      <input
+        class="mb-10"
+        type="file"
+        id="image4"
+        (change)="uploadImage($event)"
+      />
+      <label for="image5">Imagen 5</label>
+      <input
+        class="mb-10"
+        type="file"
+        id="image5"
+        (change)="uploadImage($event)"
+      />
+    </form>
+
+    <button
+      *ngIf="!postSneaker"
+      (click)="handleEditSneaker()"
+      class="text-xl bg-green-600 my-9"
+    >
       EDITAR
+    </button>
+    <button
+      *ngIf="postSneaker && postSneakerPhase === 0"
+      (click)="postSneakerPhase = 1"
+      class="text-xl bg-green-600 my-9"
+    >
+      SUBIR IMAGENES
+    </button>
+    <button
+      *ngIf="postSneakerPhase === 1"
+      (click)="handlePostSneaker()"
+      class="text-xl bg-green-600 my-9"
+    >
+      PUBLICAR
     </button>
   </div>
 </div>

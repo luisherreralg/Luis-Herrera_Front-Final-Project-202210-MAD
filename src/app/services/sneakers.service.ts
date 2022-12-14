@@ -13,7 +13,8 @@ export class SneakersService {
     public http: HttpClient,
     public storageService: LocalStorageService
   ) {
-    this.apiUrl = 'http://localhost:7700/sneakers';
+    this.apiUrl =
+      'https://luis-herrera-back-final-project-202210.onrender.com/sneakers';
   }
 
   getSneakers(): Observable<{ sneakers: Sneaker[] }> {
@@ -67,7 +68,12 @@ export class SneakersService {
     }>;
   }
 
-  postSneaker(sneaker: ProtoSneaker): Observable<Sneaker> {
+  postSneaker(sneaker: ProtoSneaker): Observable<{ sneaker: Sneaker }> {
+    console.log(
+      '🚀 ~ file: sneakers.service.ts:71 ~ SneakersService ~ postSneaker ~ sneaker',
+      sneaker
+    );
+
     const httpOptions = {
       method: 'POST',
       headers: new HttpHeaders({
@@ -76,11 +82,9 @@ export class SneakersService {
       }),
     };
 
-    return this.http.post(
-      this.apiUrl,
-      sneaker,
-      httpOptions
-    ) as Observable<Sneaker>;
+    return this.http.post(this.apiUrl, sneaker, httpOptions) as Observable<{
+      sneaker: Sneaker;
+    }>;
   }
 
   deleteSneaker(sneakerId: string): Observable<Sneaker> {

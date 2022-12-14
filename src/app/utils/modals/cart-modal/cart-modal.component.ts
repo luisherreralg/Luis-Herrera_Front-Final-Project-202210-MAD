@@ -55,6 +55,7 @@ export class CartModalComponent implements OnInit {
 
   /* istanbul ignore next */
   initializePayment(amount: number, completeOrders: () => void) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const paymentHandler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_51MCt1qDJ11wdXcrRVZsbJThCSedIFdM3PZ2yMOTqvOEYv4krrtJ7xHFHWuLdPyl9bFrutuiHgOc1sKZKnBm9YOGb00D42yzQH2',
       locale: 'auto',
@@ -79,6 +80,7 @@ export class CartModalComponent implements OnInit {
       script.type = 'text/javascript';
       script.src = 'https://checkout.stripe.com/checkout.js';
       script.onload = () => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         this.paymentHandler = (<any>window).StripeCheckout.configure({
           key: 'pk_test_51MCt1qDJ11wdXcrRVZsbJThCSedIFdM3PZ2yMOTqvOEYv4krrtJ7xHFHWuLdPyl9bFrutuiHgOc1sKZKnBm9YOGb00D42yzQH2',
           locale: 'auto',
