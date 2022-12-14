@@ -1,13 +1,23 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { firebaseApp$ } from '@angular/fire/app';
-import { StorageModule } from '@angular/fire/storage';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
 import { Sneaker } from 'src/app/types/sneaker';
 import { mockSneakersInitialState } from '../../mocks/mocks';
+import {
+  Storage,
+  ref,
+  uploadBytes,
+  listAll,
+  getDownloadURL,
+  StorageModule,
+  getStorage,
+  provideStorage,
+} from '@angular/fire/storage';
 
 import { AdminEditModalComponent } from './admin-edit-modal.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from 'src/environments/environment';
 
 describe('AdminEditModalComponent', () => {
   let component: AdminEditModalComponent;
@@ -16,13 +26,18 @@ describe('AdminEditModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [
+        HttpClientTestingModule,
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideStorage(() => getStorage()),
+      ],
       declarations: [AdminEditModalComponent],
       providers: [
         provideMockStore(mockStore),
-        firebaseApp$,
+        // Storage,
+        // firebaseApp$,
         // {
-        //   provide: StorageModule,
+        //   provide: Storage,
         //   useValue: {
         //     ref: () => {},
         //     uploadBytes: () => {},
