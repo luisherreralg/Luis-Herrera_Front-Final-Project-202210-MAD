@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from 'src/app/about/about.component';
-import { Path } from 'three';
 
 const routes: Routes = [
   // { path: 'multipage/:filter', component: DetailsComponent },
