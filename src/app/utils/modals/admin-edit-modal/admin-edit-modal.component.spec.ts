@@ -4,16 +4,7 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
 import { Sneaker } from 'src/app/types/sneaker';
 import { mockSneakersInitialState } from '../../mocks/mocks';
-import {
-  Storage,
-  ref,
-  uploadBytes,
-  listAll,
-  getDownloadURL,
-  StorageModule,
-  getStorage,
-  provideStorage,
-} from '@angular/fire/storage';
+import { getStorage, provideStorage } from '@angular/fire/storage';
 
 import { AdminEditModalComponent } from './admin-edit-modal.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
