@@ -26,6 +26,7 @@
         id="brand"
         formControlName="brand"
         class="text-black"
+        autocomplete="off"
       />
       <label for="model">Modelo:</label>
       <input
@@ -34,14 +35,16 @@
         id="model"
         formControlName="model"
         class="text-black"
+        autocomplete="off"
       />
-      <label for="onSale">En venta:</label>
+      <label for="onSale">Estado:</label>
       <input
         type="text"
         name="onSale"
         id="onSale"
         formControlName="onSale"
         class="text-black"
+        autocomplete="off"
       />
       <label for="price">Precio:</label>
       <input
@@ -50,6 +53,7 @@
         id="price"
         formControlName="price"
         class="text-black"
+        autocomplete="off"
       />
       <label for="onSalePrice">Precio de oferta:</label>
       <input
@@ -58,6 +62,7 @@
         id="onSalePrice"
         formControlName="onSalePrice"
         class="text-black"
+        autocomplete="off"
       />
       <label for="stock">Stock:</label>
       <input
@@ -66,6 +71,7 @@
         id="stock"
         formControlName="stock"
         class="text-black"
+        autocomplete="off"
       />
       <label for="gender">Género:</label>
       <input
@@ -74,50 +80,57 @@
         id="gender"
         formControlName="gender"
         class="text-black"
+        autocomplete="off"
       />
       <label *ngIf="postSneakerPhase === 1" for="file">Subir imágen</label>
       <input
         *ngIf="postSneakerPhase === 1"
         type="file"
         (change)="uploadImage($event)"
+        autocomplete="off"
       />
     </form>
 
     <form *ngIf="postSneakerPhase === 1" class="flex flex-col">
       <label for="principal">Imagen Principal</label>
       <input
-        class="mb-10"
+        class="mb-5"
         type="file"
         id="principal"
         (change)="uploadImage($event)"
+        autocomplete="off"
       />
       <label for="image2">Imagen 2</label>
       <input
-        class="mb-10"
+        class="mb-5"
         type="file"
         id="image2"
         (change)="uploadImage($event)"
+        autocomplete="off"
       />
       <label for="image3">Imagen 3</label>
       <input
-        class="mb-10"
+        class="mb-5"
         type="file"
         id="image3"
         (change)="uploadImage($event)"
+        autocomplete="off"
       />
       <label for="image4">Imagen 4</label>
       <input
-        class="mb-10"
+        class="mb-5"
         type="file"
         id="image4"
         (change)="uploadImage($event)"
+        autocomplete="off"
       />
       <label for="image5">Imagen 5</label>
       <input
-        class="mb-10"
+        class="mb-5"
         type="file"
         id="image5"
         (change)="uploadImage($event)"
+        autocomplete="off"
       />
     </form>
 
@@ -130,10 +143,18 @@
     </button>
     <button
       *ngIf="postSneaker && postSneakerPhase === 0"
-      (click)="postSneakerPhase = 1"
+      (click)="handleNextPhase()"
       class="text-xl bg-green-600 my-9"
     >
       SUBIR IMAGENES
+    </button>
+
+    <button
+      *ngIf="postSneaker && postSneakerPhase === 1"
+      (click)="handlePrevPhase()"
+      class="text-xl bg-green-600 my-9"
+    >
+      VOLVER
     </button>
     <button
       *ngIf="postSneakerPhase === 1"
