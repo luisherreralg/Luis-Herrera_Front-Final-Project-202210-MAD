@@ -13,8 +13,7 @@ export class OrdersService {
     public storageService: LocalStorageService,
     public http: HttpClient
   ) {
-    this.apiUrl =
-      'https://luis-herrera-back-final-project-202210.onrender.com/orders';
+    this.apiUrl = 'http://localhost:7700/orders';
   }
 
   getOrders(): Observable<{ orders: Order[] }> {
