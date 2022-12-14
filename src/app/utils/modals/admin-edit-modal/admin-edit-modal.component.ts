@@ -74,22 +74,24 @@ export class AdminEditModalComponent implements OnInit, OnDestroy {
     this.modalService.adminEditModal(false);
   }
 
+  handleNextPhase() {
+    if (this.formEditSneaker.valid) {
+      this.postSneakerPhase += 1;
+    }
+  }
+
+  handlePrevPhase() {
+    this.postSneakerPhase -= 1;
+  }
+
   async handlePostSneaker() {
     const saveSneaker: Partial<Sneaker> = this.formEditSneaker.value as Sneaker;
     saveSneaker.size = [];
     saveSneaker.images = await this.getImages();
-    console.log(
-      '🚀 ~ file: admin-edit-modal.component.ts:89 ~ AdminEditModalComponent ~ handlePostSneaker ~ saveSneaker',
-      saveSneaker
-    );
 
     this.sneakerService
       .postSneaker(saveSneaker as ProtoSneaker)
       .subscribe((response) => {
-        console.log(
-          '🚀 ~ file: admin-edit-modal.component.ts:98 ~ AdminEditModalComponent ~ .subscribe ~ response',
-          response
-        );
         this.store.dispatch(
           actions.addSneaker({
             newSneaker: response.sneaker,

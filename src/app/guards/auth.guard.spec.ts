@@ -40,7 +40,7 @@ describe('AuthGuard', () => {
     ).and.returnValue({});
 
     expect(guard.canActivate(routeMock, routeStateMock)).toBeUndefined();
-    expect(routerMock.navigate).toHaveBeenCalledWith(['/']);
+    expect(routerMock.navigate).toHaveBeenCalledWith(['']);
     expect(spyLocalStorageService).toHaveBeenCalled();
   });
 });
