@@ -23,18 +23,7 @@ describe('AdminEditModalComponent', () => {
         provideStorage(() => getStorage()),
       ],
       declarations: [AdminEditModalComponent],
-      providers: [
-        provideMockStore(mockStore),
-        // {
-        //   provide: Storage,
-        //   useValue: {
-        //     ref: () => {},
-        //     uploadBytes: () => {},
-        //     listAll: () => {},
-        //     getDownloadURL: () => {},
-        //   },
-        // },
-      ],
+      providers: [provideMockStore(mockStore)],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AdminEditModalComponent);
@@ -154,6 +143,30 @@ describe('AdminEditModalComponent', () => {
       );
       component.ngOnInit();
       expect(component.postSneaker).toBeFalsy();
+    });
+  });
+
+  describe('Given the handleNextPhase method, when its invoked', () => {
+    it('should change the postSnekaerPhase to +1', () => {
+      component.formEditSneaker.setValue({
+        brand: 'test',
+        model: 'test',
+        onSale: 'onSale',
+        price: 0,
+        onSalePrice: 0,
+        stock: 0,
+        gender: 'hombre',
+      });
+
+      component.handleNextPhase();
+      expect(component.postSneakerPhase).toBe(1);
+    });
+  });
+
+  describe('Given the handlePrevPhase method, when its invoked', () => {
+    it('should change the postSneakerPhase to -1', () => {
+      component.handlePrevPhase();
+      expect(component.postSneakerPhase).toBe(-1);
     });
   });
 });

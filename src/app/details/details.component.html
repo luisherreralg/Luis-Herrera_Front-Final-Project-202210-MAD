@@ -1,11 +1,12 @@
-<div class="flex gap-20 m-20">
+<div class="flex justify-center gap-20 m-10">
   <div class="flex">
     <ul class="flex flex-col justify-center gap-6">
       <li *ngFor="let image of restOfImages">
-        <img [src]="image" alt="Sneaker Image" class="object-scale-down w-44" />
+        <img [src]="image" alt="Sneaker Image" class="object-cover w-72" />
       </li>
     </ul>
   </div>
+
   <div class="flex">
     <button (click)="prevImageHandler()" class="p-5 -rotate-180 transofrm">
       <img
@@ -14,12 +15,13 @@
       />
     </button>
 
-    <img [src]="focusedImage" alt="Sneaker Image" class="object-scale-down" />
+    <img [src]="focusedImage" alt="Sneaker Image" class="w-2/3" />
 
     <button (click)="nextImageHandler()" class="p-5">
       <img src="../../assets/details-icons/arrow-icon.svg" alt="Arrow Icon" />
     </button>
   </div>
+
   <div>
     <div *ngIf="sneaker.stock !== 0">
       <div class="mb-36">
@@ -28,7 +30,7 @@
       </div>
 
       <div class="mb-36">
-        <div class="text-right m-5">
+        <div class="m-5 text-right">
           <p
             [ngClass]="{
               'line-through text-3xl': sneaker.onSale === 'onSale'

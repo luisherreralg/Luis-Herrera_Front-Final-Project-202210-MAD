@@ -7,16 +7,10 @@
 <nav>
   <ul [class]="isScrolled ? 'flex text-4xl gap-20' : 'flex text-6xl gap-20 '">
     <li>
-      <a
-        (click)="scrollTopOnClick()"
-        routerLink=""
-        class="transition-colors hover:text-slate-400"
-        >INICIO</a
-      >
+      <a routerLink="" class="transition-colors hover:text-slate-400">INICIO</a>
     </li>
     <li>
       <a
-        (click)="scrollTopOnClick()"
         routerLink="multipage/hombre"
         class="transition-colors hover:text-slate-400"
         >HOMBRE</a
@@ -25,7 +19,6 @@
     <li>
       <a
         routerLink="multipage/mujer"
-        (click)="scrollTopOnClick()"
         class="transition-colors hover:text-slate-400"
         >MUJER</a
       >
@@ -33,7 +26,6 @@
     <li>
       <a
         routerLink="multipage/onSale"
-        (click)="scrollTopOnClick()"
         class="text-red-500 transition-colors hover:text-red-300"
         >OFERTAS</a
       >
