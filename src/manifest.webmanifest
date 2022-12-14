@@ -1,8 +1,8 @@
 {
-  "name": "Luis-Herrera_Front-Final-Project-202210-MAD",
-  "short_name": "Luis-Herrera_Front-Final-Project-202210-MAD",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "name": "Disi Sneakers",
+  "short_name": "Disi",
+  "theme_color": "#EF4444",
+  "background_color": "#EF4444",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
