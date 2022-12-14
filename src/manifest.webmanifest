@@ -1,8 +1,8 @@
 {
   "name": "Disi Sneakers",
   "short_name": "Disi",
-  "theme_color": "#EF4444",
-  "background_color": "#EF4444",
+  "theme_color": "#ef4444",
+  "background_color": "#ef4444",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
