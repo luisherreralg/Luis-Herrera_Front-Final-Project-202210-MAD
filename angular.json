@@ -103,6 +103,51 @@
               "src/**/*.html"
             ]
           }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "Luis-Herrera_Front-Final-Project-202210-MAD:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "Luis-Herrera_Front-Final-Project-202210-MAD:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false
+          }
+        },
+        "ct": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "Luis-Herrera_Front-Final-Project-202210-MAD:serve",
+            "watch": true,
+            "headless": false,
+            "testingType": "component"
+          },
+          "configurations": {
+            "development": {
+              "devServerTarget": "Luis-Herrera_Front-Final-Project-202210-MAD:serve:development"
+            }
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "Luis-Herrera_Front-Final-Project-202210-MAD:serve",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "Luis-Herrera_Front-Final-Project-202210-MAD:serve:production"
+            }
+          }
         }
       }
     }
@@ -110,7 +155,9 @@
   "cli": {
     "analytics": false,
     "schematicCollections": [
-      "@angular-eslint/schematics"
+      "@cypress/schematic",
+      "@angular-eslint/schematics",
+      "@schematics/angular"
     ]
   }
 }
